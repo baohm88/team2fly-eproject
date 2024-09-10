@@ -7,10 +7,28 @@ export default function MainNavigation() {
       <Header>
         <ul>
           <li>
-            <NavLink to="/">Home</NavLink>
+            <NavLink to="/">LOGO</NavLink>
           </li>
           <li>
-            <NavLink to="/products">Products</NavLink>
+            <NavLink to="/featured">New & Featured</NavLink>
+          </li>
+          <li>
+            <NavLink to="/men">Men</NavLink>
+          </li>
+          <li>
+            <NavLink to="/women">Women</NavLink>
+          </li>
+          <li>
+            <NavLink to="/kids">Kids</NavLink>
+          </li>
+          <li>
+            <NavLink to="/sale">Sale</NavLink>
+          </li>
+          <li>
+            <NavLink to="/customise">Customise</NavLink>
+          </li>
+          <li>
+            <NavLink to="/sneakers">SNKRS</NavLink>
           </li>
         </ul>
       </Header>
