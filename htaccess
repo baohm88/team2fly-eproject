@@ -1,0 +1,12 @@
+# Enable the RewriteEngine
+RewriteEngine On
+
+# Set the base directory for your project
+RewriteBase /team2fly-eproject/
+
+# If the request is for a file or directory that exists, serve it normally
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Redirect all other requests to index.php
+RewriteRule ^ index.php [L]
