@@ -8,51 +8,58 @@
 </head>
 <body>
 
-    <div class="my-account">
+    <!-- Phần Home / My account -->
+    <div class="breadcrumb">
         <p><a href="#">Home</a> / <a href="#">My account</a></p>
-        <div class="account-summary">
-            <p>Hi Minh</p>
-            <a href="#">PROFILE & PREFERENCES</a>
-            <div class="tier-box">
-                <p>Tier: Like</p>
-                <p><span>50</span> points available</p>
-                <a href="#">HOW TO EARN POINTS</a>
+    </div>
+
+    <div class="container"> <!-- Thêm container bao quanh 2 phần -->
+        <!-- Phần "Hi Minh" -->
+        <div class="my-account">
+            <div class="account-summary">
+                <p>Hi Minh</p>
+                <a href="#">PROFILE & PREFERENCES</a>
+                <div class="tier-box">
+                    <p>Tier: Like</p>
+                    <p><span>50</span> points available</p>
+                    <a href="#">HOW TO EARN POINTS</a>
+                </div>
+            </div>
+
+            <div class="account-sections">
+                <h3>MY ORDERS</h3>
+                <ul>
+                    <li><a href="#">Order history</a></li>
+                    <li><a href="#">Subscription</a></li>
+                </ul>
+
+                <h3>MY CLUB CLARINS</h3>
+                <ul>
+                    <li><a href="#">My points recap</a></li>
+                    <li><a href="#">Choose my rewards</a></li>
+                    <li><a href="#">Upload a receipt</a></li>
+                    <li><a href="#">My receipts</a></li>
+                    <li><a href="#">How to earn points</a></li>
+                    <li><a href="#">Loyalty FAQ</a></li>
+                </ul>
+
+                <h3>OFFERS</h3>
+                <ul>
+                    <li><a href="#">My offers</a></li>
+                    <li><a href="#">Refer a friend</a></li>
+                </ul>
+
+                <h3>SERVICES</h3>
+                <ul>
+                    <li><a href="#">Clarins services</a></li>
+                    <li><a href="#">Check gift card balance</a></li>
+                </ul>
+
+                <button>Logout</button>
             </div>
         </div>
 
-        <div class="account-sections">
-            <h3>MY ORDERS</h3>
-            <ul>
-                <li><a href="#">Order history</a></li>
-                <li><a href="#">Subscription</a></li>
-            </ul>
-
-            <h3>MY CLUB CLARINS</h3>
-            <ul>
-                <li><a href="#">My points recap</a></li>
-                <li><a href="#">Choose my rewards</a></li>
-                <li><a href="#">Upload a receipt</a></li>
-                <li><a href="#">My receipts</a></li>
-                <li><a href="#">How to earn points</a></li>
-                <li><a href="#">Loyalty FAQ</a></li>
-            </ul>
-
-            <h3>OFFERS</h3>
-            <ul>
-                <li><a href="#">My offers</a></li>
-                <li><a href="#">Refer a friend</a></li>
-            </ul>
-
-            <h3>SERVICES</h3>
-            <ul>
-                <li><a href="#">Clarins services</a></li>
-                <li><a href="#">Check gift card balance</a></li>
-            </ul>
-
-            <button>Logout</button>
-        </div>
-    </div>
-
+        <!-- Phần "My dashboard" -->
         <div class="dashboard">
             <h1>My dashboard</h1>
             <div class="tier-info">
@@ -125,7 +132,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> <!-- Đóng container -->
 
 </body>
 </html>
