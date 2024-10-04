@@ -1,0 +1,486 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primaryColor: rgba(181, 24, 40, 255);
+    --secondaryColor: ;
+    --successColor: #20E3B2;
+    --warningColor: #FF6651;
+    --darkColor: black;
+    --lightColor: white;
+    --infoColor: #e5e5e5;
+    --dangerColor: red;
+}
+
+body {
+    font-family: Arial, sans-serif;
+}
+
+/* Header section */
+header {
+    border-bottom: 1px solid #ccc;
+    padding: 10px 15px; /* Thêm padding để lùi vào trong */
+}
+.logo img{
+    width: 100px;
+}
+
+/* Top Navigation (Hamburger, Search, Logo, Help, Login, Bag) */
+nav.top-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+.left-section {
+    display: flex;
+    align-items: center;
+}
+
+.hamburger {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 20px;
+    height: 15px;
+    cursor: pointer;
+    margin-right: 20px;
+}
+
+.hamburger .bar {
+    height: 3px;
+    width: 100%;
+    background-color: #333;
+    border-radius: 2px;
+}
+
+.hamburger.active .bar:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.hamburger.active .bar:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active .bar:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* Container bọc thanh search và nút search */
+.search-bar {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    max-width: 250px; /* Giảm chiều rộng thanh tìm kiếm */
+    overflow: hidden; /* Đảm bảo không bị tràn */
+}
+
+/* Input search */
+.search-bar input[type="text"] {
+    border: none;
+    padding: 8px; /* Điều chỉnh padding để ngắn hơn */
+    flex-grow: 1;
+    font-size: 14px; /* Giảm kích thước chữ trong input */
+    border-radius: 5px 0 0 5px; /* Bo tròn chỉ góc bên trái */
+}
+
+.search-bar input[type="text"]:focus {
+    outline: none; /* Loại bỏ viền khi nhấp vào input */
+}
+
+/* Nút search */
+.search-bar button {
+    background-color: rgba(181, 24, 40, 255);
+    border: none;
+    cursor: pointer;
+    padding: 8px; /* Giảm padding của nút */
+    border-radius: 0 5px 5px 0; /* Bo tròn chỉ góc phải */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.search-bar button img {
+    height: 20px; /* Đảm bảo kích thước phù hợp của ảnh */
+    width: 20px;
+}
+
+
+.center-section {
+    flex-grow: 1;
+    text-align: center;
+}
+
+.center-section .logo img {
+    width: 120px;
+}
+
+.right-section {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.nav-icons a {
+    text-decoration: none;
+    color: #333;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.nav-icons a img {
+    width: 20px;
+}
+nav ul li a {
+    font-size: 12px; /* Giảm kích thước chữ trong nav */
+}
+/* Bottom Navigation (What's New, Skincare, Makeup, etc.) */
+nav.bottom-nav {
+    background-color: #f9f9f9;
+    padding: 10px 0;
+}
+
+nav.bottom-nav ul {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+nav.bottom-nav ul li {
+    list-style: none;
+}
+
+nav.bottom-nav ul li a {
+    text-decoration: none;
+    color: #333;
+    font-size: 14px;
+    padding: 10px;
+}
+
+nav.bottom-nav ul li a:hover {
+    color: var(--primaryColor);
+    border-bottom: 2px solid var(--primaryColor);
+}
+
+/* Login Form Styles */
+.login-container {
+    max-width: 400px;
+    margin: 50px auto;
+    text-align: center;
+}
+
+.login-container h1 {
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+.login-container p {
+    margin-bottom: 15px;
+    font-size: 16px;
+    color: #333;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+input[type="email"] {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.remember-me {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.remember-me label {
+    font-size: 14px;
+}
+
+button {
+    background-color: var(--primaryColor);
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #900019;
+}
+
+/* Benefits Section */
+.benefits {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+    padding: 20px 0;
+    background-color: #f9f9f9;
+}
+
+.benefit {
+    text-align: center;
+    font-size: 14px;
+    color: #333;
+}
+
+.benefit span {
+    display: block;
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+/* Commitments Section */
+.commitments {
+    text-align: center;
+    padding: 50px 20px;
+    background-color: #e5e5e5;
+}
+
+.commitments h2 {
+    font-size: 24px;
+    margin-bottom: 30px;
+}
+
+.commitments-grid {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+.commitment-item {
+    text-align: center;
+    max-width: 200px;
+}
+
+.commitment-item img {
+    width: 50px;
+    margin-bottom: 15px;
+}
+
+.commitment-item p {
+    font-size: 14px;
+    color: #333;
+}
+
+/* Online Advantages Section */
+.online-advantages {
+    text-align: center;
+    padding: 50px 20px;
+}
+
+.online-advantages h2 {
+    font-size: 24px;
+    margin-bottom: 30px;
+}
+
+.advantages-grid {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+.advantage-item {
+    text-align: center;
+    max-width: 150px;
+}
+
+.advantage-item img {
+    width: 50px;
+    margin-bottom: 10px;
+}
+
+.advantage-item h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.advantage-item p {
+    font-size: 14px;
+    color: #333;
+}
+
+/* Footer Section */
+.footer {
+    background-color: #e5e5e5;
+    padding: 40px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.footer-row {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.footer-column {
+    flex: 1 1 calc(33.333% - 30px);
+    min-width: 150px;
+}
+
+.footer-column h3 {
+    font-size: 18px;
+    margin-bottom: 15px;
+    color: #333;
+    text-transform: uppercase;
+}
+
+.footer-column ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.footer-column ul li {
+    margin-bottom: 10px;
+}
+
+.footer-column ul li a {
+    text-decoration: none;
+    color: #666;
+    font-size: 14px;
+}
+
+.footer-column ul li a:hover {
+    color: #000;
+}
+
+.footer img {
+    width: 100px;
+    margin-top: 20px;
+}
+.breadcrumbs {
+    font-size: 14px;
+    color: #333;
+    margin-top: 10px; /* Điều chỉnh khoảng cách trên dưới */
+    padding: 5px 40px; /* Điều chỉnh padding để đẩy ra hai bên */
+}
+
+.breadcrumbs a {
+    text-decoration: none;
+    color: #007bff; /* Màu xanh dương cho các liên kết */
+}
+
+.breadcrumbs a:hover {
+    text-decoration: underline; /* Gạch chân khi rê chuột */
+}
+
+.breadcrumbs span {
+    margin: 0 5px;
+    color: #555; /* Màu sắc cho dấu gạch chéo */
+}
+/* Form Register Styles */
+.register-container {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.register-container h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: var(--darkColor);
+}
+
+.register-container p {
+    margin-bottom: 10px;
+    font-size: 14px;
+    color: var(--darkColor);
+}
+
+.register-container input[type="text"],
+.register-container input[type="email"],
+.register-container input[type="password"],
+.register-container input[type="date"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.register-container input[type="text"]:focus,
+.register-container input[type="email"]:focus,
+.register-container input[type="password"]:focus,
+.register-container input[type="date"]:focus {
+    border-color: var(--primaryColor);
+    outline: none;
+    box-shadow: 0 0 5px rgba(181, 24, 40, 0.5);
+}
+
+.register-container label {
+    font-size: 14px;
+    margin-bottom: 5px;
+    display: block;
+    color: var(--darkColor);
+}
+
+.register-container button {
+    background-color: var(--primaryColor);
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
+    width: 100%;
+}
+
+.register-container button:hover {
+    background-color: #900019;
+}
+
+.register-container .checkbox-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 15px 0;
+}
+
+.register-container .checkbox-container label {
+    font-size: 14px;
+    color: #333;
+}
+
+.register-container .checkbox-container input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+}
+
+/* Custom Styles for Date of Birth Input */
+.register-container input[type="date"] {
+    color: #333;
+    font-size: 14px;
+}
+
+/* Additional styles for links */
+.register-container a {
+    color: var(--primaryColor);
+    text-decoration: none;
+}
+
+.register-container a:hover {
+    text-decoration: underline;
+}
