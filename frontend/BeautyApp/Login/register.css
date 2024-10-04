@@ -1,33 +1,35 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #f9f9f9;
+    background-color: #ffffff; 
     margin: 0;
     padding: 0;
 }
 
 .container {
-    max-width: 600px;
+    max-width: 1000px; 
     margin: 50px auto;
-    background-color: #fff;
-    padding: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
+    padding: 30px; 
 }
 
 h1 {
-    font-size: 28px;
-    margin-bottom: 10px;
-    text-align: center;
+    font-size: 36px; /* Tăng kích thước tiêu đề */
+    margin-bottom: 20px;
+    text-align: left; /* Canh trái thay vì ở giữa */
 }
 
 p {
-    text-align: center;
+    text-align: left; /* Căn chỉnh trái */
     color: #666;
+    font-size: 18px; /* Tăng kích thước mô tả */
 }
 
 .breadcrumbs {
     font-size: 14px;
     color: #333;
     margin-bottom: 20px;
+    text-align: left;
+    padding-left: 20px;
 }
 
 .breadcrumbs a {
@@ -43,28 +45,28 @@ form {
 
 label {
     font-weight: bold;
-    font-size: 14px;
+    font-size: 16px; /* Tăng kích thước chữ cho dễ nhìn */
     margin-bottom: 5px;
 }
 
 input[type="text"], input[type="email"], input[type="password"], input[type="date"], input[type="tel"], input[type="file"] {
     width: 100%;
-    padding: 10px;
+    padding: 15px; /* Tăng padding cho các input */
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 16px;
 }
 
 .password-hint {
-    font-size: 12px;
+    font-size: 14px;
     color: #666;
-    margin-top: -15px;
+    margin-top: -10px; /* Giảm khoảng cách giữa input và hint */
     margin-bottom: 20px;
 }
 
 button {
     padding: 15px;
-    background-color: #b51828;
+    background-color: #900019;; /* Màu nền nút */
     color: white;
     border: none;
     border-radius: 5px;
@@ -73,7 +75,7 @@ button {
 }
 
 button:hover {
-    background-color: #900019;
+    background-color: #444; /* Hiệu ứng hover cho nút */
 }
 
 .radio-group {
@@ -87,7 +89,27 @@ button:hover {
 }
 
 .info-text {
-    font-size: 12px;
+    font-size: 14px; /* Tăng kích thước cho phần thông tin */
     color: #666;
     margin-top: 10px;
+}
+
+.benefits {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+    padding: 20px 0;
+    background-color: #f9f9f9;
+}
+
+.benefit {
+    text-align: center;
+    font-size: 14px;
+    color: #333;
+}
+
+.benefit span {
+    display: block;
+    font-size: 24px;
+    margin-bottom: 10px;
 }

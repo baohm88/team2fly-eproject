@@ -8,12 +8,13 @@
 </head>
 <body>
 
-    <div class="container">
-        <div class="breadcrumbs">
-            <a href="#">Home</a> <span>/</span>
-            <a href="#">Register</a>
-        </div>
+    <!-- Phần breadcrumbs được tách ra khỏi form -->
+    <div class="breadcrumbs">
+        <a href="#">Home</a> <span>/</span>
+        <a href="#">Register</a>
+    </div>
 
+    <div class="container">
         <h1>Create An Account</h1>
         <p>Welcome! We invite you to create an account by completing the form below. If you already have an account, please re-enter your email address on the previous screen.</p>
         
@@ -41,7 +42,6 @@
             <div>
                 <label for="password">Password*</label>
                 <input type="password" id="password" name="password" required>
-                <p class="password-hint">Minimum: ✔ 8 characters, ✔ 1 letter, ✔ 1 number, ✔ 1 special character</p>
             </div>
 
             <div>
@@ -78,6 +78,22 @@
             
             <button type="submit">Create Account</button>
         </form>
+
+        
+        <div class="benefits">
+            <div class="benefit">
+                <span>❤️</span>
+                <p>Join Club Clarins & receive 50 points</p>
+            </div>
+            <div class="benefit">
+                <span>🎁</span>
+                <p>Earn points & rewards today</p>
+            </div>
+            <div class="benefit">
+                <span>🚚</span>
+                <p>Fast checkout & order tracking</p>
+            </div>
+        </div>
     </div>
 
 </body>

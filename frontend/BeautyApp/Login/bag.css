@@ -1,0 +1,213 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9; /* Màu nền của body */
+    margin: 0;
+    padding: 0;
+}
+
+.my-account {
+    max-width: 300px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    font-family: Arial, sans-serif;
+}
+
+.my-account p a {
+    color: #007bff;
+    text-decoration: none;
+    font-size: 12px;
+}
+
+.my-account p {
+    margin: 10px 0;
+    font-size: 14px;
+    color: #333;
+}
+
+.account-summary {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border: 1px solid #ececec;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.account-summary p {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.account-summary a {
+    color: #007bff;
+    font-size: 12px;
+    display: block;
+    margin-bottom: 20px;
+}
+
+.tier-box {
+    background-color: #fff;
+    border: 1px solid #ececec;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 10px 0;
+}
+
+.tier-box p {
+    font-size: 14px;
+    color: #333;
+}
+
+.tier-box span {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.account-sections h3 {
+    font-size: 16px;
+    margin: 20px 0 10px;
+    color: #333;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.account-sections ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.account-sections ul li {
+    margin: 10px 0;
+}
+
+.account-sections ul li a {
+    text-decoration: none;
+    color: #333;
+    font-size: 14px;
+    display: block;
+    padding: 5px 0;
+    border-bottom: 1px solid #ececec;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: #b51828;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-top: 20px;
+}
+
+button:hover {
+    background-color: #900019;
+}
+.container {
+    display: flex;
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+}
+
+.sidebar {
+    width: 250px; /* Chiều rộng của sidebar */
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar h2 {
+    font-size: 20px; /* Kích thước chữ tiêu đề sidebar */
+    margin-bottom: 20px;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    margin: 10px 0;
+}
+
+.sidebar ul li a {
+    text-decoration: none;
+    color: #007bff; /* Màu chữ cho các liên kết */
+}
+
+.dashboard {
+    flex: 1; /* Chiếm không gian còn lại */
+    padding: 20px;
+    background-color: #fff; /* Màu nền của dashboard */
+    margin-left: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.dashboard h1 {
+    font-size: 24px; /* Kích thước chữ tiêu đề dashboard */
+    margin-bottom: 20px;
+}
+
+.tier-info {
+    background-color: #f2f2f2; /* Màu nền cho thông tin tier */
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.rewards, .personal-info, .services, .suggestions {
+    margin-bottom: 30px; /* Khoảng cách giữa các phần */
+}
+
+.rewards h2, .personal-info h2, .services h2, .suggestions h2 {
+    font-size: 20px; /* Kích thước chữ cho tiêu đề phần */
+    margin-bottom: 10px;
+}
+
+.reward-item, .service-item, .product-item {
+    background-color: #f9f9f9; /* Màu nền cho các mục */
+    border-radius: 8px;
+    padding: 15px; /* Khoảng cách trong các mục */
+    margin: 10px 0;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* Đổ bóng cho các mục */
+    display: flex;
+    flex-direction: column; /* Để nội dung theo cột */
+    align-items: center; /* Canh giữa */
+}
+
+.reward-item img, .product-item img {
+    max-width: 150px; /* Độ rộng tối đa của hình ảnh */
+    margin-bottom: 10px; /* Khoảng cách dưới hình ảnh */
+}
+
+button {
+    padding: 10px 15px;
+    background-color: #b51828; /* Màu nền nút */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Hiệu ứng chuyển màu */
+}
+
+button:hover {
+    background-color: #900019; /* Màu nền khi hover */
+}
+
+.service-item {
+    display: flex;
+    justify-content: space-between; /* Canh đều nội dung */
+    align-items: center;
+}
+
+.product-item {
+    display: flex;
+    align-items: center; /* Canh giữa hình ảnh và văn bản */
+}
+
+.product-item img {
+    margin-right: 10px; /* Khoảng cách giữa hình ảnh và tên sản phẩm */
+}
