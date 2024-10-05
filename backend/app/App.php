@@ -40,9 +40,7 @@ class App
                 $this->__params["data"] = ucfirst($explodedURI[0]);
                 unset($explodedURI[0]);
             }
-
-            $filePath = "./backend/app/controllers/" . $this->__controller . ".php";
-
+            $filePath = "./app/controllers/" . $this->__controller . ".php";
             if (file_exists($filePath)) {
                 include_once $filePath;
                 if (class_exists($this->__controller)) {

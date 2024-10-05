@@ -9,6 +9,8 @@
 </head>
 
 <body>
+    <a href="user/login">login page</a>
+    <a href="user/register">register page</a>
     <table>
         <caption>ALL OF YOUR PRODUCTS</caption>
         <thead>

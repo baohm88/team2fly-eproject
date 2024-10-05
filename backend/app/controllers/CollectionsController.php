@@ -1,7 +1,6 @@
 <?php
 class CollectionsController extends BaseController
 {
-
     private $__instanceModel;
     public function __construct($conn)
     {
@@ -11,6 +10,6 @@ class CollectionsController extends BaseController
     public function all()
     {
         $products = $this->__instanceModel->getAllProducts();
-        $this->view("AllProduct", $products);
+        $this->FactoryMessage("info", "This is product obj", $products);
     }
 }

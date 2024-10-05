@@ -1,17 +1,19 @@
 <?php
 
-include_once("./app/controllers/BuyerController.php");
-class TestController extends BuyerController
+include_once("./app/controllers/ProductController.php");
+include_once("./app/controllers/CouponController.php");
+class TestController extends ProductController
 {
-    private $__instanceModel;
-    public function __construct($conn)
+    private $__instanceModel, $__conn;
+    public function __construct($conn = null)
     {
+        $this->__conn = $conn;
         // $this->__instanceModel = $this->initModel("BaseModel", $conn);
     }
 
     public function test()
     {
-        $name = "quando_asasd";
-        $name = $this->setPassword($name);
+        $controller = new CouponController($this->__conn);
+        var_dump($controller->setSalePercentage("100.0"));
     }
 }

@@ -1,22 +1,45 @@
 <?php
-include_once("./backend/app/controllers/ValidateController.php");
+include_once("./app/controllers/ValidateController.php");
 class BuyerController extends ValidateController
 {
-    private $__InstanceModel;
-    private $__firstName;
-    private $__password;
-    private $__userName;
-    private $__lastName;
-    private $__dob;
-    private $__phone;
-    private $__address;
-    private $__buyerImage;
+    protected $__id, $__email, $__firstName, $__password, $__userName, $__lastName, $__dob, $__phone, $__address, $__buyerImage;
 
     public function __construct()
     {
-        echo "vao r nhe";
+        // echo "vao r nhe";
     }
 
+    public function setID($id)
+    {
+        $validatedId = $this->validate('id', $id);
+        if ($validatedId != null) {
+            $this->__id = $id;
+            return $this->getID();
+        }
+        return null;
+    }
+
+    public function getID()
+    {
+        if (!empty($this->__id)) {
+            return $this->__id;
+        }
+        return null;
+    }
+    public function setEmail($email)
+    {
+        if ($email != null) {
+            $this->__email = $email;
+            return $this->getUserName();
+        } else {
+            return null;
+        }
+    }
+
+    public function getEmail()
+    {
+        return $this->__email;
+    }
     public function setUserName($name)
     {
         $validatedUserName = $this->validate("username", $name);
@@ -35,7 +58,7 @@ class BuyerController extends ValidateController
 
     public function setPassword($password)
     {
-        $this->__password = password_hash($password, PASSWORD_DEFAULT);
+        $this->__password = $password;
         return $this->getPassword();
     }
 
@@ -77,7 +100,7 @@ class BuyerController extends ValidateController
 
     public function setDob($dob)
     {
-        $validatedDob = $this->validate("timestamp", $dob);
+        $validatedDob = $this->validate("age", $dob);
         if ($validatedDob != null) {
             $this->__dob = $dob;
             return $this->getDob();
