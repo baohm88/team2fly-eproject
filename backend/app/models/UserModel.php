@@ -10,27 +10,32 @@ class UserModel extends BaseController
     public function createNewUser($oUser)
     {
         // $this->viewData($oUser);
-        $username   = $oUser->getUsername();
-        $password   = password_hash($oUser->getPassword(), PASSWORD_DEFAULT);
-        $firstName  = $oUser->getFirstName();
-        $lastName   = $oUser->getLastName();
-        $email      = $oUser->getEmail();
-        $dob        = $oUser->getDob();
-        $phone      = $oUser->getPhone();
-        $address    = $oUser->getAddress();
-        $buyerImage = $oUser->getBuyerImage();
+        $username   = $oUser->get_username();
+        $password   = password_hash($oUser->get_password(), PASSWORD_DEFAULT);
+        $firstName  = $oUser->get_first_name();
+        $lastName   = $oUser->get_last_name();
+        $email      = $oUser->get_email();
+        $dob        = $oUser->get_dob();
+        $phone      = $oUser->get_phone();
+        $address    = $oUser->get_address();
+        $buyerImage = $oUser->get_buyer_image();
+
+
+
         try {
+
             $sql = "INSERT INTO Buyers (
                 userName,
                 password,
-                firstName,
+                            firstName,
                 lastName,
                 email,
                 dob,
                 phone,
                 address,
                 BuyerImage
-            ) VALUE (
+               
+            ) VALUES (
                 :username,
                 :password,
                 :firstName,
@@ -41,10 +46,9 @@ class UserModel extends BaseController
                 :address,
                 :BuyerImage
             )";
-
             $stmt = $this->__conn->prepare($sql);
-            $stmt->bindParam('username', $username, PDO::PARAM_STR);
-            $stmt->bindParam('password', $password, PDO::PARAM_STR);
+            $stmt->bindParam("username", $username, PDO::PARAM_STR);
+            $stmt->bindParam("password", $password, PDO::PARAM_STR);
             $stmt->bindParam('email', $email, PDO::PARAM_STR);
             $stmt->bindParam('firstName', $firstName, PDO::PARAM_STR);
             $stmt->bindParam('lastName', $lastName, PDO::PARAM_STR);
@@ -60,7 +64,7 @@ class UserModel extends BaseController
 
     public function checkUserExist($oUser)
     {
-        $username = $oUser->getUserName();
+        $username = $oUser->get_username();
         try {
             $sql  = "SELECT * FROM Buyers WHERE userName = :username";
             $stmt = $this->__conn->prepare($sql);
@@ -69,7 +73,7 @@ class UserModel extends BaseController
             $data = $stmt->fetch(PDO::FETCH_ASSOC);
 
             if (!empty($data)) {
-                $password = $oUser->getPassword();
+                $password = $oUser->get_password();
                 if ($password !== null) {
 
                     $receivedPassword = $data['password'];
@@ -91,7 +95,7 @@ class UserModel extends BaseController
     public function getUserData($oUser)
     {
         try {
-            $id   = $oUser->getID();
+            $id   = $oUser->get_user_id();
             $sql  = "SELECT * FROM Buyers WHERE buyerId = :id";
             $stmt = $this->__conn->prepare($sql);
             $stmt->bindParam('id', $id, PDO::PARAM_INT);
@@ -102,4 +106,6 @@ class UserModel extends BaseController
             echo $e->getMessage();
         }
     }
+
+    public function changeUserData($o_user) {}
 }

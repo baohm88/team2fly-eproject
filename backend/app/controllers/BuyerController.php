@@ -2,153 +2,172 @@
 include_once("./app/controllers/ValidateController.php");
 class BuyerController extends ValidateController
 {
-    protected $__id, $__email, $__firstName, $__password, $__userName, $__lastName, $__dob, $__phone, $__address, $__buyerImage;
+    private $__id, $__email, $__firstName, $__isActive, $__password, $__userName, $__lastName, $__dob, $__phone, $__address, $__buyerImage;
 
     public function __construct()
     {
         // echo "vao r nhe";
     }
 
-    public function setID($id)
+    public function set_user_id($id)
     {
         $validatedId = $this->validate('id', $id);
         if ($validatedId != null) {
             $this->__id = $id;
-            return $this->getID();
+            return $this->get_user_id();
         }
         return null;
     }
 
-    public function getID()
+    public function get_user_id()
     {
         if (!empty($this->__id)) {
             return $this->__id;
         }
         return null;
     }
-    public function setEmail($email)
+    public function set_email($email)
     {
         if ($email != null) {
             $this->__email = $email;
-            return $this->getUserName();
+            return $this->get_username();
         } else {
             return null;
         }
     }
 
-    public function getEmail()
+    public function get_email()
     {
         return $this->__email;
     }
-    public function setUserName($name)
+
+
+    public function set_is_active($active)
+    {
+        if ($active != null) {
+            $this->__isActive = $active;
+            return $this->get_username();
+        } else {
+            return null;
+        }
+    }
+
+    public function get_is_active()
+    {
+        return $this->__isActive;
+    }
+
+
+
+    public function set_username($name)
     {
         $validatedUserName = $this->validate("username", $name);
         if ($validatedUserName != null) {
             $this->__userName = $name;
-            return $this->getUserName();
+            return $this->get_username();
         } else {
             return null;
         }
     }
 
-    public function getUserName()
+    public function get_username()
     {
         return $this->__userName;
     }
 
-    public function setPassword($password)
+    public function set_password($password)
     {
         $this->__password = $password;
-        return $this->getPassword();
+        return $this->get_password();
     }
 
-    public function getPassword()
+    public function get_password()
     {
         return $this->__password;
     }
 
-    public function setFirstName($name)
+    public function set_first_name($name)
     {
         $validatedName = $this->validate("name", $name);
         if ($validatedName != null) {
             $this->__firstName = $name;
-            return $this->getFirstName();
+            return $this->get_first_name();
         } else {
             return null;
         }
     }
 
-    public function getFirstName()
+    public function get_first_name()
     {
         return $this->__firstName;
     }
 
-    public function setLastName($name)
+    public function set_last_name($name)
     {
         $validatedName = $this->validate("name", $name);
         if ($validatedName != null) {
             $this->__lastName = $name;
-            return $this->getLastName();
+            return $this->get_last_name();
         }
         return null;
     }
 
-    public function getLastName()
+    public function get_last_name()
     {
         return $this->__lastName;
     }
 
-    public function setDob($dob)
+    public function set_dob($dob)
     {
         $validatedDob = $this->validate("age", $dob);
         if ($validatedDob != null) {
             $this->__dob = $dob;
-            return $this->getDob();
+            return $this->get_dob();
         } else {
             return null;
         }
     }
 
-    public function getDob()
+    public function get_dob()
     {
         return $this->__dob;
     }
 
-    public function setPhone($phone)
+    public function set_phone($phone)
     {
         $validatedPhone = $this->validate("phone", $phone);
         if ($validatedPhone != null) {
             $this->__phone = $phone;
-            return $this->getPhone();
+            return $this->get_phone();
         } else {
             return null;
         }
     }
-    public function getPhone()
+    public function get_phone()
     {
         return $this->__phone;
     }
-    public function setAddress($address)
+    public function set_address($address)
     {
         $validatedAddress = $this->validate("address", $address);
         if ($validatedAddress != null) {
             $this->__address = $address;
-            return $this->getAddress();
+            return $this->get_address();
         } else {
             return null;
         }
     }
-    public function getAddress()
+    public function get_address()
     {
         return $this->__address;
     }
-    public function setBuyerImage($picture)
+    public function set_buyer_image($picture)
     {
 
         $this->__buyerImage = $picture;
-        return $this->getBuyerImage();
+        return $this->get_buyer_image();
     }
-    public function getBuyerImage()
+    public function get_buyer_image()
     {
         return $this->__buyerImage;
     }

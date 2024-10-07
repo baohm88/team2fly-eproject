@@ -55,7 +55,6 @@ class App
                 }
             } else {
                 echo "File Doesn't exist";
-                die();
             }
         } else {
             $file = "./app/controllers/" . $this->__controller . ".php";
