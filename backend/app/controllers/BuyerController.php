@@ -2,7 +2,7 @@
 include_once("./app/controllers/ValidateController.php");
 class BuyerController extends ValidateController
 {
-    private $__id, $__email, $__firstName, $__isActive, $__password, $__userName, $__lastName, $__dob, $__phone, $__address, $__buyerImage;
+    private $__id, $__email, $__firstName = null, $__isActive, $__password = null, $__userName, $__lastName = null, $__dob = null, $__phone = null, $__address = null, $__buyerImage = null;
 
     public function __construct()
     {

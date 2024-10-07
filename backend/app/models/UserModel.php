@@ -27,7 +27,7 @@ class UserModel extends BaseController
             $sql = "INSERT INTO Buyers (
                 userName,
                 password,
-                            firstName,
+                firstName,
                 lastName,
                 email,
                 dob,
@@ -39,8 +39,8 @@ class UserModel extends BaseController
                 :username,
                 :password,
                 :firstName,
-                :email,
                 :lastName,
+                :email,
                 :dob,
                 :phone,
                 :address,
@@ -107,5 +107,73 @@ class UserModel extends BaseController
         }
     }
 
-    public function changeUserData($o_user) {}
+    public function changeUserData($o_user)
+    {
+        $reflect = new ReflectionClass($o_user);
+        $properties = $reflect->getProperties();
+        $set_value = [];
+        $bind_params = [];
+
+        // Iterate over properties to build the SET clause and bind parameters
+        foreach ($properties as $property) {
+            // Make private/protected properties accessible
+            $property->setAccessible(true);
+            $name = $property->getName();
+            $value = $property->getValue($o_user);
+
+            // Skip null values and ID
+            if ($value == null || $name == "__id") {
+                continue;
+            }
+
+            // Clean property name and prepare the binding
+            $clean_name = str_replace("__", "", $name);
+            $set_value[] = "$clean_name = :$clean_name";  // Store the SET clause
+            $bind_params[$clean_name] = $value; // Store the value to bind
+        }
+        $set_value_str = implode(", ", $set_value); // Join the SET clause
+
+        if ($o_user->get_user_id() != null) {
+            $sql = "UPDATE Buyers SET $set_value_str WHERE buyerId = :user_id"; // No trailing comma
+            $stmt = $this->__conn->prepare($sql);
+
+
+            $pdo_param_type = PDO::PARAM_STR;
+
+
+            // Bind parameters
+            foreach ($bind_params as $key => $val) {
+                switch ($key) {
+                    case "buyerImage":
+                        $pdo_param_type = PDO::PARAM_LOB;
+                        break;
+                    case "isActive":
+                        $pdo_param_type = PDO::PARAM_INT;
+                        break;
+                    case "password":
+                        $val = password_hash($val, PASSWORD_DEFAULT);
+                        $pdo_param_type = PDO::PARAM_STR;
+                        break;
+                    case "is_active":
+                        break;
+                    default:
+                        $pdo_param_type = PDO::PARAM_STR;
+                }
+                // Bind the parameters
+                // echo $key . ", " . $val . ", " . $pdo_param_type . "<br>";
+                $stmt->bindValue(":$key", $val, $pdo_param_type);
+            }
+
+            // Bind the user ID separately
+            $user_id = $o_user->get_user_id();
+            $stmt->bindValue(":user_id", $user_id, PDO::PARAM_INT);
+
+            // $stmt->debugDumpParams();
+            // Execute the statement
+            $stmt->execute();
+            $this->FactoryMessage("Success", "User data changed successfully");
+        } else {
+            $this->FactoryMessage("Error", "User ID Not Found");
+        }
+    }
 }
