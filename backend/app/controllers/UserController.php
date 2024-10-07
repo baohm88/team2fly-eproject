@@ -28,7 +28,7 @@ class UserController extends BaseController
                 $this->__instanceUser->set_address($input['address']);
                 $this->__instanceUser->set_buyer_image($input['image']);
                 $this->__instanceModel->createNewUser($this->__instanceUser);
-                if (!empty($this->__instanceModel->checkUserExist($this->__instanceUser))) {
+                if (empty($this->__instanceModel->checkUserExist($this->__instanceUser))) {
                     $this->FactoryMessage("error", "Account Not Yet Created");
                 } else {
                     $this->FactoryMessage("success", "Account Created");
