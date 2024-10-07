@@ -15,20 +15,24 @@ class UserController extends BaseController
     {
         if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $input = json_decode(file_get_contents('php://input'), true);
-            $this->__instanceUser->setUserName($input["username"]);
+            $this->__instanceUser->set_username($input["username"]);
             if (!empty($this->__instanceModel->checkUserExist($this->__instanceUser))) {
                 $this->FactoryMessage("error", "User name already exist");
             } else {
-                $this->__instanceUser->setPassword($input["password"]);
-                $this->__instanceUser->setEmail($input["email"]);
-                $this->__instanceUser->setFirstName($input['first_name']);
-                $this->__instanceUser->setLastName($input['last_name']);
-                $this->__instanceUser->setDob($input['dob']);
-                $this->__instanceUser->setPhone($input['phone']);
-                $this->__instanceUser->setAddress($input['address']);
-                $this->__instanceUser->setBuyerImage($input['image']);
+                $this->__instanceUser->set_password($input["password"]);
+                $this->__instanceUser->set_email($input["email"]);
+                $this->__instanceUser->set_first_name($input['first_name']);
+                $this->__instanceUser->set_last_name($input['last_name']);
+                $this->__instanceUser->set_dob($input['dob']);
+                $this->__instanceUser->set_phone($input['phone']);
+                $this->__instanceUser->set_address($input['address']);
+                $this->__instanceUser->set_buyer_image($input['image']);
                 $this->__instanceModel->createNewUser($this->__instanceUser);
-                $this->FactoryMessage("success", "Account Created");
+                if (!empty($this->__instanceModel->checkUserExist($this->__instanceUser))) {
+                    $this->FactoryMessage("error", "Account Not Yet Created");
+                } else {
+                    $this->FactoryMessage("success", "Account Created");
+                }
             }
         }
     }
@@ -37,14 +41,13 @@ class UserController extends BaseController
     {
         if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $input = json_decode(file_get_contents('php://input'), true);
-            $this->__instanceUser->setUserName($input["username"]);
-            $this->__instanceUser->setPassword($input["password"]);
+            $this->__instanceUser->set_username($input["username"]);
+            $this->__instanceUser->set_password($input["password"]);
             $data = $this->__instanceModel->checkUserExist($this->__instanceUser);
 
             if ($data != null && $data["buyerId"] != null) {
-                $_SESSION["username"] = $this->__instanceUser->getUserName();
+                $_SESSION["username"] = $this->__instanceUser->get_username();
                 $this->FactoryMessage("success", "Login successfully", $data);
-                echo "exist";
             } else {
                 $this->FactoryMessage("Error", "Login Failed", $data);
             }
@@ -61,28 +64,24 @@ class UserController extends BaseController
         }
     }
 
-    public function profile($data)
+    public function profile()
     {
         if ($_SERVER["REQUEST_METHOD"] === "GET") {
-            $data = str_replace("?", "", $data);
-            $data = array_filter(array_values(explode("&", $data)));
-            $result = [];
-            foreach ($data as $item) {
-                list($key, $value) = explode('=', $item, 2);
-                $key = trim($key);
-                $value = trim($value);
-                $result[$key] = $value;
-            }
-            $this->__instanceUser->setID($result['user_id']);
+            $inputs = json_decode(file_get_contents('php://input'), true);
+            $this->__instanceUser->set_user_id($inputs['user_id']);
             $aUserData = $this->__instanceModel->getUserData($this->__instanceUser);
             if ($aUserData != false) {
                 $this->FactoryMessage("info", "Get User Info Successfully", $aUserData);
             } else {
                 $this->FactoryMessage("info", "User data not exist");
             }
-        } else if ($_SERVER["REQUEST_METHOD"] === "PUT") {
-            $input = json_decode(file_get_contents('php://input'), true);
-            $this->viewData($input);
+        } else if ($_SERVER["REQUEST_METHOD"] === "POST") {
+            $inputs = json_decode(file_get_contents('php://input'), true);
+            foreach ($inputs as $key => $value) {
+                $method_name = "set_" . $key;
+                $this->__instanceUser->$method_name($value);
+            }
+            $result = $this->__instanceModel->changeUserData($this->__instanceUser);
         }
     }
 }
