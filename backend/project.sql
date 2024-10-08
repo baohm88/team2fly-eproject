@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Oct 07, 2024 at 04:48 AM
+-- Generation Time: Oct 08, 2024 at 12:15 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -24,35 +24,37 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Buyers`
+-- Table structure for table `Users`
 --
 
-CREATE TABLE `Buyers` (
-  `buyerId` int(11) NOT NULL,
-  `userName` varchar(30) NOT NULL,
+CREATE TABLE `Users` (
+  `user_id` int(11) NOT NULL,
+  `username` varchar(30) NOT NULL,
   `password` char(255) NOT NULL,
   `email` varchar(200) DEFAULT NULL,
-  `isAdmin` tinyint(1) NOT NULL DEFAULT 0,
-  `isActive` tinyint(4) DEFAULT 1,
-  `firstName` varchar(255) DEFAULT NULL,
-  `lastName` varchar(255) DEFAULT NULL,
+  `is_admin` int(10) NOT NULL DEFAULT 0,
+  `is_active` int(10) DEFAULT 1,
+  `first_name` varchar(255) DEFAULT NULL,
+  `last_name` varchar(255) DEFAULT NULL,
   `dob` date DEFAULT NULL,
-  `phone` varchar(15) DEFAULT NULL,
+  `phone` varchar(350) DEFAULT NULL,
   `address` varchar(255) DEFAULT NULL,
-  `BuyerImage` longblob DEFAULT NULL
+  `user_image` longblob DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `Buyers`
+-- Dumping data for table `Users`
 --
 
-INSERT INTO `Buyers` (`buyerId`, `userName`, `password`, `email`, `isAdmin`, `isActive`, `firstName`, `lastName`, `dob`, `phone`, `address`, `BuyerImage`) VALUES
-(82, 'admin', '$2y$10$CCNwMMwgUQOHvsnkOMUBcetAPG0cVjzk9wDjhFG0SeuGVue3l.ilm', '', 0, 1, 'quandoan', 'quandoan', '2000-09-08', '1029381', 'askldjsla', ''),
-(83, 'admin', '$2y$10$XLjXHBztqnewhJ4HW67WhOAJJYIH93EkKqG1LULs1XzQQgRx8LUwa', '', 0, 1, 'quan', 'doan', '2000-10-08', '1230', 'lskjdalsjs', ''),
-(84, 'admin', '$2y$10$tQ2t.YNfbaeoOxLwiKqFK.7bzpeStH1v9kaYx5PLK7RMhlDjC6/ai', '', 0, 1, 'sdaksh', 'dkjsahkdsh', '2000-10-07', '1023091', 'sjhdkajskjda', ''),
-(85, 'john_doe', '$2y$10$hTSfm0kybxZ/P1NXZjVS3OHB5ikxNdQ5kfWtHW4p0wXyhxbTOr9B2', '', 0, 1, 'John', 'Doe', '1990-01-01', '+1234567890', '1234 Elm Street, Springfield, USA', NULL),
-(86, 'john123', '$2y$10$JYVSomn.3Jg9k/N5gDb7zuXww8EjfgmdkLmwrEzHC0p5O8B8C5khy', '', 0, 1, 'John', 'Doe', '1990-01-01', '+1234567890', '1234 Elm Street, Springfield, USA', 0x6956424f5277304b47676f414141414e5355684555674141414751414141426b434149414141442f6741494441414141356b6c45515652346e4f335151516b4149414441514c562f5a36336758694c634a526962653342727651373469566d425759465a2e2e2e),
-(87, 'johnsadlkjasld', '$2y$10$X1SuJhUtGGPp8CYnr3mcjegCmOCII4YupiWdTdj/8oqz5mk4LzTue', NULL, 0, 1, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `Users` (`user_id`, `username`, `password`, `email`, `is_admin`, `is_active`, `first_name`, `last_name`, `dob`, `phone`, `address`, `user_image`) VALUES
+(84, 'admin', '$2y$10$tQ2t.YNfbaeoOxLwiKqFK.7bzpeStH1v9kaYx5PLK7RMhlDjC6/ai', '', 0, 1, NULL, 'dkjsahkdsh', '2000-10-07', '1023091', 'sjhdkajskjda', ''),
+(85, 'john_doe', '$2y$10$hTSfm0kybxZ/P1NXZjVS3OHB5ikxNdQ5kfWtHW4p0wXyhxbTOr9B2', '', 0, 1, NULL, 'Doe', '1990-01-01', '+1234567890', '1234 Elm Street, Springfield, USA', NULL),
+(86, 'john123', '$2y$10$JYVSomn.3Jg9k/N5gDb7zuXww8EjfgmdkLmwrEzHC0p5O8B8C5khy', '', 0, 1, NULL, 'Doe', '1990-01-01', '+1234567890', '1234 Elm Street, Springfield, USA', 0x6956424f5277304b47676f414141414e5355684555674141414751414141426b434149414141442f6741494441414141356b6c45515652346e4f335151516b4149414441514c562f5a36336758694c634a526962653342727651373469566d425759465a2e2e2e),
+(87, 'johnsadlkjasld', '$2y$10$X1SuJhUtGGPp8CYnr3mcjegCmOCII4YupiWdTdj/8oqz5mk4LzTue', NULL, 0, 1, NULL, NULL, NULL, NULL, NULL, NULL),
+(90, 'johnsadlkjskjddajskdkjaasld', '$2y$10$vCGohM4N8lXoldwti1Ct0uF5F48s2Z5zm5TMOf1r1eKHLyabZtbp6', 'Doe', 0, 1, NULL, NULL, '1990-01-01', '+1234567890', '1234 Elm Street, Springfield, USA', 0x6956424f5277304b47676f414141414e5355684555674141414751414141426b434149414141442f6741494441414141356b6c45515652346e4f335151516b4149414441514c562f5a36336758694c634a526962653342727651373469566d425759465a2e2e2e),
+(91, 'quandoanqundaon', '$2y$10$3gKocwRISCW1SokCDYKNwuxt8XuJSSCAwMD6YNLcT/2LpsHNETjuy', 'quandkssalsdl@famsidla.com', 0, 1, NULL, 'doansda', '1990-01-01', '+1234567890', '1234 Elm Street, Springfield, USA', 0x6956424f5277304b47676f414141414e5355684555674141414751414141426b434149414141442f6741494441414141356b6c45515652346e4f335151516b4149414441514c562f5a36336758694c634a526962653342727651373469566d425759465a2e2e2e),
+(92, 'quandoan123', '$2y$10$IN8goiyDRPXLq2hFq2pCF.v0WlFg3wt5TvbwqjTpQIYhCsoDoi.eu', 'quandkssalsdl@famsidla.com', 0, 1, NULL, 'doansda', '1990-01-01', '+1234567890', '1234 Elm Street, Springfield, USA', 0x6956424f5277304b47676f414141414e5355684555674141414751414141426b434149414141442f6741494441414141356b6c45515652346e4f335151516b4149414441514c562f5a36336758694c634a526962653342727651373469566d425759465a2e2e2e),
+(93, 'quandoan21', '$2y$10$OPFBjiHOah20Y5PKlw9X6eNgonrZ69e6XqeT7EdKNSvjWIgpHZyoq', 'quandkssalsdl@famsidla.com', 0, 1, 'quan', 'doansda', '1990-01-01', '+1234567890', '1234 Elm Street, Springfield, USA', 0x6956424f5277304b47676f414141414e5355684555674141414751414141426b434149414141442f6741494441414141356b6c45515652346e4f335151516b4149414441514c562f5a36336758694c634a526962653342727651373469566d425759465a2e2e2e);
 
 -- --------------------------------------------------------
 
@@ -1554,10 +1556,10 @@ INSERT INTO `ProductsCategories` (`id`, `categoryName`) VALUES
 --
 
 --
--- Indexes for table `Buyers`
+-- Indexes for table `Users`
 --
-ALTER TABLE `Buyers`
-  ADD PRIMARY KEY (`buyerId`);
+ALTER TABLE `Users`
+  ADD PRIMARY KEY (`user_id`);
 
 --
 -- Indexes for table `Coupons`
@@ -1612,10 +1614,10 @@ ALTER TABLE `ProductsCategories`
 --
 
 --
--- AUTO_INCREMENT for table `Buyers`
+-- AUTO_INCREMENT for table `Users`
 --
-ALTER TABLE `Buyers`
-  MODIFY `buyerId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=90;
+ALTER TABLE `Users`
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=94;
 
 --
 -- AUTO_INCREMENT for table `Coupons`
