@@ -99,10 +99,10 @@
         }
         ```
         
-- [ ]  [GET] /user/profile/
-    - [GET] /user/profile/
+- [ ]  [DELETE] /user/profile/
+    - [DELETE] /user/profile/
         
-        **Description**: Get Current user info
+        **Description**: Deactive user account
         
         ```json
         {

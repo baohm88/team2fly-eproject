@@ -10,6 +10,6 @@ class CollectionsController extends BaseController
     public function all()
     {
         $products = $this->__instanceModel->getAllProducts();
-        $this->FactoryMessage("info", "This is product obj", $products);
+        $this->FactoryMessage("info", "This is products obj", $products);
     }
 }
