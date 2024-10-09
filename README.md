@@ -117,12 +117,13 @@
 
 ## Products
 
-- [ ] **[GET] /collections/skincare/**
+- [x] **[GET] /collections/skincare/**
   - **Request Example**:
     ```json
-    {
+    [
+
       "products": [
-        {
+        [
           "product_id": 1,
           "product_name": "abc",
           "description": "asdasdas",
@@ -130,8 +131,8 @@
           "quantity": 1,
           "main_category": "skincare",
           "sub_category": "abc"
-        },
-        {
+      ],
+        [
           "product_id": 2,
           "product_name": "abc",
           "description": "asdasdas",
@@ -139,11 +140,13 @@
           "quantity": 1,
           "main_category": "skincare",
           "sub_category": "abc"
-        }
-      ],
+        
+         ]
+      ] ,
       "max_price": 1,
       "min_price": 0,
       "order_by": "name||price",
+      "desc": true||false,
       "offset": 1 // int
     }
     ```
