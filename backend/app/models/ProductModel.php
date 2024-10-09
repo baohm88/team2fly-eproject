@@ -17,8 +17,5 @@ class ProductModel
     }
 
 
-    public function createNewProduct($o_product)
-    {
-        echo "123";
-    }
+    public function createNewProduct($o_product) {}
 }

@@ -80,10 +80,14 @@ class AdminController extends BaseController
             } else if (empty($this->__instanceBaseModel->checkSomethingExist("ProductsCategories", "id", $input["category"]))) {
                 $this->FactoryMessage("Error", "Category doesn't exist");
             } else {
-                // $this->__instanceProductModel->createNewProduct($o_product);
+                include_once "./app/controllers/ProductController.php";
+                $o_product = new ProductController($this->__conn);
+                $o_product = $this->insert_data_to_instance($o_product, $input);
             }
         }
     }
+
+    // public function addNew
 
 
     /**

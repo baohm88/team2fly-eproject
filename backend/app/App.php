@@ -37,7 +37,9 @@ class App
                 $explodedURI = array_values(array_filter($explodedURI));
             }
             if (!empty($explodedURI[0])) {
-                $this->__params["data"] = ucfirst($explodedURI[0]);
+                // var_dump($explodedURI);
+                // die();
+                $this->__params[0] = ucfirst($explodedURI[0]);
                 unset($explodedURI[0]);
             }
             $filePath = "./app/controllers/" . $this->__controller . ".php";
@@ -47,7 +49,8 @@ class App
 
                     $this->__instanceController = new $this->__controller($this->__conn);
                     if (method_exists($this->__instanceController, $this->__action)) {
-
+                        // var_dump($this->__params);
+                        // die();
                         call_user_func_array([$this->__instanceController, $this->__action],  $this->__params);
                     } else {
                         echo "method not exist";
