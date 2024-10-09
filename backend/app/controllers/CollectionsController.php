@@ -7,9 +7,10 @@ class CollectionsController extends BaseController
         $this->__instanceModel = $this->initModel("CollectionsModel", $conn);
     }
 
-    public function all()
+    public function all($params)
     {
-        $products = $this->__instanceModel->getAllProducts();
-        $this->FactoryMessage("info", "This is products obj", $products);
+        var_dump($params);
+        // $products = $this->__instanceModel->getAllProducts();
+        // $this->FactoryMessage("info", "This is products obj", $products);
     }
 }
