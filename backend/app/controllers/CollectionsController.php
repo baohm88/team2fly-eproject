@@ -9,8 +9,7 @@ class CollectionsController extends BaseController
 
     public function all($params)
     {
-        var_dump($params);
-        // $products = $this->__instanceModel->getAllProducts();
-        // $this->FactoryMessage("info", "This is products obj", $products);
+        $products = $this->__instanceModel->getAllProducts();
+        $this->FactoryMessage("info", "This is products obj", $products);
     }
 }
