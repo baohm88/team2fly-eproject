@@ -70,7 +70,7 @@ export default function ClientLayout({ children }) {
                             <span>
                                 {isLoggedIn && (
                                     <>
-                                        <span>Hi, {user.firstName}</span>
+                                        <span>Hi, {user.first_name}</span>
                                     </>
                                 )}
                                 <NavLink
@@ -88,9 +88,6 @@ export default function ClientLayout({ children }) {
                 <ul className="bottom-nav">
                     <li className="nav-link">
                         <NavLink to={"/"}>Home</NavLink>
-                    </li>
-                    <li className="nav-link">
-                        <NavLink to={"/new_product"}>What's new</NavLink>
                     </li>
                     <li className="nav-link">
                         <NavLink to={"/skincare"}>Skincare</NavLink>

@@ -6,7 +6,6 @@ import Products from "./admin/Products";
 import Users from "./admin/Users";
 import Home from "./client/Home";
 import MakeupProducts from "./client/MakeupProducts";
-import NewProducts from "./client/NewProducts";
 import SkincareProducts from "./client/SkincareProducts";
 import Login from "./Login";
 import Profile from "./Profile";
@@ -16,7 +15,6 @@ import UnauthorizedAccess from "./UnauthorizedAccess";
 
 const routes = [
     { path: "/", component: Home, layout: ClientLayout },
-    { path: "/new_product", component: NewProducts, layout: ClientLayout },
     { path: "/skincare", component: SkincareProducts, layout: ClientLayout },
     { path: "/makeup", component: MakeupProducts, layout: ClientLayout },
     { path: "/register", component: Register, layout: ClientLayout },

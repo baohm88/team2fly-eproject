@@ -36,8 +36,8 @@ li a.active {
 
 main {
     width: 90vw;
-    height: 90vh;
-    margin: 0 auto;
+    min-height: 90vh;
+    margin: 1rem auto;
     padding: 0 1rem;
 }
 

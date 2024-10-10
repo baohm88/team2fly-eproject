@@ -23,29 +23,40 @@ export default function Home() {
         <>
             <h1 className="center">List of products</h1>
             <div className="items-container">
-                {items.map((item) => (
-                    <div className="item-card center" key={item.productId}>
-                        <Link to={"/"}>
-                            <img
-                                src="https://www.clarinsusa.com/on/demandware.static/-/Library-Sites-clarins-v3/default/dwc0d1a641/content/Cleansing-2020/Merchpage-V3/img/packshot-nettoyant-moussant-hydratant.png"
-                                alt=""
-                                className="item-image"
-                            />
-                            <h4 className="item-title">{item.productName}</h4>
-                        </Link>
+                {items.map((item) => {
+                    const formatter = new Intl.NumberFormat("en-US", {
+                        style: "currency",
+                        currency: "USD",
+                    });
 
-                        <p className="item-price">${item.price}</p>
-                        <form method="POST">
-                            <input type="hidden" name="item_id" />
-                            <input type="hidden" name="quantity" />
-                            <p>
-                                <button className="cart-button">
-                                    Add to Cart
-                                </button>
+                    return (
+                        <div className="item-card center" key={item.productId}>
+                            <Link to={"/"}>
+                                <img
+                                    src="https://www.clarinsusa.com/on/demandware.static/-/Library-Sites-clarins-v3/default/dwc0d1a641/content/Cleansing-2020/Merchpage-V3/img/packshot-nettoyant-moussant-hydratant.png"
+                                    alt=""
+                                    className="item-image"
+                                />
+                                <h4 className="item-title">
+                                    {item.productName}
+                                </h4>
+                            </Link>
+
+                            <p className="item-price">
+                                {formatter.format(item.price)}
                             </p>
-                        </form>
-                    </div>
-                ))}
+                            <form method="POST">
+                                <input type="hidden" name="item_id" />
+                                <input type="hidden" name="quantity" />
+                                <p>
+                                    <button className="cart-button">
+                                        Add to Cart
+                                    </button>
+                                </p>
+                            </form>
+                        </div>
+                    );
+                })}
             </div>
         </>
     );
