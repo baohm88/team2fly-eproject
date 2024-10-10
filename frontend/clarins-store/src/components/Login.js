@@ -2,6 +2,7 @@ import axios from "axios";
 import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "../App";
+import classes from './Login.module.css'
 
 export default function Login() {
     const { setUser } = useContext(UserContext);
@@ -57,7 +58,7 @@ export default function Login() {
 
     return (
         <>
-            <form className="user-form" onSubmit={handleSubmit}>
+            <form className={classes['user-form']} onSubmit={handleSubmit}>
                 <h1 className="center">Login</h1>
                 <br />
                 {error && (
@@ -90,9 +91,8 @@ export default function Login() {
                 <p>
                     Don't have account yet?{" "}
                     <Link to="/register">
-                        <button type="button">Register</button>
+                        <button type="button">Register here</button>
                     </Link>{" "}
-                    here
                 </p>
             </form>
         </>

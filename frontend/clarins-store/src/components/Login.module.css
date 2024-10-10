@@ -1,0 +1,124 @@
+/* Các thuộc tính chung */
+* {
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    list-style-type: none;
+}
+
+/* Định nghĩa màu sắc */
+:root {
+    --primaryColor: rgb(166, 43, 47);
+    --secondaryColor: rgb(244, 239, 235);
+    --darkColor: black;
+    --lightColor: white;
+    --dangerColor: red;
+}
+
+/* Form đăng nhập */
+.user-form {
+    width: 100%;
+    max-width: 400px; /* Kích thước tối đa của form */
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: var(--secondaryColor); /* Màu nền sáng */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Tạo bóng mờ cho form */
+    border-radius: 8px; /* Bo tròn góc */
+}
+
+/* Tiêu đề form */
+.user-form h1 {
+    text-align: center;
+    color: var(--primaryColor);
+    margin-bottom: 20px;
+}
+
+/* Trường nhập liệu */
+input {
+    width: 100%;
+    padding: 12px; /* Thêm padding để text không bị sát vào viền */
+    margin-bottom: 20px; /* Khoảng cách giữa các trường nhập */
+    border: 1px solid #ccc;
+    border-radius: 4px; /* Bo tròn góc */
+    font-size: 1rem;
+}
+
+input:focus {
+    border-color: var(--primaryColor); /* Đổi màu viền khi focus vào */
+    outline: none;
+}
+
+/* Nút submit */
+button {
+    width: 100%;
+    padding: 12px;
+    background-color: var(--primaryColor); /* Màu nền nút */
+    color: var(--lightColor);
+    font-size: 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: darken(var(--primaryColor), 10%); /* Đổi màu khi hover */
+}
+
+/* Thông báo lỗi */
+.error-message {
+    color: var(--dangerColor);
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Liên kết "Đăng ký" */
+.user-form p {
+    text-align: center;
+}
+
+.user-form a {
+    color: var(--primaryColor);
+    text-decoration: underline;
+}
+
+/* Các media query cho mobile */
+@media (max-width: 768px) {
+    .user-form {
+        padding: 1.5rem;
+        width: 90%;
+    }
+
+    input, button {
+        padding: 10px; /* Giảm padding cho các trường và nút trên màn hình nhỏ */
+    }
+}
+/* Phần tìm kiếm */
+.search-bar {
+    display: flex;
+    align-items: center;
+    position: relative; /* Đảm bảo rằng các phần tử bên trong có thể căn chỉnh đúng */
+}
+
+.search-bar input {
+    padding: 10px 12px; /* Tạo khoảng cách cho text trong input */
+    width: 100%;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+}
+
+.search-bar span {
+    position: absolute;
+    right: 10px; /* Đặt biểu tượng search ở bên phải input */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: var(--primaryColor); /* Màu của biểu tượng */
+    cursor: pointer; /* Con trỏ chuột sẽ thành hình bàn tay khi hover */
+}
+
+.search-bar span:hover {
+    color: darken(var(--primaryColor), 10%); /* Đổi màu khi hover */
+}
