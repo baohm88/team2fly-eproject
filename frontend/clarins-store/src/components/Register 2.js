@@ -133,7 +133,7 @@ export default function Register() {
 
         try {
             const response = await axios.post(
-                "http://localhost/project/user/register",
+                "http://localhost:8080/project/user/register",
                 fd, // Pass the FormData directly
                 {
                     headers: {

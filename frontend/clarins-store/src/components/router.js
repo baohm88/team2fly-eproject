@@ -13,10 +13,14 @@ import Profile from "./Profile";
 import UpdateProfile from "./UpdateProfile";
 import Register from "./Register";
 import UnauthorizedAccess from "./UnauthorizedAccess";
+import Modal from "./client/Modal";
+import Details from "./client/Details";
 
 const routes = [
     { path: "/", component: Home, layout: ClientLayout },
     { path: "/new_product", component: NewProducts, layout: ClientLayout },
+    { path: "/modal", component: Modal, layout: ClientLayout },
+    { path: "/detail", component: Details, layout: ClientLayout },
     { path: "/skincare", component: SkincareProducts, layout: ClientLayout },
     { path: "/makeup", component: MakeupProducts, layout: ClientLayout },
     { path: "/register", component: Register, layout: ClientLayout },

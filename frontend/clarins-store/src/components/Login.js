@@ -19,7 +19,7 @@ export default function Login() {
 
         try {
             const response = await axios.post(
-                "http://localhost/project/user/login",
+                "http://localhost:8080/project/user/login",
                 userData,
                 {
                     headers: {

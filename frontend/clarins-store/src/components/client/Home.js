@@ -7,7 +7,7 @@ export default function Home() {
     useEffect(() => {
         async function postData() {
             axios
-                .get("http://localhost/project/collections/all")
+                .get("http://localhost:8080/project/collections/all")
                 .then((res) => {
                     console.log(res.data.data);
                     setItems(res.data.data);
@@ -17,7 +17,6 @@ export default function Home() {
         postData();
     }, []);
 
-    console.log(items);
 
     return (
         <>
