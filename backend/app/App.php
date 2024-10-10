@@ -37,10 +37,14 @@ class App
                 $explodedURI = array_values(array_filter($explodedURI));
             }
             if (!empty($explodedURI[0])) {
-                // var_dump($explodedURI);
-                // die();
-                $this->__params[0] = ucfirst($explodedURI[0]);
-                unset($explodedURI[0]);
+                $data = str_replace("?", "", $explodedURI[0]);
+                $data = explode("&", $data);
+                $a_data = [];
+                foreach ($data as $key => $value) {
+                    $exploded_data = explode("=", $data[$key]);
+                    $a_data[$exploded_data[0]] = $exploded_data[1];
+                }
+                $this->__params[0] = $a_data;
             }
             $filePath = "./app/controllers/" . $this->__controller . ".php";
             if (file_exists($filePath)) {
