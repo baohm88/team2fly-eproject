@@ -189,4 +189,18 @@ class UserModel extends BaseController
             $this->FactoryMessage("error", "User ID Not Found");
         }
     }
+
+    public function getUserOrders($user_id)
+    {
+        $sql = "SELECT 
+            order_id,
+            order_value,
+            order_date,
+            status_id
+         FROM Orders WHERE user_id = :user_id";
+        $stmt = $this->__conn->prepare($sql);
+        $stmt->bindValue(":user_id", $user_id, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 }
