@@ -177,7 +177,7 @@ export default function Register() {
 
         try {
             const response = await axios.post(
-                "http://localhost/project/user/profile",
+                "http://localhost:8080/project/user/profile",
                 userData,
                 {
                     headers: {

@@ -20,6 +20,7 @@ import UpdatePassword from "./client/UpdatePassword";
 const routes = [
     { path: "/", component: Home, layout: ClientLayout },
     { path: "/skincare", component: SkincareProducts, layout: ClientLayout },
+    { path: "/detail", component: ProductDetails, layout: ClientLayout },
     { path: "/makeup", component: MakeupProducts, layout: ClientLayout },
     { path: "/register", component: Register, layout: ClientLayout },
     { path: "/login", component: Login, layout: ClientLayout },

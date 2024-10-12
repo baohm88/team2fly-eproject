@@ -12,7 +12,7 @@ export default function SkincareProducts() {
     const productsPerPage = 3; // Number of products per page
 
     useEffect(() => {
-        axios.get("http://localhost/project/collections/makeup").then((res) => {
+        axios.get("http://localhost:8080/project/collections/makeup").then((res) => {
             setItems(res.data.data);
             setFilteredItems(res.data.data); // Show all items initially
         });
