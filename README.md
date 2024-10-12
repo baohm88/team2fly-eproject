@@ -30,18 +30,48 @@
 
 ## Quản lý Product
 
-- [ ] **[GET] /admin/products/**
+- [ ] **[GET] /admin/products/?product_id=123**
+    - **Description**: get all product in admin
+    - **Payload Example**:
+    ```json
+    [
+      "products": [
+        [
+          "product_id": 1,
+          "product_name": "abc",
+          "description": "asdasdas",
+          "product_price": 99.99,
+          "quantity": 1,
+          "main_category": "skincare",
+          "sub_category": "abc"
+          "product_image" : "link"
+      ],
+        [
+          "product_id": 2,
+          "product_name": "abc",
+          "description": "asdasdas",
+          "product_price": 99.99,
+          "quantity": 1,
+          "main_category": "skincare",
+          "sub_category": "abc",
+          "product_image" : "link"
+        
+         ]
+      ] ,****
+    }
+    ```
 - [ ] **[POST] /admin/products/**
   - **Description**: Add new product
   - **Request Example**:
     ```json
     {
-      "product_id": 123,
       "product_name": "Sample Product",
       "price": 99.999999999,
       "quantity_in_stock": 50,
-      "category": 1,
-      "date_listed": "2024-10-05"
+      "main_category": "Makeup" || "Skincare",
+      "sub_category": "Makeup" || "Skincare",
+      "date_listed": "2024-10-05",
+      "product_image" : "link"
     }
     ```
 
@@ -54,8 +84,10 @@
       "product_name": "Sample Product",
       "price": 99.999999999,
       "quantity_in_stock": 50,
-      "category": 1,
-      "date_listed": "2024-10-05"
+      "main_category": "Makeup" || "Skincare",
+      "sub_category": "Makeup" || "Skincare",
+      "date_listed": "2024-10-05",
+      "product_image" : "link"
     }
     ```
 
@@ -151,43 +183,57 @@
     }
     ```
 
-- [ ] **[GET] products/product/?product_id=123**
+- [x] **[GET] products/product/?product_id=123**
   - **Request Example**:
     ```json
     {
-      "product_name": "abc",
-      "description": "asdasdas",
-      "product_price": 99.99,
-      "quantity": 1,
-      "main_category": "skincare",
-      "sub_category": "abc",
-      "images": [
-        "imagelink1",
-        "imagelink2",
-        "imagelink3",
-        "imagelink4"
-      ],
-      "ratings": [
-        {
-          "username": "doe",
-          "rating_date": "2020-12-20",
-          "rating": 5,
-          "rating_comment": "asdasdas"
+    "type": "success",
+    "message": "This is product data",
+    "data": {
+        "0": {
+            "product_name": "Cum deleniti quidem.",
+            "price": "446995714.903180000",
+            "product_description": "",
+            "quantity_in_stock": 22471,
+            "main_category": "Skincare",
+            "sub_category": "Body"
         },
-        {
-          "username": "doe",
-          "rating_date": "2020-12-20",
-          "rating": 5,
-          "rating_comment": "asdasdas"
-        }
-      ]
+        "images": [
+            {
+                "product_image": "/35a7e41f5038e8207ce35808d0b098b4.jpg"
+            },
+            {
+                "product_image": "/60d75cb3888891e15259e1d466edca33.jpg"
+            }
+        ],
+        "ratings": [
+            {
+                "username": "john_doe",
+                "rating_date": "1976-07-09",
+                "rating": 1,
+                "rating_comment": "Quia libero nihil eum perferendis eaque similique non ipsa. Asperiores dolor autem nulla rerum possimus error. Consequatur tempora dolorem officiis est laudantium eos. Sint voluptas facilis qui similique ea quidem quibusdam. Mollitia harum id ea facere. E"
+            },
+            {
+                "username": "john_doe",
+                "rating_date": "1977-04-29",
+                "rating": 0,
+                "rating_comment": "Ut dolores cumque possimus praesentium. In reprehenderit voluptatem temporibus voluptatem quasi unde. Consequuntur a dolorem a sit. Quam et velit omnis. Aut in modi ex doloremque. Esse modi autem officiis quia."
+            },
+            {
+                "username": "john_doe",
+                "rating_date": "2015-01-29",
+                "rating": 2,
+                "rating_comment": "Quia consectetur rerum sed suscipit. Molestiae sequi sint dolor laborum. Et laborum non omnis. Ipsa ratione quis adipisci ut fugit. Aut fuga sint id placeat. Qui voluptas explicabo expedita temporibus velit libero quae."
+            }
+        ]
     }
+}
     ```
 
 ## Orders
 
-- [ ] **[GET] /user/orders/?user_id=123**
-  - **Request Example**:
+- [x] **[GET] /user/orders/?user_id=123**
+  - **Return Payload Example**:
     ```json
     {
       "orders": [
@@ -265,13 +311,3 @@
       ]
     }
     ```
-
-## Coupons
-
-## Order Status
-
-## Product Image
-
-## Product Rating
-
-## Product Category

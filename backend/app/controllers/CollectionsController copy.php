@@ -29,7 +29,7 @@ class CollectionsController extends BaseController
             max_price: $params["max_price"] ?? null,
             desc: $params["desc"] ?? true
         );
-            $this->FactoryMessage("success", "This is products array", $data);
+        $this->FactoryMessage("success", "This is products array", $data);
     }
 
 
@@ -49,8 +49,7 @@ class CollectionsController extends BaseController
             max_price: $params["max_price"] ?? null,
             desc: $params["desc"] ?? true
         );
-        if (!empty($data)) {
-            $this->FactoryMessage("success", "This is products array", $data);
+        $this->FactoryMessage("success", "This is products array", $data);
     }
 
     public function product($params = [])
