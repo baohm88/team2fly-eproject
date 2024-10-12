@@ -37,7 +37,7 @@ export default function AdminLayout({ children }) {
                     {user !== null && (
                         <li>
                             <span>
-                                <span>Hi, {user.username}</span>
+                                <span>Hi, {user.first_name}</span>
                                 <IoPersonOutline />
                             </span>
                         </li>
