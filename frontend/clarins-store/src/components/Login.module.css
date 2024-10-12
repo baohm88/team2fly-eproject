@@ -14,16 +14,17 @@
     --lightColor: white;
     --dangerColor: red;
 }
+.input{
+
+}
 
 /* Form đăng nhập */
 .user-form {
     width: 100%;
-    max-width: 400px; /* Kích thước tối đa của form */
     margin: 2rem auto;
     padding: 2rem;
-    background-color: var(--secondaryColor); /* Màu nền sáng */
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Tạo bóng mờ cho form */
-    border-radius: 8px; /* Bo tròn góc */
+    background-color: white;
+    max-width: 600px;
 }
 
 /* Tiêu đề form */
@@ -31,27 +32,29 @@
     text-align: center;
     color: var(--primaryColor);
     margin-bottom: 20px;
+
 }
 
 /* Trường nhập liệu */
-input {
+.input {
     width: 100%;
-    padding: 12px; /* Thêm padding để text không bị sát vào viền */
-    margin-bottom: 20px; /* Khoảng cách giữa các trường nhập */
+    padding: 12px 0; 
+    margin-bottom: 10px; /* Khoảng cách giữa các trường nhập */
     border: 1px solid #ccc;
-    border-radius: 4px; /* Bo tròn góc */
+    border-radius: 7px; /* Bo tròn góc */
     font-size: 1rem;
 }
 
-input:focus {
+.input:focus {
     border-color: var(--primaryColor); /* Đổi màu viền khi focus vào */
     outline: none;
 }
 
-/* Nút submit */
-button {
+/* Nút LOGIN */
+.button {
     width: 100%;
     padding: 12px;
+    margin-bottom: 1rem;
     background-color: var(--primaryColor); /* Màu nền nút */
     color: var(--lightColor);
     font-size: 1rem;
@@ -61,21 +64,15 @@ button {
     transition: background-color 0.3s ease;
 }
 
-button:hover {
-    background-color: darken(var(--primaryColor), 10%); /* Đổi màu khi hover */
+.button:hover {
+    background-color: rgb(145, 6, 6) /* Đổi màu khi hover */
 }
 
 /* Thông báo lỗi */
 .error-message {
-    color: var(--dangerColor);
     text-align: center;
-    margin-bottom: 20px;
 }
 
-/* Liên kết "Đăng ký" */
-.user-form p {
-    text-align: center;
-}
 
 .user-form a {
     color: var(--primaryColor);
@@ -89,36 +86,39 @@ button:hover {
         width: 90%;
     }
 
-    input, button {
+    .input, .button {
         padding: 10px; /* Giảm padding cho các trường và nút trên màn hình nhỏ */
     }
 }
-/* Phần tìm kiếm */
-.search-bar {
-    display: flex;
-    align-items: center;
-    position: relative; /* Đảm bảo rằng các phần tử bên trong có thể căn chỉnh đúng */
+.benefits-container {
+    display: flex; /* Sử dụng flexbox để sắp xếp các phần tử theo hàng ngang */
+    justify-content: space-between; /* Khoảng cách đều giữa các phần tử */
+    align-items: center; /* Căn chỉnh các phần tử theo chiều dọc */
+    background-color: #f7f7f7; /* Màu nền cho container */
+    padding: 20px; /* Khoảng cách bên trong container */
+    border-radius: 10px; /* Bo tròn góc */
+    margin-top: 20px; /* Khoảng cách từ phần trên */
 }
 
-.search-bar input {
-    padding: 10px 12px; /* Tạo khoảng cách cho text trong input */
-    width: 100%;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    font-size: 1rem;
+.benefit {
+    display: flex; /* Sử dụng flexbox để căn chỉnh nội dung trong mỗi phần tử */
+    flex-direction: row; /* Đặt các icon và text theo hàng ngang */
+    align-items: center; /* Căn giữa icon và text theo chiều dọc */
+    text-align: left; /* Căn trái cho văn bản */
+    padding: 10px; /* Khoảng cách bên trong từng benefit */
+    background-color: rgba(0, 0, 0, 0.05); /* Màu nền nhạt cho mỗi benefit */
+    border-radius: 5px; /* Bo tròn các góc của từng benefit */
+    flex: 1; /* Để các phần tử có thể co dãn đều */
+    margin: 0 10px; /* Khoảng cách giữa các benefit */
 }
 
-.search-bar span {
-    position: absolute;
-    right: 10px; /* Đặt biểu tượng search ở bên phải input */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.5rem;
-    color: var(--primaryColor); /* Màu của biểu tượng */
-    cursor: pointer; /* Con trỏ chuột sẽ thành hình bàn tay khi hover */
+.benefit i {
+    font-size: 24px; /* Kích thước icon */
+    margin-right: 10px; /* Khoảng cách giữa icon và văn bản */
 }
 
-.search-bar span:hover {
-    color: darken(var(--primaryColor), 10%); /* Đổi màu khi hover */
+.benefit p {
+    font-size: 14px; /* Kích thước chữ */
+    color: #333; /* Màu chữ */
 }
+
