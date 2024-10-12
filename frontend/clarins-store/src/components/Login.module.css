@@ -106,7 +106,7 @@
     align-items: center; /* Căn giữa icon và text theo chiều dọc */
     text-align: left; /* Căn trái cho văn bản */
     padding: 10px; /* Khoảng cách bên trong từng benefit */
-    background-color: #f7f7f7; /* Màu nền nhạt cho mỗi benefit */
+    background-color: #f7f7f7; 
     border-radius: 5px; /* Bo tròn các góc của từng benefit */
     flex: 1; /* Để các phần tử có thể co dãn đều */
     margin: 0 10px; /* Khoảng cách giữa các benefit */
