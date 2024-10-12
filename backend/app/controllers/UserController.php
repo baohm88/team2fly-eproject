@@ -74,7 +74,7 @@ class UserController extends BaseController
             if ($aUserData != false) {
                 $this->FactoryMessage("success", "Get User Info Successfully", $aUserData);
             } else {
-                $this->FactoryMessage("success", "User data not exist");
+                $this->FactoryMessage("error", "User data not exist");
             }
         } else if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $inputs = json_decode(file_get_contents('php://input'), true);
