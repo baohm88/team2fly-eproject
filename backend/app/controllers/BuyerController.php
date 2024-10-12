@@ -120,7 +120,7 @@ class BuyerController extends ValidateController
     public function set_dob($dob)
     {
         $this->__dob = $dob;
-        var_dump($this->__dob);
+        // var_dump($this->__dob);
         return $this->get_dob();
     }
 

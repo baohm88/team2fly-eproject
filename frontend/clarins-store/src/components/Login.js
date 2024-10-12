@@ -6,18 +6,17 @@ import classes from "./Login.module.css";
 
 export default function Login() {
   const { setUser } = useContext(UserContext);
-
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(false);
-
   const navigate = useNavigate();
 
+
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     const userData = { username, password };
-
     try {
       const response = await axios.post(
         "http://localhost/project/user/login",

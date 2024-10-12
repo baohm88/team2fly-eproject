@@ -184,9 +184,9 @@ class UserModel extends BaseController
             // $stmt->debugDumpParams();
             // Execute the statement
             $stmt->execute();
-            $this->FactoryMessage("Success", "User data changed successfully");
+            $this->FactoryMessage("success", "User data changed successfully");
         } else {
-            $this->FactoryMessage("Error", "User ID Not Found");
+            $this->FactoryMessage("error", "User ID Not Found");
         }
     }
 }
