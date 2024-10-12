@@ -101,17 +101,17 @@ export default function Login() {
         <div className={classes["benefits-container"]}>
           <div className={classes["benefit"]}>
             <i className="fas fa-heart"></i>{" "}
-            {/* You can replace it with your heart icon */}
+            {<span>❤️</span> }
             <p>Join Club &amp; receive 50 points</p>
           </div>
           <div className={classes["benefit"]}>
             <i className="fas fa-gift"></i>{" "}
-            {/* You can replace it with your reward icon */}
+            {<span>🎁</span>}
             <p>Earn points &amp; rewards today</p>
           </div>
           <div className={classes["benefit"]}>
             <i className="fas fa-shipping-fast"></i>{" "}
-            {/* You can replace it with your fast checkout icon */}
+            {<span>🚚</span>}
             <p>Fast checkout &amp; order tracking</p>
           </div>
         </div>
