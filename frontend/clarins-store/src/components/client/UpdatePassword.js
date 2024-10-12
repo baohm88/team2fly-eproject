@@ -62,7 +62,7 @@ export default function UpdatePassword() {
 
         try {
             const response = await axios.post(
-                `http://localhost/project/user/change_password`,
+                `http://localhost:8080/project/user/change_password`,
                 userData,
                 {
                     headers: {

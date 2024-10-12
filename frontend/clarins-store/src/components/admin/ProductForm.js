@@ -8,7 +8,7 @@ export default function ProductForm() {
 
     useEffect(() => {
         axios
-            .get("http://localhost/project/products/product/?product_id" + id)
+            .get("http://localhost:8080/project/products/product/?product_id" + id)
             .then((res) => {
                 // setProduct(res.data.data);
                 console.log(res);

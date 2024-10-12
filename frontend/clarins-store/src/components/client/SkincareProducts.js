@@ -13,7 +13,7 @@ export default function SkincareProducts() {
 
     useEffect(() => {
         axios
-            .get("http://localhost/project/collections/skincare")
+            .get("http://localhost:8080/project/collections/skincare")
             .then((res) => {
                 setItems(res.data.data);
                 setFilteredItems(res.data.data); // Show all items initially
