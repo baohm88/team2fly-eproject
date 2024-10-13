@@ -5,7 +5,7 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "../App.js";
 import CryptoJS from "crypto-js";
-
+import classes from "./Register.module.css";
 export default function Register() {
     const [firstNameError, setFirstNameError] = useState();
     const [lastNameError, setLastNameError] = useState();
@@ -202,8 +202,8 @@ export default function Register() {
 
     return (
         <>
-            <form className="user-form" onSubmit={handleSubmit}>
-                <h1 className="center">Update account</h1>
+            <form className={classes['user-form']} onSubmit={handleSubmit}>
+                <h1 className="user-form-title">Update account</h1>
 
                 {serverError && (
                     <span className="error-message">({serverError})</span>

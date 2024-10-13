@@ -1,0 +1,119 @@
+/* Phần chứa toàn bộ header */
+header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 0;
+}
+.bottom-nav {
+    display: flex;
+    justify-content: center; /* Căn giữa các mục */
+    flex-wrap: wrap; /* Cho phép các mục tự động xuống dòng nếu không đủ chỗ */
+    gap: 20px; /* Khoảng cách giữa các mục */
+    margin-top: 10px;
+}
+.nav-link {
+    display: inline-block;
+    padding: 10px 15px;
+    text-decoration: none;
+    color: black;
+    font-size: 1rem;
+    white-space: nowrap; /* Đảm bảo các mục không bị xuống dòng bên trong */
+}
+
+.top-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+/* Dịch cụm menu-icon và thanh tìm kiếm sang trái */
+.row {
+    display: flex;
+    align-items: center;
+    margin-left: -30px; /* Dịch sang trái bằng cách giảm margin-left */
+}
+
+.menu-icon {
+    cursor: pointer;
+    margin-right: 10px;
+}
+.search-bar {
+    display: flex;
+    margin-left: 0; /* Đảm bảo không có khoảng cách bên trái */
+}
+
+/* Logo */
+.logo {
+    height: 60px;
+    display: block;
+    margin-right: 5px; /* Giảm khoảng cách với search bar */
+}
+
+
+.nav-icons {
+    display: flex;
+    gap: 20px;
+}
+
+/* Container chung cho search bar và button */
+.searchContainer {
+    display: flex; /* Sử dụng flexbox để căn chỉnh input và button */
+    align-items: center; /* Căn chỉnh các phần tử theo chiều dọc */
+    margin-right: 10px; /* Giảm khoảng cách giữa thanh tìm kiếm và logo */
+}
+
+.searchButton {
+    background-color: rgba(181, 24, 40, 255); /* Màu nền đỏ */
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease;
+}
+
+.searchButton:hover {
+    background-color: rgba(181, 24, 40, 255); /* Màu nền đậm hơn khi hover */
+}
+
+.searchButton svg {
+    color: white; /* Màu trắng cho icon search */
+    font-size: 1.5rem; /* Tùy chỉnh kích thước icon nếu cần */
+}
+
+/* Style cho search input */
+.searchInput {
+    width: 200px; /* Thay đổi giá trị này để giảm chiều rộng của input */
+    height: 40px;
+    padding: 0 12px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px 0 0 4px;
+    outline: none;
+    box-sizing: border-box;
+}
+
+.search-bar input {
+    padding: 3.5px; /* Đảm bảo padding phù hợp */
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Bottom-nav nằm dưới */
+.bottom-nav {
+    display: flex; /* Đảm bảo sử dụng flex để căn chỉnh linh hoạt */
+    justify-content: center; /* Căn giữa các mục */
+    flex-wrap: wrap; /* Đảm bảo nếu không đủ chỗ thì sẽ xuống dòng */
+    gap: 20px; /* Khoảng cách giữa các mục */
+    padding: 10px 0;
+}
+
+.bottom-nav .nav-link {
+    margin: 0 10px;
+    font-size: 1rem;
+}

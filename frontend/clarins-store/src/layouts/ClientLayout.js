@@ -2,6 +2,7 @@ import { NavLink, useNavigate, useLocation } from "react-router-dom";
 import Footer from "../components/Footer";
 import logo from "../assets/clarins_logo.png";
 import clubLogo from "../assets/club-clarins.webp";
+import classes from "../components/Header.module.css"
 import {
     IoBagAddOutline,
     IoPersonOutline,
@@ -67,30 +68,23 @@ export default function ClientLayout({ children }) {
                             <IoMenuSharp />
                         </span>
                         <span className="search-bar">
-                            <form onSubmit={handleSearch} method="get">
-                                <p className="row">
-                                    <span>
-                                        <input
-                                            type="text"
-                                            name="q"
-                                            id="q"
-                                            value={searchText}
-                                            onChange={(e) =>
-                                                setSearchText(e.target.value)
-                                            }
-                                            placeholder="Search"
-                                        />
-                                    </span>
-
-                                    <span
-                                        className="search-button"
-                                        onClick={handleSearch}
-                                    >
-                                        <IoSearch />
-                                    </span>
-                                </p>
-                            </form>
-                        </span>
+    <form onSubmit={handleSearch} method="get">
+        <div className={classes.searchContainer}> {/* Container mới */}
+            <input
+                type="text"
+                name="q"
+                id="q"
+                value={searchText}
+                onChange={(e) => setSearchText(e.target.value)}
+                placeholder="Search"
+                className={classes.searchInput}  // Thêm class cho input
+            />
+            <span className={classes.searchButton} onClick={handleSearch}>
+                <IoSearch />
+            </span>
+        </div>
+    </form>
+</span>
                     </li>
                     <li>
                         <NavLink to={"/"}>
