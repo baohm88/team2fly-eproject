@@ -157,9 +157,29 @@ class UserController extends BaseController
             foreach ($cart_items as $cart_item) {
                 $quantity = $cart_item["quantity"];
                 $product_id  = $cart_item["product_id"];
-                $instanceOrderModel->createOrderItem($order_id[0]['id'], $product_id, $cart_item['product_name'], $cart_item['product_price'], $cart_item['quantity']);
+                // $instanceOrderModel->createOrderItem($order_id[0]['id'], $product_id, $cart_item['product_name'], $cart_item['product_price'], $cart_item['quantity']);
+                $instanceOrderModel->createOrderItem($order_id[0]['id'], $product_id, $cart_item['product_name'], $cart_item['price'], $cart_item['quantity']);
             }
             $this->FactoryMessage("success", "Your Order has been placed Successfully ", $result);
+        }
+    }
+
+    public function order_item($params = [])
+    {
+        // Check if 'order_id' is passed in the parameters
+        if (!isset($params['order_id'])) {
+            $this->FactoryMessage("error", "Order ID is required");
+            return;
+        }
+
+        $orderId = $params['order_id']; // Get the order_id  from the parameters
+        $order_items = $this->__instanceModel->getUserOrderById($orderId);
+
+        // If the order_items exists, return it; otherwise, return an error message
+        if ($order_items) {
+            $this->FactoryMessage("success", "Order items found", $order_items);
+        } else {
+            $this->FactoryMessage("error", "Order items not found");
         }
     }
 }

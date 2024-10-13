@@ -1,12 +1,9 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {  faGift, faHippo, faStar, faStarHalfStroke, faTruckFast } from '@fortawesome/free-solid-svg-icons'
-import { } from '@fortawesome/free-brands-svg-icons'
-import classes from './Modal.module.css'
-import './Modal.css'
-import Img from "./Img.js";
+import { formatter } from "../../util/formatter";
+import { IoChevronBackOutline, IoChevronForward } from "react-icons/io5";
+import Modal from "./Modal"; // Import the Modal component
 
 export default function Home() {
     
@@ -16,6 +13,11 @@ export default function Home() {
     }
     const [products, setProducts] = useState([]);
     const [filteredProducts, setFilteredProducts] = useState([]);
+    const [selectedProduct, setSelectedProduct] = useState(null); // For managing modal product
+    const [sortOption, setSortOption] = useState(""); // State for sorting option
+    const [minPrice, setMinPrice] = useState(0); // State for minimum price filter
+    const [maxPrice, setMaxPrice] = useState(1000); // State for maximum price filter
+    const [priceRange, setPriceRange] = useState([minPrice, maxPrice]); // State for the range slider
 
     const location = useLocation();
 
@@ -37,6 +39,7 @@ export default function Home() {
         });
     }, []);
 
+    // Handle filtering by search text
     useEffect(() => {
         const params = new URLSearchParams(location.search);
         const searchText = params.get("q");
@@ -60,188 +63,137 @@ export default function Home() {
         }
     }, [location.search, products]);
 
+    // Handle sorting
+    useEffect(() => {
+        let sortedProducts = [...products]; // Sort based on the original product list
+        if (sortOption === "name_asc") {
+            sortedProducts.sort((a, b) =>
+                a.product_name.localeCompare(b.product_name)
+            );
+        } else if (sortOption === "name_desc") {
+            sortedProducts.sort((a, b) =>
+                b.product_name.localeCompare(a.product_name)
+            );
+        } else if (sortOption === "price_asc") {
+            sortedProducts.sort((a, b) => a.price - b.price);
+        } else if (sortOption === "price_desc") {
+            sortedProducts.sort((a, b) => b.price - a.price);
+        }
+
+        // Apply price range filter
+        sortedProducts = sortedProducts.filter(
+            (product) =>
+                product.price >= priceRange[0] && product.price <= priceRange[1]
+        );
+
+        setFilteredProducts(sortedProducts);
+    }, [sortOption, products, priceRange]); // Sort whenever sortOption, products, or price range changes
+
     // Change page handler
     const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
     // Calculate total pages
     const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
-    
+
+    const openModal = (product) => {
+        setSelectedProduct(product); // Set the selected product for the modal
+    };
+
+    const closeModal = () => {
+        setSelectedProduct(null); // Close the modal by setting the selected product to null
+    };
+
+    // Handle price range slider changes
+    const handleRangeChange = (e) => {
+        const { name, value } = e.target;
+        if (name === "min") {
+            setPriceRange([Number(value), priceRange[1]]);
+        } else {
+            setPriceRange([priceRange[0], Number(value)]);
+        }
+    };
+
     return (
         <>
         
             <h1 className="center">All products</h1>
-            <div className="items-container">
-                {currentProducts.map((item) => {
-                    const formatter = new Intl.NumberFormat("en-US", {
-                        style: "currency",
-                        currency: "USD",
-                    });
 
-                    return (
-                        <div className="item-card center" key={item.product_id}>
-                            <Link to={"/products/" + item.product_id}>
-                                <img
-                                    src={
-                                        item.product_images
-                                            ? item.product_images.split(",")[0]
-                                            : ""
-                                    }
-                                    alt={item.product_name}
-                                    className="item-image"
-                                />
-                                <h4 className="item-title">
-                                    {item.product_name}
-                                </h4>
-                            </Link>
+            {/* Sorting and Filtering Controls */}
+            <div className="filters center">
+                {/* Sorting Dropdown */}
+                <label htmlFor="sort">Sort by: </label>
+                <select
+                    id="sort"
+                    value={sortOption}
+                    onChange={(e) => setSortOption(e.target.value)}
+                >
+                    <option value="">Select</option>
+                    <option value="name_asc">Name (A-Z)</option>
+                    <option value="name_desc">Name (Z-A)</option>
+                    <option value="price_asc">Price (Low to High)</option>
+                    <option value="price_desc">Price (High to Low)</option>
+                </select>
 
-                            <p className="item-price">
-                                {formatter.format(item.price)}
-                            </p>
-                            <button onClick={toggleModal} className={classes['btn-modal']}>
-            Quick view
-        </button>
-        {/* sss */}
-        {modal && (
-            <div className={classes['modal']} >
-                <div className={classes['overlay']}  onClick={toggleModal}></div>
-                <div className={classes['modal-content']}>
-                    <div className={classes['ob']}>
-                    <button className={classes['close-modal']} onClick={toggleModal}>X</button>
-                    </div>
-                    <div class={classes["body-product"]}>
-
-                        <div class={classes["product-img"]}>
-                            <div className="product-img-small">
-                                <img
-                                    src={require('../../assets/80077133_original_original_4.jpg')}
-                                    alt="s"></img>
-                                <img
-                                    src={require('../../assets/80095401_original_original_D.webp')}
-                                    alt="s"></img>
-                                <img
-                                    src={require('../../assets/80088221_original_original_5.webp')}
-                                    alt="s"></img>
-                                <img
-                                    src={require('../../assets/80033513_original_original_5.webp')}
-                                    alt="s"></img>
-                            </div>
-                            <div className="product-img-big">
-                                <img
-                                    src={require('../../assets/80083877_original_original_5.jpg')}
-                                    alt="s"></img>
-                            </div>
-                        <Img></Img>
-                        
-                        </div>
-                        <div class={classes["product-text"]}>
-                            <div class={classes["product-title"]}>
-                                <span>{item.product_name}</span>
-                                <div className={classes['star']}>
-                                   <div className={classes['iconstar']}>   
-                                    <FontAwesomeIcon className={classes['starl']} icon={faStar} />
-                                    <FontAwesomeIcon className={classes['starl']} icon={faStar} />
-                                    <FontAwesomeIcon className={classes['starl']} icon={faStar} />
-                                    <FontAwesomeIcon className={classes['starl']} icon={faStar} />
-                                    <FontAwesomeIcon className={classes['starl']} icon={faStarHalfStroke} />
-                                    </div>  
-                                    <Link to='#'><div className={classes['review']}>2752 REVIEWS</div></Link>
-                                </div>
-                            </div>
-                            <div className={classes['product-des']}>
-                            A multi-tasking daily moisturizer for all skin types powered <br></br>
-                             by 2% Niacinamide and Organic Sea Holly bio-extract*<br></br>
-                             targets the first signs of aging to visibly smooth lines, 
-                            refine <br></br>pores, skin texture, and help strengthen skin's moisture barrier for a radiant, youthful glow. 
-                            </div>
-                            <div className={classes['price']}>$59.00</div>
-                            <div className={classes['price-des']}>Or 4 interest-free payments of $14.75 with <img src={require('../../assets/afterpay.png')}></img></div>
-                            <div className={classes['ml']}>1.7 Oz.</div>
-                             
-                                <div className={classes['boxcontainer']}>
-                                    <div className={classes["option"]}>
-                                        <label className={classes["radio-container"]}>
-                                        <div className={classes['checker']}>
-                                        <input
-                                            type="radio"
-                                            name="purchaseOption"
-                                            value="one-time"
-                                        />
-                                        <span className={classes["radio-label"]}>One-time purchase</span>
-                                        </div>
-                                        <span className={classes["price"]}>$59.00</span>
-                                        </label>
-                                    </div>
-                                    <hr />
-                                    <div className={classes["option"]}>
-                                        <label className={classes["radio-container"]}>
-                                        <div className={classes['checker']}>
-                                        <input
-                                            type="radio"
-                                            name="purchaseOption"
-                                            value="subscription"
-                                            
-                                        />
-                                        <span className={classes["radio-label"]}>Subscription</span>
-                                        </div>
-                                        <span className={classes["price subscription-price"]}>$53.10</span>
-                            
-                                        </label>
-                                        
-                                            <ul className={classes["subscription-details"]}>
-                                                <li>10% off + free shipping + 3 free samples</li>
-                                                <li>100 Club Clarins points for subscribing</li>
-                                                <li>Edit, pause, skip or cancel any time</li>
-                                            </ul>
-                                    
-                                        <select className={classes["shipping-frequency"]}>
-                                            <option>Ships every 3 months (recommended)</option> 
-                                            <option>Ships every 2 months (recommended)</option> 
-                                            <option>Ships every 1 months (recommended)</option> 
-                                            <option>Ships every 5 months (recommended)</option> 
-                                        </select>
-                                    </div>  
-                                                                                    
-                                </div>
-                            <div className={classes['almost']}>
-                                <div className={classes['volum']}>
-                                <input type="number" id="quantity" name="quantity" value={1} min="1" max="1000"></input>
-                                <button>Add to bag</button>
-                                </div>
-                                <hr></hr>
-                            </div>
-                            <div className={classes['last']}>
-                                <div className={classes['first-last']}>
-                                    <FontAwesomeIcon icon={faGift} />
-                                    <span>3 free samples with any order.</span>
-                                    <Link to='#' className='try'><span >Try a sample</span></Link>
-                                </div>
-                                <div className={classes['second-last']}>
-                                    <FontAwesomeIcon icon={faTruckFast} />
-                                    <span>Ships free</span>
-                                   
-                                </div>
-                                <div className={classes['third-last']}>
-                                    <FontAwesomeIcon icon={faHippo} />
-                                    <span>Earn 590 points or more with this purchase!</span>
-                                    
-                                </div>
-                            </div>
-                            <div className={classes['detail']}> 
-                                <Link to='/detail' className={classes['see']}><span>SEE PRODUCT DETAILS</span></Link>
-                            </div>
-                        </div>
-
+                {/* Price Range Filter */}
+                <div className="price-filter">
+                    <label htmlFor="min-price">
+                        Min Price: {formatter.format(priceRange[0])}
+                    </label>
+                    <input
+                        id="min-price"
+                        type="range"
+                        name="min"
+                        min="0"
+                        max="1000"
+                        value={priceRange[0]}
+                        onChange={handleRangeChange}
+                    />
+                    <label htmlFor="max-price">
+                        Max Price: {formatter.format(priceRange[1])}
+                    </label>
+                    <input
+                        id="max-price"
+                        type="range"
+                        name="max"
+                        min="0"
+                        max="1000"
+                        value={priceRange[1]}
+                        onChange={handleRangeChange}
+                    />
+                    <div>
+                        Selected range: {formatter.format(priceRange[0])} -{" "}
+                        {formatter.format(priceRange[1])}
                     </div>
                 </div>
-            
-        </div>
+            </div>
 
-        )}
-        
-        {/* ssssmodal */}
-                        </div>
-                    );
-                })}
+            <div className="items-container">
+                {currentProducts.map((item) => (
+                    <div className="item-card center" key={item.product_id}>
+                        <Link to={"/products/" + item.product_id}>
+                            <img
+                                src={
+                                    item.product_images
+                                        ? item.product_images.split(",")[0]
+                                        : ""
+                                }
+                                alt={item.product_name}
+                                className="item-image"
+                            />
+                            <h4 className="item-title">{item.product_name}</h4>
+                        </Link>
+
+                        <p className="item-price">
+                            {formatter.format(item.price)}
+                        </p>
+                        <button
+                            className="cart-button"
+                            onClick={() => openModal(item)} // Open modal with product info
+                        >
+                            Quick View
+                        </button>
+                    </div>
+                ))}
             </div>
 
             <br />
@@ -253,7 +205,7 @@ export default function Home() {
                     onClick={() => paginate(currentPage - 1)}
                     disabled={currentPage === 1}
                 >
-                    Previous
+                    <IoChevronBackOutline />
                 </button>
                 {Array.from({ length: totalPages }, (_, i) => (
                     <button
@@ -268,9 +220,13 @@ export default function Home() {
                     onClick={() => paginate(currentPage + 1)}
                     disabled={currentPage === totalPages}
                 >
-                    Next
+                    <IoChevronForward />
                 </button>
             </div>
+
+            {selectedProduct && (
+                <Modal product={selectedProduct} onClose={closeModal} />
+            )}
         </>
     );
 }

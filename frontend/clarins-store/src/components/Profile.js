@@ -25,9 +25,17 @@ export default function Profile() {
     }
 
     return (
-        <div>
-            <h1 className="center"> {user.first_name}'s Profile</h1>
-            <img src={user.user_image} alt={user.full_name} />
+        <div className="center">
+            <h1> {user.first_name}'s Profile</h1>
+            <img
+                src={user.user_image}
+                alt={user.full_name}
+                style={{
+                    width: "10rem",
+                    height: "10rem",
+                    borderRadius: "10rem",
+                }}
+            />
             <p>Name: {user.full_name}</p>
             <p>Username: {user.username} </p>
             <p>Email: {user.email} </p>

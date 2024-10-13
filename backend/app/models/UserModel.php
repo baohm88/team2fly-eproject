@@ -196,10 +196,23 @@ class UserModel extends BaseController
             order_id,
             order_value,
             order_date,
-            status_id
-         FROM Orders WHERE user_id = :user_id";
+            status
+            FROM Orders WHERE user_id = :user_id";
         $stmt = $this->__conn->prepare($sql);
         $stmt->bindValue(":user_id", $user_id, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function getUserOrderById($order_id)
+    {
+        $sql = "SELECT oi.product_qty, p.*, GROUP_CONCAT(pi.image_url) as product_images FROM OrderItems oi 
+                LEFT JOIN Products p on p.product_id = oi.product_id
+                LEFT JOIN ProductImages pi on pi.product_id = p.product_id
+                WHERE oi.order_id = :order_id
+                GROUP BY oi.product_id";
+        $stmt = $this->__conn->prepare($sql);
+        $stmt->bindValue(":order_id", $order_id, PDO::PARAM_INT);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }

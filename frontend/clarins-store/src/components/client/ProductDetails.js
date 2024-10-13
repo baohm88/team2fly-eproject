@@ -2,14 +2,8 @@ import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { UserContext } from "../../App";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {  faChevronLeft, faChevronRight, faGift, faHippo, faStar, faStarHalfStroke, faTruckFast } from '@fortawesome/free-solid-svg-icons'
-import { } from '@fortawesome/free-brands-svg-icons'
-import { Link } from "react-router-dom";
-import classes from './Details.module.css'
-import Slider from './Slider.js'
-import './Details.css'
-import Img from "./Img.js";
+import { formatter } from "../../util/formatter";
+
 export default function ProductDetails() {
     const [product, setProduct] = useState("");
     const { id } = useParams();
@@ -36,35 +30,34 @@ export default function ProductDetails() {
     });
 
     return (
-        <><div className={classes["body-product-dt"]}>
-
-        <div className={classes["product-img-dt"]}>
-            <div className="product-img-small-dt">
-                
-                    {product.product_images && product.product_images.length > 0 ? (product.product_images.split(',').map((image, index) => <img key={index} src={image} alt={`Product ${index + 1}`} /> )) : <p>No images available</p>}
-            </div>
-            <div className="product-img-big-dt">
-                
-
-                    {product.product_images && product.product_images.length > 0 ? <img src={product.product_images.split(',')[0]} /> : <p>No image available</p> }
-
-                
-                    
-            </div>
-        <Img></Img>
-        </div>
-        <div className={classes["product-text-dt"]}>
-            <div className={classes["product-title-dt"]}>
-                <span>Multi-Active Night Face Cream - All Skin Types</span>
-                <div className={classes['star-dt']}>
-                <div className={classes['iconstar-dt']}>   
-                    <FontAwesomeIcon className={classes['starl-dt']} icon={faStar} />
-                    <FontAwesomeIcon className={classes['starl-dt']} icon={faStar} />
-                    <FontAwesomeIcon className={classes['starl-dt']} icon={faStar} />
-                    <FontAwesomeIcon className={classes['starl-dt']} icon={faStar} />
-                    <FontAwesomeIcon className={classes['starl-dt']} icon={faStarHalfStroke} />
-                    </div>  
-                    <Link to='#'><div className={classes['review-dt']}>2752 REVIEWS</div></Link>
+        <>
+            <h1>Product # {id}</h1>
+            <div>
+                <p>
+                    <button onClick={handleAddToCart}>Add to Cart</button>
+                </p>
+                <p>Name: {product.product_name}</p>
+                <p>Main cat: {product.main_category}</p>
+                <p>Sub cat: {product.sub_category}</p>
+                <p>Qty available: {product.quantity_in_stock}</p>
+                <p>Price: {formatter.format(product.price)}</p>
+                <div>
+                    <h3>Product Images:</h3>
+                    {product.product_images &&
+                    product.product_images.length > 0 ? (
+                        product.product_images
+                            .split(",")
+                            .map((image, index) => (
+                                <img
+                                    key={index}
+                                    src={image}
+                                    alt={`Product ${index + 1}`}
+                                    style={{ width: "200px", margin: "10px" }}
+                                />
+                            ))
+                    ) : (
+                        <p>No images available</p>
+                    )}
                 </div>
             </div>
             <div className={classes['product-des-dt']}>

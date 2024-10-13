@@ -51,24 +51,6 @@ class CollectionsController extends BaseController
         );
         if (!empty($data)) {
             $this->FactoryMessage("success", "This is products array", $data);
-    }
-
-    public function product($params = [])
-    {
-        // Check if 'id' is passed in the parameters
-        if (!isset($params['id'])) {
-            $this->FactoryMessage("error", "Product ID is required");
-            return;
-        }
-
-        $productId = $params['id']; // Get the product ID from the parameters
-        $product = $this->__instanceModel->getProductById($productId);
-
-        // If the product exists, return it; otherwise, return an error message
-        if ($product) {
-            $this->FactoryMessage("success", "Product found", $product);
-        } else {
-            $this->FactoryMessage("error", "Product not found");
         }
     }
 
