@@ -1,8 +1,8 @@
 <?php
 class ProductController extends ValidateController
 {
-    private $__instance_model, $__conn, $__product_id, $__product_name, $__price, $__stock_qty, $__main_category, $__sub_category, $__date_listed = null, $__product_images;
 
+    private $__instance_model, $__conn, $__product_id, $__product_name, $__price, $__stock_qty, $__main_category, $__sub_category, $__date_listed = null, $__product_images;
     public function __construct($conn)
     {
         $this->__conn = $conn;
@@ -38,10 +38,9 @@ class ProductController extends ValidateController
     }
     public function set_price($price)
     {
-        if ($this->validate('price', $price) != null) {
-            $this->__price = $price;
-            return $this->get_price();
-        }
+
+        $this->__price = $price;
+        return $this->get_price();
     }
 
     public function get_price()
