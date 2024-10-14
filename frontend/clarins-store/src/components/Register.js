@@ -346,7 +346,10 @@ export default function Register() {
                 </p>
 
                 <p>
-                    Already had an account? <Link to="/login">Login</Link>{" "}
+                    <p className="center">Already had an account?</p>{" "}
+                    <Link to="/login">
+                        Login
+                    </Link>{" "}
                 </p>
             </form>
         </>
