@@ -1,8 +1,8 @@
 <?php
 class ProductController extends ValidateController
 {
+    private $__instance_model, $__conn, $__product_id, $__product_name, $__price, $__stock_qty, $__main_category, $__sub_category, $__date_listed = null, $__product_images;
 
-    private $__instance_model, $__conn, $__product_id, $__product_name, $__price, $__quantity_in_stock, $__main_category, $__sub_category, $__date_listed = null, $__product_images;
     public function __construct($conn)
     {
         $this->__conn = $conn;
@@ -52,19 +52,19 @@ class ProductController extends ValidateController
         return null;
     }
 
-    public function set_quantity_in_stock($qty)
+    public function set_stock_qty($qty)
     {
         if ($this->validate('qty', $qty) != null) {
-            $this->__quantity_in_stock = $qty;
-            return $this->get_quantity_in_stock();
+            $this->__stock_qty = $qty;
+            return $this->get_stock_qty();
         }
         return null;
     }
 
-    public function get_quantity_in_stock()
+    public function get_stock_qty()
     {
-        if ($this->__quantity_in_stock != null) {
-            return $this->__quantity_in_stock;
+        if ($this->__stock_qty != null) {
+            return $this->__stock_qty;
         }
         return null;
     }
