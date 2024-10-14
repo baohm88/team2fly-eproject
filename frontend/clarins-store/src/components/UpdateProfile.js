@@ -6,7 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "../App.js";
 import CryptoJS from "crypto-js";
 import { upload } from "@testing-library/user-event/dist/upload.js";
-
+import classes from "./Register.module.css"
 export default function Register() {
     const [firstNameError, setFirstNameError] = useState();
     const [lastNameError, setLastNameError] = useState();
@@ -172,7 +172,7 @@ export default function Register() {
 
     return (
         <>
-            <form className="user-form" onSubmit={handleSubmit}>
+            <form className={classes['user-form']}   onSubmit={handleSubmit}>
                 <h1 className="center">Update account</h1>
 
                 {serverError && (
@@ -270,12 +270,13 @@ export default function Register() {
                     />
                 )}
 
-                <p className="form-actions">
-                    <Link to="/profile">
-                        <button type="button">Cancel</button>
-                    </Link>{" "}
-                    <button>UPDATE</button>
-                </p>
+<div className="form-actions-container">
+    <Link to="/profile">
+        <button type="button">Cancel</button>
+    </Link>
+    <button type="submit">UPDATE</button>
+</div>
+
             </form>
         </>
     );
