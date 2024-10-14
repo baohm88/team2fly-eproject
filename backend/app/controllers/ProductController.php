@@ -1,8 +1,8 @@
 <?php
 class ProductController extends ValidateController
 {
-
     private $__instance_model, $__conn, $__product_id, $__product_name, $__price, $__stock_qty, $__main_category, $__sub_category, $__date_listed = null, $__product_images;
+
     public function __construct($conn)
     {
         $this->__conn = $conn;
