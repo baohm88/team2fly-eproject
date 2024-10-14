@@ -27,6 +27,15 @@ class CollectionsModel extends BaseController
         $stmt->execute();
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
+    
+    public function getProductRatingsById($product_id)
+    {
+        $sql  = "SELECT pr.*, u.username FROM ProductRating pr JOIN users u ON u.user_id = pr.user_id WHERE pr.product_id = :product_id";
+        $stmt = $this->__conn->prepare($sql);
+        $stmt->bindParam(":product_id", $product_id, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 
     public function getCollectionProducts($category, $max_price = null, $min_price = null, $order_by = null, $offset = null, $desc = null)
     {
