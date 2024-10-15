@@ -4,6 +4,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { IoChevronBackOutline, IoChevronForward } from "react-icons/io5";
 import { formatter } from "../../util/formatter";
 import Modal from "./Modal"; // Import the Modal component
+import classes from './SkincareProducts.module.css'
 
 import Slider from "rc-slider"; // Import rc-slider
 import "rc-slider/assets/index.css"; // Import rc-slider styles
