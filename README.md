@@ -1,308 +1,113 @@
-# API Documentation
+# Team2Fly E-Project
 
-## Quản lý User
+This is an e-commerce platform for skincare and makeup products where users can view, add products to the cart, and place orders. Admins can manage categories, products, and orders.
 
-- [ ] **[GET] admin/user/**
-  - **Description**: Get user info
-  - **Request Example**:
-    ```json
-    {
-      "user_id": 123
-    }
-    ```
+## Getting Started
 
-- [ ] **[PUT] admin/user/**
-  - **Description**: Change user info
-  - **Request Example**:
-    ```json
-    {
-      "user_id": 123,
-      "password": "hashed_password_string",
-      "is_active": 1,
-      "first_name": "John",
-      "last_name": "Doe",
-      "dob": "1990-01-01",
-      "phone": "+1234567890",
-      "address": "1234 Elm Street, Springfield, USA",
-      "user_image": "base64_encoded_image_string"
-    }
-    ```
+Follow the instructions below to clone the project and set it up locally.
 
-## Quản lý Product
+### Prerequisites
 
-- [ ] **[GET] /admin/products/?product_id=123**
-    - **Description**: get all product in admin
-    - **Payload Example**:
-    ```json
-    {
-      [
-        "product_id": 1,
-        "product_name": "abc",
-        "description": "asdasdas",
-        "product_price": 99.99,
-        "stock_qty": 1,
-        "main_category": "skincare",
-        "sub_category": "abc"
-        "product_images" : [
-            "link1",
-            "link2",
-            "link3",
-            "link4"
-        ]
-      ]
-    }
-    
-    ```
-- [ ] **[POST] /admin/products/**
-  - **Description**: Add new product
-  - **Request Example**:
-    ```json
-    {
-      "product_name": "Sample Product",
-      "price": 99.999999999,
-      "stock_qty": 50,
-      "main_category": "Makeup" || "Skincare",
-      "sub_category": "Makeup" || "Skincare",
-      "date_listed": "2024-10-05",
-      "product_images" :[
-            "link1",
-            "link2",
-            "link3",
-            "link4"
-        ]
-    }
-    ```
+-   VS Code
+-   XAMPP 8.2.4 or newer
+-   Node.js (for managing frontend dependencies, if any)
+-   Git
 
-- [ ] **[PUT] /admin/products/**
-  - **Description**: Update existing product
-  - **Request Example**:
-    ```json
-    {
-      "product_id": 123,
-      "product_name": "Sample Product",
-      "price": 99.999999999,
-      "stock_qty": 50,
-      "main_category": "Makeup" || "Skincare",
-      "sub_category": "Makeup" || "Skincare",
-      "date_listed": "2024-10-05",
-      "product_images" : [
-            "link1",
-            "link2",
-            "link3",
-            "link4"
-        ]
-    }
-    ```
+### Clone the Repository
 
-# Endpoint của User
+To clone the repository, run the following command:
 
-## User
+```bash
+git clone https://github.com/baohm88/team2fly-eproject.git
+```
 
-- [x] **[POST] /user/login**
-  - **Description**: User login
-  - **Request Example**:
-    ```json
-    {
-      "username": "user1",
-      "password": "pass1"
-    }
-    ```
+Navigate into the project folder:
 
-- [x] **[POST] /user/register/**
-  - **Description**: User register
-  - **Request Example**:
-    ```json
-    {
-      "username": "john_doe",
-      "password": "hashed_password_string",
-      "first_name": "John",
-      "last_name": "Doe",
-      "dob": "1990-01-01",
-      "phone": "+1234567890",
-      "address": "1234 Elm Street, Springfield, USA",
-      "buyer_image": "base64_encoded_image_string"
-    }
-    ```
+```bash
+cd team2fly-eproject
+```
 
-- [x] **[GET] /user/profile/**
-  - **Description**: Get current user info
-  - **Request Example**:
-    ```json
-    {
-      "user_id": 123
-    }
-    ```
+Here you will see 2 folders:
 
-- [x] **[PUT] /user/profile/**
-  - **Description**: Change user info
-  - **Request Example**:
-    ```json
-    {
-      "user_id": 123,
-      "password": "hashed_password_string",
-      "is_active": 1,
-      "first_name": "John",
-      "last_name": "Doe",
-      "dob": "1990-01-01",
-      "phone": "+1234567890",
-      "address": "1234 Elm Street, Springfield, USA",
-      "buyer_image": "base64_encoded_image_string"
-    }
-    ```
+-   backend
+-   frontend
 
-## Products
+## Setup Backend
 
-- [x] **[GET] /collections/skincare/**
-  - **Request Example**:
-    ```json
-    [
+1. Open XAMPP, start both MySQL Database and Apache Web Server
+2. Visit "http://localhost/phpmyadmin/index.php?route=/server/databases", create a database and name it `project`.
+3. Open the `project` database and import the `project.sql` file from the `backend` folder.
+4. Navigate to XAMPP Application Folder -> open the `htdocs` folder -> create a folder and name it `project`.
+5. Copy all files from the backend folder and paste them to the newly created `project` folder.
+6. Navigate to the `app/configs` folder and update the `database.php` file with your database credentials:
 
-      "products": [
-        [
-          "product_id": 1,
-          "product_name": "abc",
-          "description": "asdasdas",
-          "product_price": 99.99,
-          "quantity": 1,
-          "main_category": "skincare",
-          "sub_category": "abc"
-      ],
-        [
-          "product_id": 2,
-          "product_name": "abc",
-          "description": "asdasdas",
-          "product_price": 99.99,
-          "quantity": 1,
-          "main_category": "skincare",
-          "sub_category": "abc"
-        
-         ]
-      ] ,
-      "max_price": 1,
-      "min_price": 0,
-      "order_by": "name||price",
-      "desc": true||false,
-      "offset": 1 // int
-    }
-    ```
+```bash
+$host = "mysql:host=localhost:3306;dbname=project";
+$username = your_database_username; // ex: "root"
+$pass = your_database_password; // ex: "123456"
+```
 
-- [x] **[GET] products/product/?product_id=123**
-  - **Request Example**:
-    ```json
-    {
-    "type": "success",
-    "message": "This is product data",
-    "data": {
-        "0": {
-            "product_name": "Cum deleniti quidem.",
-            "price": "446995714.903180000",
-            "product_description": "",
-            "quantity_in_stock": 22471,
-            "main_category": "Skincare",
-            "sub_category": "Body"
-        },
-        "images": [
-            {
-                "product_image": "/35a7e41f5038e8207ce35808d0b098b4.jpg"
-            },
-            {
-                "product_image": "/60d75cb3888891e15259e1d466edca33.jpg"
-            }
-        ],
-        "ratings": [
-            {
-                "username": "john_doe",
-                "rating_date": "1976-07-09",
-                "rating": 1,
-                "rating_comment": "Quia libero nihil eum perferendis eaque similique non ipsa. Asperiores dolor autem nulla rerum possimus error. Consequatur tempora dolorem officiis est laudantium eos. Sint voluptas facilis qui similique ea quidem quibusdam. Mollitia harum id ea facere. E"
-            },
-            {
-                "username": "john_doe",
-                "rating_date": "1977-04-29",
-                "rating": 0,
-                "rating_comment": "Ut dolores cumque possimus praesentium. In reprehenderit voluptatem temporibus voluptatem quasi unde. Consequuntur a dolorem a sit. Quam et velit omnis. Aut in modi ex doloremque. Esse modi autem officiis quia."
-            },
-            {
-                "username": "john_doe",
-                "rating_date": "2015-01-29",
-                "rating": 2,
-                "rating_comment": "Quia consectetur rerum sed suscipit. Molestiae sequi sint dolor laborum. Et laborum non omnis. Ipsa ratione quis adipisci ut fugit. Aut fuga sint id placeat. Qui voluptas explicabo expedita temporibus velit libero quae."
-            }
-        ]
-    }
-}
-    ```
+## Setup Frontend
 
-## Orders
+1. Navigate to the frontend directory:
 
-- [x] **[GET] /user/orders/?user_id=123**
-  - **Return Payload Example**:
-    ```json
-    {
-      "orders": [
-        {
-          "order_id": 1,
-          "order_value": 99.99,
-          "order_date": "2020-10-10",
-          "status": "pending"
-        },
-        {
-          "order_id": 2,
-          "order_value": 99.99,
-          "order_date": "2020-10-10",
-          "status": "pending"
-        }
-      ]
-    }
-    ```
+```bash
+cd frontend
+```
 
-- [ ] **[POST] /user/orders**
-  - **Request Example**:
-    ```json
-    {
-      "user_id": 123,
-      "order_value": 90.99,
-      "cart_items": [
-        {
-          "product_id": 1,
-          "product_name": "abc",
-          "product_price": 99.99,
-          "quantity": 1
-        },
-        {
-          "product_id": 2,
-          "product_name": "abc",
-          "product_price": 99.99,
-          "quantity": 1
-        },
-        {
-          "product_id": 3,
-          "product_name": "abc",
-          "product_price": 99.99,
-          "quantity": 1
-        }
-      ]
-    }
-    ```
+then
+
+```bash
+cd clarins-store
+```
+
+2. Install the required dependencies:
+
+```bash
+npm install
+```
+
+3. Run the frontend server:
+
+```bash
+npm start
+```
+
+### Register a New Account
+
+1. Navigate to the registration page `(/register)` on the website.
+2. Fill out the required fields (username, password, email, etc.) and submit the form.
+3. After successful registration, you will be directed to the `(/login)` page.
+
+### Login
+
+1. Enter your credentials and click on the Login button.
+2. Upon successful login, you will be redirected to the home page.
+
+### Viewing Products
+1. After logging in, go to the Home page to view all available products.
+2. You can filter products by category (`Skincare`, `Makeup`, etc.), for by their sub categories (`Face`, `Body`, `Sun`, `Men`, `Eyes`, `Lips`) or by price range using the slider.
+3. You can sort the products by name (`A-Z`, `Z-A`) or by price (`Low to High`, `High to Low`).
+4. Click the **Quick View** button below each product to see brief summary of the product or click on it to view it's all details, including ratings & comments made by other users.
+5. You can also rate the product and **Write a Review** if you purchase that product.
 
 
-## Order Item
+### Adding Items to the Cart
+1. Browse for a product, 
+2. Click the **Add to Cart** button and the product will be added to your cart.
 
-- [ ] **[GET] user/order_item/?order_id=123**
-  - **Request Example**:
-    ```json
-    {
-      "order_items": [
-        {
-          "product_name": "abc",
-          "product_price": 99.99,
-          "quantity": 90
-        },
-        {
-          "product_name": "assc",
-          "product_price": 99.99,
-          "quantity": 90
-        }
-      ]
-    }
-    ```
+### View the Cart
+
+1. Click the cart icon on the top right corner to see all items in your cart.
+2. You can adjust the quantity of each items, but clicking + or - buttons or remove the item from your cart by clicking x button.
+3. You can also see the total amount of all the items in your cart.
+
+### Place an Order
+
+1. Once you are satisfied with the items in your cart, click Proceed to Checkout.
+2. Your order will be placed and pending for approval from the admin.
+
+### View past Orders
+
+1. Navigate to the Orders page to see all the orders you placed previously.
+2. Click on each order to view all the items of that order.

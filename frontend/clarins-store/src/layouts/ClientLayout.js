@@ -13,6 +13,7 @@ import {
 } from "react-icons/io5";
 import { TfiClose } from "react-icons/tfi";
 import { GiHeartBeats } from "react-icons/gi";
+import { BsCartCheck } from "react-icons/bs";
 import { useContext, useState, useEffect, useRef } from "react";
 import { UserContext } from "../App";
 
@@ -187,18 +188,32 @@ export default function ClientLayout({ children }) {
                     </p>
 
                     {!isLoggedIn && (
-                        <p onClick={closeSidebar}>
-                            <NavLink to={"/login"}>
-                                <IoPersonOutline /> Login
-                            </NavLink>
-                        </p>
+                        <>
+                            <p onClick={closeSidebar}>
+                                <NavLink to={"/login"}>
+                                    <IoPersonOutline /> Login
+                                </NavLink>
+                            </p>
+                        </>
                     )}
                     {isLoggedIn && (
-                        <p onClick={handleLogOut}>
-                            <NavLink>
-                                <IoLogOutOutline /> Logout
-                            </NavLink>
-                        </p>
+                        <>
+                            <p onClick={closeSidebar}>
+                                <NavLink to={"/profile"}>
+                                    <IoPersonOutline /> Profile
+                                </NavLink>
+                            </p>
+                            <p onClick={closeSidebar}>
+                                <NavLink to={"/user/orders"}>
+                                    <BsCartCheck /> Orders
+                                </NavLink>
+                            </p>
+                            <p onClick={handleLogOut}>
+                                <NavLink>
+                                    <IoLogOutOutline /> Logout
+                                </NavLink>
+                            </p>
+                        </>
                     )}
                     <p onClick={closeSidebar}>
                         <GiHeartBeats /> Club Clarins
