@@ -3,7 +3,7 @@ import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { UserContext } from "../../App";
 import { formatter } from "../../util/formatter";
-import { FaStar } from "react-icons/fa"; // Import star icon
+import { FaStar, FaStarHalfAlt } from "react-icons/fa"; // Import star icon
 import Modal from "react-modal"; // Import react-modal
 
 // Set the app element for accessibility
@@ -68,7 +68,7 @@ export default function ProductDetails() {
     // Function to render stars based on the rating value
     const renderStars = (rating, setRating) => {
         return (
-            <div className="stars">
+            <span className="stars">
                 {Array.from({ length: 5 }, (_, index) => (
                     <FaStar
                         key={index}
@@ -77,7 +77,21 @@ export default function ProductDetails() {
                         style={{ cursor: "pointer" }} // Make stars clickable
                     />
                 ))}
-            </div>
+            </span>
+        );
+    };
+
+    // Function to render stars based on the rating value
+    const renderReviewStars = (rating) => {
+        return (
+            <span className="stars">
+                {Array.from({ length: 5 }, (_, index) => (
+                    <FaStar
+                        key={index}
+                        color={index < rating ? "#A6212B" : "#e4e5e9"}
+                    />
+                ))}
+            </span>
         );
     };
 
@@ -121,6 +135,30 @@ export default function ProductDetails() {
         setIsModalOpen(false);
     };
 
+    // Function to render the average rating using stars
+    const renderAverageRatingStars = (averageRating) => {
+        const fullStars = Math.floor(averageRating); // Full stars
+        const hasHalfStar = averageRating - fullStars >= 0.5; // Half star if remainder is 0.5 or more
+        const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0); // Remaining empty stars
+
+        return (
+            <span className="average-rating-stars">
+                {/* Full Stars */}
+                {Array.from({ length: fullStars }, (_, index) => (
+                    <FaStar key={"full-" + index} color={"#A6212B"} />
+                ))}
+
+                {/* Half Star */}
+                {hasHalfStar && <FaStarHalfAlt color={"#A6212B"} />}
+
+                {/* Empty Stars */}
+                {Array.from({ length: emptyStars }, (_, index) => (
+                    <FaStar key={"empty-" + index} color={"#e4e5e9"} />
+                ))}
+            </span>
+        );
+    };
+
     // Handle submit review
     const handleSubmitReview = () => {
         if (selectedRating === 0) {
@@ -137,21 +175,24 @@ export default function ProductDetails() {
             // review_date: new Date().toLocaleDateString(),
         };
 
-        console.log(review);
-
         // Send review data to the backend
-        // axios.post(`http://localhost/project/collections/product/${id}/add-review`, review)
-        //     .then((response) => {
-        //         alert("Thank you for your review!");
-        //         // Clear the modal and close it
-        //         setSelectedRating(0);
-        //         setReviewText("");
-        //         closeModal();
-        //         // Optionally refresh the product details with new reviews
-        //     })
-        //     .catch((error) => {
-        //         alert("Failed to submit the review. Please try again.");
-        //     });
+        axios
+            .post("http://localhost/project/user/add_review", review, {
+                withCredentials: true,
+            })
+            .then((response) => {
+                console.log(response);
+
+                // alert("Thank you for your review!");
+                // // Clear the modal and close it
+                // setSelectedRating(0);
+                // setReviewText("");
+                // closeModal();
+                // Optionally refresh the product details with new reviews
+            })
+            .catch((error) => {
+                alert("Failed to submit the review. Please try again.");
+            });
     };
 
     return (
@@ -161,10 +202,12 @@ export default function ProductDetails() {
                 <p>
                     <button onClick={handleAddToCart}>Add to Cart</button>
                 </p>
-                <p>Name: {product.product_name}</p>
-                <p>Main cat: {product.main_category}</p>
+                <h3>{product.product_name}</h3>
+
+                <p>Main cat: {product.product_description}</p>
+                <p>Sub cat: {product.main_category}</p>
                 <p>Sub cat: {product.sub_category}</p>
-                <p>Qty available: {product.quantity_in_stock}</p>
+                <p>Qty available: {product.stock_qty}</p>
                 <p>Price: {formatter.format(product.price)}</p>
 
                 <div>
@@ -208,9 +251,13 @@ export default function ProductDetails() {
                     contentLabel="Write a Review"
                 >
                     <h3>My review for {product.product_name}</h3>
+                    <br />
+
                     <div>
-                        <p>Select Rating:</p>
-                        {renderStars(selectedRating, setSelectedRating)}
+                        <p>
+                            Select Rating:{" "}
+                            {renderStars(selectedRating, setSelectedRating)}
+                        </p>
                     </div>
                     <div>
                         <p>Your Review:</p>
@@ -218,8 +265,8 @@ export default function ProductDetails() {
                             value={reviewText}
                             onChange={(e) => setReviewText(e.target.value)}
                             rows="4"
-                            cols="50"
                             placeholder="Write your review here"
+                            style={{ width: "100%" }}
                         ></textarea>
                     </div>
                     <div>
@@ -248,48 +295,84 @@ export default function ProductDetails() {
                 {/* Rating Summary Section */}
                 <div className="rating-summary">
                     <h2>Ratings Summary</h2>
-                    <p>Average Rating: {ratingSummary.averageRating} / 5</p>
-                    <p>Total Ratings: {ratingSummary.totalRatings}</p>
+                    <div
+                        style={{
+                            display: "flex",
+                            justifyContent: "space-between",
+                        }}
+                    >
+                        <div className="summary">
+                            <p>
+                                Average Rating: {ratingSummary.averageRating} /
+                                5
+                            </p>
+                            <p>Total Ratings: {ratingSummary.totalRatings}</p>
 
-                    <div>
-                        {[5, 4, 3, 2, 1].map((star) => (
+                            {/* Average Rating Stars */}
                             <div
-                                key={star}
-                                className="star-row"
-                                style={{ display: "flex" }}
+                                className="average-rating-stars-container"
+                                style={{ display: "flex", gap: "10px" }}
                             >
-                                <div
-                                    className="star-label"
-                                    style={{ minWidth: "10rem" }}
-                                >
-                                    {star} <FaStar color={"#A6212B"} />:{" "}
-                                    {ratingSummary.starCounts[star]} (
-                                    {getPercentage(
-                                        ratingSummary.starCounts[star]
+                                <span>Overall: </span>
+                                <span>
+                                    {renderAverageRatingStars(
+                                        ratingSummary.averageRating
                                     )}
-                                    %)
-                                </div>
+                                </span>
+                                <span>{ratingSummary.averageRating} / 5 </span>
+                                <span>
+                                    {" "}
+                                    | {ratingSummary.totalRatings} reviews
+                                </span>
+                            </div>
+                        </div>
+
+                        {/* Individual stars count */}
+                        <div style={{ width: "50vw" }}>
+                            {[5, 4, 3, 2, 1].map((star) => (
                                 <div
-                                    className="progress-bar"
-                                    style={{
-                                        width: "100%",
-                                        backgroundColor: "#e4e5e9",
-                                        height: "10px",
-                                    }}
+                                    key={star}
+                                    className="star-row"
+                                    style={{ display: "flex" }}
                                 >
                                     <div
-                                        className="progress"
+                                        className="star-label"
+                                        style={{ minWidth: "8rem" }}
+                                    >
+                                        {star} <FaStar color={"#A6212B"} />:{" "}
+                                        {ratingSummary.starCounts[star]} (
+                                        {getPercentage(
+                                            ratingSummary.starCounts[star]
+                                        )}
+                                        %)
+                                    </div>
+                                    <div
+                                        className="progress-bar"
                                         style={{
-                                            width: `${getPercentage(
-                                                ratingSummary.starCounts[star]
-                                            )}%`,
-                                            backgroundColor: "#A6212B",
+                                            maxWidth: "20rem",
+                                            width: "100%",
+                                            backgroundColor: "#e4e5e9",
                                             height: "10px",
+                                            borderRadius: "3px",
                                         }}
-                                    ></div>
+                                    >
+                                        <div
+                                            className="progress"
+                                            style={{
+                                                width: `${getPercentage(
+                                                    ratingSummary.starCounts[
+                                                        star
+                                                    ]
+                                                )}%`,
+                                                backgroundColor: "#A6212B",
+                                                height: "10px",
+                                                borderRadius: "3px",
+                                            }}
+                                        ></div>
+                                    </div>
                                 </div>
-                            </div>
-                        ))}
+                            ))}
+                        </div>
                     </div>
                 </div>
 
@@ -304,7 +387,7 @@ export default function ProductDetails() {
                         product.product_ratings.map((rating) => (
                             <div className="rating-card" key={rating.rating_id}>
                                 <br />
-                                <p>{renderStars(rating.rating)} </p>
+                                <p>{renderReviewStars(rating.rating)} </p>
                                 <h5>
                                     By: {rating.username} on{" "}
                                     {rating.review_date}
