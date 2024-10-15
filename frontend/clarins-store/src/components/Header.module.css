@@ -1,119 +1,135 @@
-/* Phần chứa toàn bộ header */
+/* Main header container */
 header {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     padding: 10px 0;
-}
-.bottom-nav {
-    display: flex;
-    justify-content: center; /* Căn giữa các mục */
-    flex-wrap: wrap; /* Cho phép các mục tự động xuống dòng nếu không đủ chỗ */
-    gap: 20px; /* Khoảng cách giữa các mục */
-    margin-top: 10px;
-}
-.nav-link {
-    display: inline-block;
-    padding: 10px 15px;
-    text-decoration: none;
-    color: black;
-    font-size: 1rem;
-    white-space: nowrap; /* Đảm bảo các mục không bị xuống dòng bên trong */
+    width: 100%;
 }
 
+/* Top navigation bar */
 .top-nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    width: 100%;
     padding: 0 20px;
+    max-width: 1200px;
 }
 
-/* Dịch cụm menu-icon và thanh tìm kiếm sang trái */
-.row {
-    display: flex;
-    align-items: center;
-    margin-left: -30px; /* Dịch sang trái bằng cách giảm margin-left */
-}
-
+/* Menu icon */
 .menu-icon {
     cursor: pointer;
-    margin-right: 10px;
+    font-size: 1.5rem;
+    margin-right: 20px;
 }
+
+/* Search bar container */
 .search-bar {
     display: flex;
-    margin-left: 0; /* Đảm bảo không có khoảng cách bên trái */
+    align-items: center;
+    width: 250px; /* Adjust width as per your design */
 }
 
-/* Logo */
-.logo {
-    height: 60px;
-    display: block;
-    margin-right: 5px; /* Giảm khoảng cách với search bar */
-}
-
-
-.nav-icons {
-    display: flex;
-    gap: 20px;
-}
-
-/* Container chung cho search bar và button */
 .searchContainer {
-    display: flex; /* Sử dụng flexbox để căn chỉnh input và button */
-    align-items: center; /* Căn chỉnh các phần tử theo chiều dọc */
-    margin-right: 10px; /* Giảm khoảng cách giữa thanh tìm kiếm và logo */
-}
-
-.searchButton {
-    background-color: rgba(181, 24, 40, 255); /* Màu nền đỏ */
-    border: none;
-    padding: 8px 12px;
-    cursor: pointer;
-    border-radius: 4px;
     display: flex;
     align-items: center;
-    justify-content: center;
-    transition: background-color 0.3s ease;
-}
-
-.searchButton:hover {
-    background-color: rgba(181, 24, 40, 255); /* Màu nền đậm hơn khi hover */
-}
-
-.searchButton svg {
-    color: white; /* Màu trắng cho icon search */
-    font-size: 1.5rem; /* Tùy chỉnh kích thước icon nếu cần */
-}
-
-/* Style cho search input */
-.searchInput {
-    width: 200px; /* Thay đổi giá trị này để giảm chiều rộng của input */
-    height: 40px;
-    padding: 0 12px;
-    font-size: 1rem;
     border: 1px solid #ccc;
-    border-radius: 4px 0 0 4px;
+    border-radius: 4px;
+    overflow: hidden;
+    width: 100%;
+}
+
+/* Input for search */
+.searchInput {
+    width: 100%;
+    padding: 8px;
+    border: none;
     outline: none;
     box-sizing: border-box;
 }
 
-.search-bar input {
-    padding: 3.5px; /* Đảm bảo padding phù hợp */
-    border: 1px solid #ccc;
-    border-radius: 4px;
+.searchButton {
+    background-color: #f0ebe5;
+    padding: 8px;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-/* Bottom-nav nằm dưới */
+.searchButton svg {
+    font-size: 1.5rem;
+    color: #555;
+}
+
+/* Centering the logo */
+.logo {
+    max-width: 150px; /* Adjust logo size */
+    margin: 0 auto;
+}
+
+/* Bottom navigation bar */
 .bottom-nav {
-    display: flex; /* Đảm bảo sử dụng flex để căn chỉnh linh hoạt */
-    justify-content: center; /* Căn giữa các mục */
-    flex-wrap: wrap; /* Đảm bảo nếu không đủ chỗ thì sẽ xuống dòng */
-    gap: 20px; /* Khoảng cách giữa các mục */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px; /* Increased gap for more spacing between items */
     padding: 10px 0;
+    border-top: 1px solid #ddd; /* Thin separator line */
+    width: 100%;
+    font-size: 0.9rem;
 }
 
-.bottom-nav .nav-link {
-    margin: 0 10px;
-    font-size: 1rem;
+.nav-link {
+    text-decoration: none;
+    color: #4a4a4a; /* Dark gray color */
+    padding: 5px 10px;
+    font-weight: bold;
+    white-space: nowrap;
+    transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+    color: #b51828; /* Hover effect color */
+}
+
+/* Right side icons (help, account, bag) */
+.nav-icons {
+    display: flex;
+    align-items: center;
+    gap: 30px; /* Adjusted for better spacing between icons */
+}
+
+.nav-icons span {
+    position: relative;
+    cursor: pointer;
+}
+
+/* Icon styles */
+.nav-icons svg {
+    font-size: 1.5rem;
+    color: black;
+}
+
+.nav-icons span::after {
+    content: attr(data-label);
+    position: absolute;
+    top: 35px; /* Adjust according to icon position */
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.75rem;
+    color: black;
+}
+
+/* Add a line separating the sections */
+.nav-icons::before {
+    content: "";
+    height: 50px;
+    width: 1px;
+    background-color: #ccc;
+    display: inline-block;
+    margin-right: 15px;
 }
