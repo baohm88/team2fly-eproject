@@ -273,8 +273,8 @@ export default function Register() {
 <div className="form-actions-update">
     <Link to="/profile">
     <button type="submit">UPDATE</button>
-<Link className="center" to="/cancel">Cancel</Link>   
     </Link>
+    <span className="center">Don't want to update anything?</span><Link className="center" to="/cancel">Cancel</Link>   
 
 </div>
             </form>
