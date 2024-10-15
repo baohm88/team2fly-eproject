@@ -78,14 +78,13 @@ header {
     align-items: center;
     gap: 50px; /* Increased gap for more spacing between items */
     padding: 10px 0;
-    border-top: 1px solid #ddd; /* Thin separator line */
     width: 100%;
     font-size: 0.9rem;
 }
 
 .nav-link {
     text-decoration: none;
-    color: #4a4a4a; /* Dark gray color */
+    color: #4a4a4a; 
     padding: 5px 10px;
     font-weight: bold;
     white-space: nowrap;
