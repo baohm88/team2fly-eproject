@@ -42,7 +42,7 @@ table td img {
     text-align: center;
 }
 
-button {
+.button {
     padding: 0.5rem 1rem;
     background-color: #fff;
     border: 1px solid #dcdcdc;
@@ -157,5 +157,6 @@ button:hover {
     .cartContainer,
     .orderSummary {
         width: 100%;
+        margin-top: 1rem;
     }
 }
