@@ -81,9 +81,10 @@ class BaseController
                     continue;
                 }
 
-                $str .= $property_name . " = :" . $property_name . ", ";
+                $str .= $property_name . " = :" . $property_name . ",";
             }
-            return $str;
+            $str =  rtrim($str, ", ");
+            return $str . " ";
         } else if ($method == "POST") {
             $reflection = new ReflectionClass($o_instance);
             $properties = $reflection->getProperties();

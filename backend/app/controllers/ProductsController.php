@@ -48,6 +48,20 @@ class ProductsController extends BaseController
             } else {
                 $this->FactoryMessage("error", "You need to buy this product before leave a rating for this product");
             }
+        } else if ($_SERVER["REQUEST_METHOD"] == "PUT") {
+            $input                     = json_decode(file_get_contents('php://input'), true);
+            $instance_rating_model     = $this->initModel("RatingModel", $this->__conn);
+            $is_exist = $instance_rating_model->check_rating_exist($input["product_id"], $input["user_id"]);
+            if (!empty($is_exist)) {
+                include_once("./app/controllers/RatingController.php");
+                $instance_rating           = new RatingController($this->__conn);
+                $instance_rating           = $this->insert_data_to_instance($instance_rating, $input);
+                $str                       = $this->create_sql_param_for_sql($instance_rating, "PUT");
+                $instance_rating_model->edit_rating($instance_rating, $str);
+                $this->FactoryMessage("success", "Your rating has been updated successfully");
+            } else {
+                $this->FactoryMessage("error", "The rating you trying to edit is not exist");
+            }
         }
     }
 }
