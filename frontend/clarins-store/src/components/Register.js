@@ -345,9 +345,10 @@ export default function Register() {
                     <button>REGISTER</button>
                 </p>
 
-                <p>
-                    Already had an account? <Link to="/login">Login</Link>{" "}
-                </p>
+                <p className="center">
+    <span>Already had an account?</span> <Link to="/login">Login</Link>
+</p>
+
             </form>
         </>
     );

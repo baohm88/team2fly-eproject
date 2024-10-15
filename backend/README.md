@@ -291,3 +291,52 @@
       ]
     }
     ```
+
+## Product rating
+
+- [ ] **[GET] product/rating/?product_id=123**
+  - **Respond Example**:
+    ```json
+    {
+      "ratings": [
+        {
+          "product_id": 123,
+          "rating": 5,
+          "rating_comment": "This is product rating comment",
+          "user_id" : 123
+        },
+        {
+          "product_id": 123,
+          "rating": 1,
+          "rating_comment": "This is product rating comment",
+          "user_id" : 234
+        }, {
+          "product_id": 123,
+          "rating": 3,
+          "rating_comment": "This is product rating comment",
+          "user_id" : 345
+        }
+      ]
+    }
+    ```
+
+- [ ] **[POST] product/rating/**
+  - **Respond Example**:
+    ```json
+    {
+      "product_id": 123,
+      "rating": 5,
+      "rating_comment": "This is product rating comment",
+      "user_id" : 123
+    }
+    ```
+- [ ] **[PUT] product/rating/**
+  - **Respond Example**:
+    ```json
+    {
+      "product_id": 123,
+      "rating": 5,
+      "rating_comment": "This is product rating comment",
+      "user_id" : 123
+    }
+    ```

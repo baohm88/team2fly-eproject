@@ -6,7 +6,7 @@
 }
 
 :root {
-    --primaryColor: rgb(166, 43, 43);
+    --primaryColor: rgba(181,24,40,255);
     --secondaryColor: rgb(244, 239, 235);
     --darkColor: black;
     --lightColor: white;
@@ -304,3 +304,4 @@ td {
 }
 
 /* LOGIN END*/
+
