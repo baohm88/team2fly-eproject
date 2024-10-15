@@ -149,7 +149,7 @@ export default function ClientLayout({ children }) {
                         </span>
                     </li>
                 </ul>
-                <ul className="bottom-nav">
+                <ul className={classes['bottom-nav']}>
                     <li className="nav-link">
                         <NavLink to={"/"}>Home</NavLink>
                     </li>
