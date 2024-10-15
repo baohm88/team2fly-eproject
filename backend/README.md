@@ -241,7 +241,7 @@
     }
     ```
 
-- [ ] **[POST] /user/orders**
+- [x] **[POST] /user/orders**
   - **Request Example**:
     ```json
     {
@@ -273,7 +273,7 @@
 
 ## Order Item
 
-- [ ] **[GET] user/order_item/?order_id=123**
+- [x] **[GET] user/order_item/?order_id=123**
   - **Request Example**:
     ```json
     {
@@ -289,5 +289,27 @@
           "quantity": 90
         }
       ]
+    }
+    ```
+
+## Product rating
+- [x] **[POST] product/rating/**
+  - **Respond Example**:
+    ```json
+    {
+      "product_id": 123,
+      "rating": 5,
+      "rating_comment": "This is product rating comment",
+      "user_id" : 123
+    }
+    ```
+- [ ] **[PUT] product/rating/**
+  - **Respond Example**:
+    ```json
+    {
+      "product_id": 123,
+      "rating": 5,
+      "rating_comment": "This is product rating comment",
+      "user_id" : 123
     }
     ```

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Oct 14, 2024 at 05:59 PM
+-- Generation Time: Oct 12, 2024 at 05:07 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -353,6 +353,10 @@ CREATE TABLE `ProductImages` (
 --
 
 INSERT INTO `ProductImages` (`image_id`, `image_url`, `product_id`) VALUES
+(101, 'https://www.clarinsusa.com/dw/image/v2/AAFS_PRD/on/demandware.static/-/Sites-clarins-master-products/default/dw6fa700a4/original/80104492_original_original_A.jpg?sw=680&sh=680', 1),
+(106, 'https://www.clarinsusa.com/dw/image/v2/AAFS_PRD/on/demandware.static/-/Sites-clarins-master-products/default/dw6fa700a4/original/80104492_original_original_A.jpg?sw=680&sh=680', 1),
+(107, 'https://www.clarinsusa.com/dw/image/v2/AAFS_PRD/on/demandware.static/-/Sites-clarins-master-products/en_US/dw369b038c/original/80104492_original_original_C.jpg?sw=1000&sh=1000', 1),
+(108, 'https://www.clarinsusa.com/dw/image/v2/AAFS_PRD/on/demandware.static/-/Sites-clarins-master-products/en_US/dwbf74d90f/original/80104492_original_original_E.jpg?sw=1000&sh=1000', 1),
 (109, 'https://www.clarinsusa.com/dw/image/v2/AAFS_PRD/on/demandware.static/-/Sites-clarins-master-products/en_US/dwf36d66a7/original/80107455_original_original_A.jpg?sw=680&sh=680', 2),
 (110, 'https://www.clarinsusa.com/dw/image/v2/AAFS_PRD/on/demandware.static/-/Sites-clarins-master-products/en_US/dwa7b4dc47/original/80107455_original_original_B.jpg?sw=680&sh=680', 2),
 (111, 'https://www.clarinsusa.com/dw/image/v2/AAFS_PRD/on/demandware.static/-/Sites-clarins-master-products/en_US/dw1c309f65/original/80107455_original_original_D.jpg?sw=680&sh=680', 2),
@@ -406,11 +410,7 @@ INSERT INTO `ProductImages` (`image_id`, `image_url`, `product_id`) VALUES
 (163, 'https://www.clarinsusa.com/dw/image/v2/AAFS_PRD/on/demandware.static/-/Sites-clarins-master-products/en_US/dw24df10b2/original/80098705_original_original_3.jpg?sw=680&sh=680', 14),
 (164, 'https://www.clarinsusa.com/dw/image/v2/AAFS_PRD/on/demandware.static/-/Sites-clarins-master-products/en_US/dwd9e9e28e/original/80098705_original_original_9.jpg?sw=680&sh=680', 14),
 (165, 'https://www.clarinsusa.com/dw/image/v2/AAFS_PRD/on/demandware.static/-/Sites-clarins-master-products/default/dw22498a58/original/80026978_original_original_1.jpg?sw=680&sh=680', 15),
-(166, 'https://www.clarinsusa.com/dw/image/v2/AAFS_PRD/on/demandware.static/-/Sites-clarins-master-products/default/dwba3a66e0/original/80026978_original_original_3.jpg?sw=680&sh=680', 15),
-(167, 'linkquandaon21', 1),
-(168, 'link2', 1),
-(169, 'link3', 1),
-(170, 'link4', 1);
+(166, 'https://www.clarinsusa.com/dw/image/v2/AAFS_PRD/on/demandware.static/-/Sites-clarins-master-products/default/dwba3a66e0/original/80026978_original_original_3.jpg?sw=680&sh=680', 15);
 
 -- --------------------------------------------------------
 
@@ -747,30 +747,29 @@ CREATE TABLE `Products` (
   `stock_qty` int(11) NOT NULL,
   `main_category` enum('Skincare','Makeup') NOT NULL DEFAULT 'Skincare',
   `sub_category` enum('Face','Body','Sun','Men','Eyes','Lips') NOT NULL DEFAULT 'Face',
-  `date_listed` date NOT NULL,
-  `is_active` tinyint(1) NOT NULL DEFAULT 1
+  `date_listed` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `Products`
 --
 
-INSERT INTO `Products` (`product_id`, `product_name`, `price`, `stock_qty`, `main_category`, `sub_category`, `date_listed`, `is_active`) VALUES
-(1, 'Sample Proasdasdduct', 190012310.000000000, 50, 'Skincare', 'Body', '2020-10-05', 0),
-(2, 'Dry Touch Facial Sunscreen - Broad Spectrum SPF 50+', 40.000000000, 123, 'Skincare', 'Sun', '2024-01-12', 1),
-(3, 'ClarinsMen Smooth Shave Foaming Gel', 25.000000000, 99, 'Skincare', 'Men', '1976-08-31', 1),
-(4, 'Blue Orchid Face Treatment Oil', 67.000000000, 90, 'Skincare', 'Face', '2009-04-21', 1),
-(5, 'UV Plus SPF 50 Anti Pollution Face Sunscreen', 46.000000000, 30, 'Skincare', 'Face', '2011-05-16', 1),
-(6, 'Wonder Volume Mascara XXL', 30.000000000, 20, 'Makeup', 'Eyes', '1990-05-11', 1),
-(7, 'Hydra-Essentiel Mask', 39.000000000, 75, 'Skincare', 'Face', '2011-07-19', 1),
-(8, 'Exfoliating Gentle Body-Scrub For Smooth Skin', 43.000000000, 133, 'Skincare', 'Body', '2017-03-07', 1),
-(9, 'Joli Rouge Satin Lipstick', 37.000000000, 73, 'Makeup', 'Lips', '1985-01-11', 1),
-(10, 'Instant Concealer Long Wearing + Crease Free', 35.000000000, 66, 'Makeup', 'Face', '2005-03-30', 1),
-(11, 'Beauty Flash Balm', 52.000000000, 50, 'Makeup', 'Face', '1991-04-23', 1),
-(12, 'Wonder Perfect Mascara 4D', 30.000000000, 94, 'Makeup', 'Eyes', '2014-01-25', 1),
-(13, 'Super Restorative Night Cream - All Skin Types', 142.000000000, 66, 'Skincare', 'Face', '2021-12-03', 1),
-(14, 'Lip Perfector 2-in-1 Lip and Cheek Color Balm', 30.000000000, 80, 'Makeup', 'Lips', '2007-05-27', 1),
-(15, 'Graphik Ink Liner Liquid Eyeliner Pen', 33.000000000, 54, 'Makeup', 'Eyes', '2022-11-22', 1);
+INSERT INTO `Products` (`product_id`, `product_name`, `price`, `stock_qty`, `main_category`, `sub_category`, `date_listed`) VALUES
+(1, 'Hydrating Gentle Foaming Face Cleanser for Normal to Dry Skin', 31.000000000, 100, 'Skincare', 'Body', '1974-05-07'),
+(2, 'Dry Touch Facial Sunscreen - Broad Spectrum SPF 50+', 40.000000000, 123, 'Skincare', 'Sun', '2024-01-12'),
+(3, 'ClarinsMen Smooth Shave Foaming Gel', 25.000000000, 99, 'Skincare', 'Men', '1976-08-31'),
+(4, 'Blue Orchid Face Treatment Oil', 67.000000000, 90, 'Skincare', 'Face', '2009-04-21'),
+(5, 'UV Plus SPF 50 Anti Pollution Face Sunscreen', 46.000000000, 30, 'Skincare', 'Face', '2011-05-16'),
+(6, 'Wonder Volume Mascara XXL', 30.000000000, 20, 'Makeup', 'Eyes', '1990-05-11'),
+(7, 'Hydra-Essentiel Mask', 39.000000000, 75, 'Skincare', 'Face', '2011-07-19'),
+(8, 'Exfoliating Gentle Body-Scrub For Smooth Skin', 43.000000000, 133, 'Skincare', 'Body', '2017-03-07'),
+(9, 'Joli Rouge Satin Lipstick', 37.000000000, 73, 'Makeup', 'Lips', '1985-01-11'),
+(10, 'Instant Concealer Long Wearing + Crease Free', 35.000000000, 66, 'Makeup', 'Face', '2005-03-30'),
+(11, 'Beauty Flash Balm', 52.000000000, 50, 'Makeup', 'Face', '1991-04-23'),
+(12, 'Wonder Perfect Mascara 4D', 30.000000000, 94, 'Makeup', 'Eyes', '2014-01-25'),
+(13, 'Super Restorative Night Cream - All Skin Types', 142.000000000, 66, 'Skincare', 'Face', '2021-12-03'),
+(14, 'Lip Perfector 2-in-1 Lip and Cheek Color Balm', 30.000000000, 80, 'Makeup', 'Lips', '2007-05-27'),
+(15, 'Graphik Ink Liner Liquid Eyeliner Pen', 33.000000000, 54, 'Makeup', 'Eyes', '2022-11-22');
 
 -- --------------------------------------------------------
 
@@ -866,7 +865,7 @@ ALTER TABLE `Orders`
 -- AUTO_INCREMENT for table `ProductImages`
 --
 ALTER TABLE `ProductImages`
-  MODIFY `image_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=171;
+  MODIFY `image_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=167;
 
 --
 -- AUTO_INCREMENT for table `ProductRating`
