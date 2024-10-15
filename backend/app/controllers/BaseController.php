@@ -60,12 +60,48 @@ class BaseController
 
     public function insert_data_to_instance($instance, $inputs)
     {
-        // $this->viewData($inputs);
+        // $this->viewData($instance);
         // die();
         foreach ($inputs as $key => $value) {
             $method_name = "set_" . $key;
             $instance->$method_name($value);
         }
         return $instance;
+    }
+
+    public function create_sql_param_for_sql($o_instance, $method)
+    {
+        if ($method = "PUT") {
+            $reflection = new ReflectionClass($o_instance);
+            $properties = $reflection->getProperties();
+            $str = "";
+            foreach ($properties as $property) {
+                $property_name = substr($property->name, 2);
+                if (in_array($property_name, ["instance_model", "conn", "product_images"])) {
+                    continue;
+                }
+
+                $str .= $property_name . " = :" . $property_name . ", ";
+            }
+            return $str;
+        }
+    }
+
+    public function bind_instance_value($o_instance, $stmt)
+    {
+        $reflection = new ReflectionClass($o_instance);
+        $properties = $reflection->getProperties();
+        foreach ($properties as $property) {
+            $property_name = substr($property->name, 2);
+            if (in_array($property_name, ["instance_model", "conn", "product_images"])) {
+                continue;
+            }
+            $get_method = "get_" . $property_name;
+            if (in_array($property_name, ["stock_qty", "product_id"])) {
+                $stmt->bindValue($property_name, $o_instance->$get_method(), PDO::PARAM_INT);
+            } else {
+                $stmt->bindValue($property_name, $o_instance->$get_method(), PDO::PARAM_STR);
+            }
+        }
     }
 }

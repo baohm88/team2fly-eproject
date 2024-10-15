@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Oct 12, 2024 at 05:07 AM
+-- Generation Time: Oct 14, 2024 at 05:59 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -353,10 +353,6 @@ CREATE TABLE `ProductImages` (
 --
 
 INSERT INTO `ProductImages` (`image_id`, `image_url`, `product_id`) VALUES
-(101, 'https://www.clarinsusa.com/dw/image/v2/AAFS_PRD/on/demandware.static/-/Sites-clarins-master-products/default/dw6fa700a4/original/80104492_original_original_A.jpg?sw=680&sh=680', 1),
-(106, 'https://www.clarinsusa.com/dw/image/v2/AAFS_PRD/on/demandware.static/-/Sites-clarins-master-products/default/dw6fa700a4/original/80104492_original_original_A.jpg?sw=680&sh=680', 1),
-(107, 'https://www.clarinsusa.com/dw/image/v2/AAFS_PRD/on/demandware.static/-/Sites-clarins-master-products/en_US/dw369b038c/original/80104492_original_original_C.jpg?sw=1000&sh=1000', 1),
-(108, 'https://www.clarinsusa.com/dw/image/v2/AAFS_PRD/on/demandware.static/-/Sites-clarins-master-products/en_US/dwbf74d90f/original/80104492_original_original_E.jpg?sw=1000&sh=1000', 1),
 (109, 'https://www.clarinsusa.com/dw/image/v2/AAFS_PRD/on/demandware.static/-/Sites-clarins-master-products/en_US/dwf36d66a7/original/80107455_original_original_A.jpg?sw=680&sh=680', 2),
 (110, 'https://www.clarinsusa.com/dw/image/v2/AAFS_PRD/on/demandware.static/-/Sites-clarins-master-products/en_US/dwa7b4dc47/original/80107455_original_original_B.jpg?sw=680&sh=680', 2),
 (111, 'https://www.clarinsusa.com/dw/image/v2/AAFS_PRD/on/demandware.static/-/Sites-clarins-master-products/en_US/dw1c309f65/original/80107455_original_original_D.jpg?sw=680&sh=680', 2),
@@ -410,7 +406,11 @@ INSERT INTO `ProductImages` (`image_id`, `image_url`, `product_id`) VALUES
 (163, 'https://www.clarinsusa.com/dw/image/v2/AAFS_PRD/on/demandware.static/-/Sites-clarins-master-products/en_US/dw24df10b2/original/80098705_original_original_3.jpg?sw=680&sh=680', 14),
 (164, 'https://www.clarinsusa.com/dw/image/v2/AAFS_PRD/on/demandware.static/-/Sites-clarins-master-products/en_US/dwd9e9e28e/original/80098705_original_original_9.jpg?sw=680&sh=680', 14),
 (165, 'https://www.clarinsusa.com/dw/image/v2/AAFS_PRD/on/demandware.static/-/Sites-clarins-master-products/default/dw22498a58/original/80026978_original_original_1.jpg?sw=680&sh=680', 15),
-(166, 'https://www.clarinsusa.com/dw/image/v2/AAFS_PRD/on/demandware.static/-/Sites-clarins-master-products/default/dwba3a66e0/original/80026978_original_original_3.jpg?sw=680&sh=680', 15);
+(166, 'https://www.clarinsusa.com/dw/image/v2/AAFS_PRD/on/demandware.static/-/Sites-clarins-master-products/default/dwba3a66e0/original/80026978_original_original_3.jpg?sw=680&sh=680', 15),
+(167, 'linkquandaon21', 1),
+(168, 'link2', 1),
+(169, 'link3', 1),
+(170, 'link4', 1);
 
 -- --------------------------------------------------------
 
@@ -618,7 +618,7 @@ INSERT INTO `ProductRating` (`rating_id`, `product_id`, `user_id`, `review_date`
 (184, 84, 34, '1993-12-11', 1, 'Et quod recusandae quam debitis laboriosam officia facere. Est dolorum est rerum et dolores voluptas praesentium sapiente. Incidunt et sit doloremque labore rem aut ut adipisci. Impedit explicabo ea asperiores. Qui dicta ab enim est voluptatem. Consequunt'),
 (185, 85, 35, '2003-04-12', 4, 'Autem necessitatibus soluta asperiores fugiat veritatis expedita quod. Dolorum et facilis ut omnis et atque sequi. Recusandae tempore suscipit ab dolores quo sunt sit.'),
 (186, 86, 36, '1970-01-09', 1, 'Aut earum esse enim consequatur maxime expedita. Quia cumque sit architecto fuga veniam. Vero reiciendis natus provident. Aliquam minus perferendis animi.'),
-(187, 87, 37, '2005-01-25', 1, 'Magnam fuga quisquam vitae et eius sapiente. Exercitationem quaerat eum porro pariatur. Error sint quidem blanditiis et. Sapiente beatae aliquid doloribus impedit neque aut.'),
+(187, 87, 37, '2005-01-25', 1, 'Magnam fuga quisquam vitae et eius sapiente. Exercitationem quaerat eum porro pariatur. error sint quidem blanditiis et. Sapiente beatae aliquid doloribus impedit neque aut.'),
 (188, 88, 38, '1976-04-12', 3, 'Officiis ut rerum adipisci aliquid voluptas ut. Ratione et facere mollitia tempore unde molestias. Et sed ut laborum deserunt eveniet minima est. Aut ut facere sapiente sapiente. Nulla autem similique vitae repellendus.'),
 (189, 89, 39, '1996-10-16', 4, 'Dignissimos voluptatem rerum eligendi impedit distinctio eos. Qui consequatur ut sed beatae. Vel aut voluptates quia totam hic labore ipsam. Tempora beatae qui fuga similique consequatur quia.'),
 (190, 90, 40, '1991-12-24', 5, 'Quis non est ea esse quasi autem odio. Qui excepturi ipsa architecto corporis voluptate dolorem at. Iste doloremque iure rerum dicta modi. Sit qui quaerat provident aperiam sunt minus molestiae. Quidem fugiat et ut labore placeat rerum ipsum in. Maxime qu'),
@@ -626,7 +626,7 @@ INSERT INTO `ProductRating` (`rating_id`, `product_id`, `user_id`, `review_date`
 (192, 92, 42, '2016-06-27', 5, 'Consequatur quod reprehenderit mollitia ratione. Dolorem aperiam odit odio possimus. Eveniet non dolores excepturi ex. Reprehenderit et laborum delectus aspernatur dolorum vel quod. Non ad magnam fugiat natus numquam sequi atque. Autem adipisci necessitat'),
 (193, 93, 43, '2019-07-07', 5, 'Recusandae vel et incidunt et rerum. Voluptatibus ex doloremque ut distinctio optio. Est voluptatem a est aperiam.'),
 (194, 94, 44, '1997-04-19', 2, 'Excepturi voluptatem molestiae itaque nulla ullam ad. Quibusdam recusandae ipsam quo quae quia et voluptatem minima. Omnis sequi aut earum quasi maxime aut quis. Dolor voluptatum voluptas quam deserunt. Aut eum expedita nostrum nihil suscipit.'),
-(195, 95, 45, '2002-06-27', 2, 'Reiciendis reiciendis quasi fugiat quod consequatur porro eveniet. Error aliquid dolore aut et. Modi ut rem odit beatae architecto consequatur. Aperiam qui molestiae officiis sunt provident nemo iure. Dolorem repellat ipsa ullam voluptas ducimus beatae. Q'),
+(195, 95, 45, '2002-06-27', 2, 'Reiciendis reiciendis quasi fugiat quod consequatur porro eveniet. error aliquid dolore aut et. Modi ut rem odit beatae architecto consequatur. Aperiam qui molestiae officiis sunt provident nemo iure. Dolorem repellat ipsa ullam voluptas ducimus beatae. Q'),
 (196, 96, 46, '2007-04-12', 4, 'Natus eius corporis qui facilis ut aut sed. Id tempore voluptatem qui saepe laudantium commodi quod eveniet. Ut qui optio quos voluptas consectetur et vel. Et sit quo dolor numquam laudantium.'),
 (197, 97, 47, '2021-01-16', 0, 'Nostrum et culpa repellat quo aspernatur fuga. Modi autem aut facilis consectetur tempore. Minima nesciunt consequatur facere consequatur temporibus ratione saepe voluptate. Ipsum eum quas sed voluptas.'),
 (198, 98, 48, '1991-02-27', 0, 'Nihil dolorem qui possimus facere. Numquam fugit incidunt quo voluptatem praesentium eveniet minima. Nam occaecati fuga unde impedit debitis porro. Excepturi quod quibusdam enim esse voluptatem esse. Facilis repellendus architecto ipsa et.'),
@@ -657,7 +657,7 @@ INSERT INTO `ProductRating` (`rating_id`, `product_id`, `user_id`, `review_date`
 (222, 22, 22, '2000-08-19', 5, 'Omnis minus expedita amet aut ut id. Vero quia aut sint laborum. Non sequi vel amet maxime commodi sit.'),
 (223, 23, 23, '1985-04-29', 0, 'Cupiditate vitae voluptatem itaque eum tempore. Quo sit qui at eius excepturi voluptatem optio. Natus magni deleniti ut deserunt. Iusto eius molestiae rem.'),
 (224, 24, 24, '2008-03-07', 2, 'Eligendi corporis enim deleniti architecto reprehenderit dolorem doloremque similique. Minima quis dolores quisquam ut. Assumenda et rerum deleniti quod eligendi.'),
-(225, 25, 25, '2003-08-17', 2, 'Autem esse architecto vero repellendus hic eligendi atque. Error consectetur quo modi rerum voluptas. Vel voluptatem eum itaque optio corrupti assumenda. Ut quis consequatur ut qui dolorem. Exercitationem repudiandae blanditiis ipsam.'),
+(225, 25, 25, '2003-08-17', 2, 'Autem esse architecto vero repellendus hic eligendi atque. error consectetur quo modi rerum voluptas. Vel voluptatem eum itaque optio corrupti assumenda. Ut quis consequatur ut qui dolorem. Exercitationem repudiandae blanditiis ipsam.'),
 (226, 26, 26, '1996-05-10', 0, 'Aut fugit quaerat voluptate reiciendis. Unde ut et accusamus autem harum vero aliquid. Sunt amet tempore iusto quidem velit facilis corporis.'),
 (227, 27, 27, '1972-01-25', 3, 'Doloribus id molestiae eum reiciendis quo. Repudiandae quo dolorem qui rerum aut. Soluta libero similique velit repellendus ut doloribus non. Fugiat voluptates neque omnis deleniti aut ut. Architecto quidem saepe et voluptatem. Eius non ea magnam ea nihil'),
 (228, 28, 28, '1986-06-30', 5, 'Cumque id provident sunt recusandae facere qui accusamus. Quae dolores sit et ratione minima. Ipsa accusamus sunt recusandae veritatis quia. Quia libero sed ratione esse magni aspernatur veritatis quo.'),
@@ -681,7 +681,7 @@ INSERT INTO `ProductRating` (`rating_id`, `product_id`, `user_id`, `review_date`
 (246, 46, 46, '1981-06-07', 5, 'Odit facere laborum deleniti rerum. Deserunt est fugit explicabo ea officia cupiditate aliquid. A expedita fugit illo excepturi.'),
 (247, 47, 47, '2018-10-07', 1, 'Voluptas dolorem nam odio sapiente. Dolorem officia et non aspernatur nulla. Nisi enim voluptates asperiores voluptatem non ut porro. Nobis accusantium harum est voluptatum repellendus voluptates.'),
 (248, 48, 48, '2001-10-27', 0, 'Nam est quia quis eos. Eligendi debitis suscipit eum corrupti. Dolores facere aliquid quaerat eius atque hic recusandae.'),
-(249, 49, 49, '2015-08-05', 4, 'Nam aut sed sapiente repellendus explicabo et. Maxime illo iste illo vel. Qui nemo excepturi occaecati enim. Error nihil aut voluptatibus omnis occaecati nobis qui. Non nihil rerum qui.'),
+(249, 49, 49, '2015-08-05', 4, 'Nam aut sed sapiente repellendus explicabo et. Maxime illo iste illo vel. Qui nemo excepturi occaecati enim. error nihil aut voluptatibus omnis occaecati nobis qui. Non nihil rerum qui.'),
 (250, 50, 50, '1970-11-15', 0, 'Voluptas earum et aut voluptatem voluptatem est. Dolor aut et sit aspernatur. Exercitationem adipisci necessitatibus repellendus vel enim quae.'),
 (251, 51, 1, '2008-02-07', 4, 'Doloremque sed quis corrupti neque laudantium sapiente. Qui earum dolor est magnam ut labore libero. Magni praesentium dicta aut non. Rerum dolorum voluptas enim ab. Aut aut voluptatum voluptatem ex.'),
 (252, 52, 2, '2013-12-09', 0, 'Aut laboriosam numquam aspernatur iure fugiat rem. Nihil occaecati iure aspernatur quidem. Aut illum et impedit architecto. Asperiores dolor voluptates quod et aspernatur minus.'),
@@ -747,29 +747,30 @@ CREATE TABLE `Products` (
   `stock_qty` int(11) NOT NULL,
   `main_category` enum('Skincare','Makeup') NOT NULL DEFAULT 'Skincare',
   `sub_category` enum('Face','Body','Sun','Men','Eyes','Lips') NOT NULL DEFAULT 'Face',
-  `date_listed` date NOT NULL
+  `date_listed` date NOT NULL,
+  `is_active` tinyint(1) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `Products`
 --
 
-INSERT INTO `Products` (`product_id`, `product_name`, `price`, `stock_qty`, `main_category`, `sub_category`, `date_listed`) VALUES
-(1, 'Hydrating Gentle Foaming Face Cleanser for Normal to Dry Skin', 31.000000000, 100, 'Skincare', 'Body', '1974-05-07'),
-(2, 'Dry Touch Facial Sunscreen - Broad Spectrum SPF 50+', 40.000000000, 123, 'Skincare', 'Sun', '2024-01-12'),
-(3, 'ClarinsMen Smooth Shave Foaming Gel', 25.000000000, 99, 'Skincare', 'Men', '1976-08-31'),
-(4, 'Blue Orchid Face Treatment Oil', 67.000000000, 90, 'Skincare', 'Face', '2009-04-21'),
-(5, 'UV Plus SPF 50 Anti Pollution Face Sunscreen', 46.000000000, 30, 'Skincare', 'Face', '2011-05-16'),
-(6, 'Wonder Volume Mascara XXL', 30.000000000, 20, 'Makeup', 'Eyes', '1990-05-11'),
-(7, 'Hydra-Essentiel Mask', 39.000000000, 75, 'Skincare', 'Face', '2011-07-19'),
-(8, 'Exfoliating Gentle Body-Scrub For Smooth Skin', 43.000000000, 133, 'Skincare', 'Body', '2017-03-07'),
-(9, 'Joli Rouge Satin Lipstick', 37.000000000, 73, 'Makeup', 'Lips', '1985-01-11'),
-(10, 'Instant Concealer Long Wearing + Crease Free', 35.000000000, 66, 'Makeup', 'Face', '2005-03-30'),
-(11, 'Beauty Flash Balm', 52.000000000, 50, 'Makeup', 'Face', '1991-04-23'),
-(12, 'Wonder Perfect Mascara 4D', 30.000000000, 94, 'Makeup', 'Eyes', '2014-01-25'),
-(13, 'Super Restorative Night Cream - All Skin Types', 142.000000000, 66, 'Skincare', 'Face', '2021-12-03'),
-(14, 'Lip Perfector 2-in-1 Lip and Cheek Color Balm', 30.000000000, 80, 'Makeup', 'Lips', '2007-05-27'),
-(15, 'Graphik Ink Liner Liquid Eyeliner Pen', 33.000000000, 54, 'Makeup', 'Eyes', '2022-11-22');
+INSERT INTO `Products` (`product_id`, `product_name`, `price`, `stock_qty`, `main_category`, `sub_category`, `date_listed`, `is_active`) VALUES
+(1, 'Sample Proasdasdduct', 190012310.000000000, 50, 'Skincare', 'Body', '2020-10-05', 0),
+(2, 'Dry Touch Facial Sunscreen - Broad Spectrum SPF 50+', 40.000000000, 123, 'Skincare', 'Sun', '2024-01-12', 1),
+(3, 'ClarinsMen Smooth Shave Foaming Gel', 25.000000000, 99, 'Skincare', 'Men', '1976-08-31', 1),
+(4, 'Blue Orchid Face Treatment Oil', 67.000000000, 90, 'Skincare', 'Face', '2009-04-21', 1),
+(5, 'UV Plus SPF 50 Anti Pollution Face Sunscreen', 46.000000000, 30, 'Skincare', 'Face', '2011-05-16', 1),
+(6, 'Wonder Volume Mascara XXL', 30.000000000, 20, 'Makeup', 'Eyes', '1990-05-11', 1),
+(7, 'Hydra-Essentiel Mask', 39.000000000, 75, 'Skincare', 'Face', '2011-07-19', 1),
+(8, 'Exfoliating Gentle Body-Scrub For Smooth Skin', 43.000000000, 133, 'Skincare', 'Body', '2017-03-07', 1),
+(9, 'Joli Rouge Satin Lipstick', 37.000000000, 73, 'Makeup', 'Lips', '1985-01-11', 1),
+(10, 'Instant Concealer Long Wearing + Crease Free', 35.000000000, 66, 'Makeup', 'Face', '2005-03-30', 1),
+(11, 'Beauty Flash Balm', 52.000000000, 50, 'Makeup', 'Face', '1991-04-23', 1),
+(12, 'Wonder Perfect Mascara 4D', 30.000000000, 94, 'Makeup', 'Eyes', '2014-01-25', 1),
+(13, 'Super Restorative Night Cream - All Skin Types', 142.000000000, 66, 'Skincare', 'Face', '2021-12-03', 1),
+(14, 'Lip Perfector 2-in-1 Lip and Cheek Color Balm', 30.000000000, 80, 'Makeup', 'Lips', '2007-05-27', 1),
+(15, 'Graphik Ink Liner Liquid Eyeliner Pen', 33.000000000, 54, 'Makeup', 'Eyes', '2022-11-22', 1);
 
 -- --------------------------------------------------------
 
@@ -865,7 +866,7 @@ ALTER TABLE `Orders`
 -- AUTO_INCREMENT for table `ProductImages`
 --
 ALTER TABLE `ProductImages`
-  MODIFY `image_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=167;
+  MODIFY `image_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=171;
 
 --
 -- AUTO_INCREMENT for table `ProductRating`

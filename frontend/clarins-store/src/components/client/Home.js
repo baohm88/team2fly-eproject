@@ -395,6 +395,7 @@ export default function Home() {
             </div>
 
 
+
             <div className="commitments-container">
                 <h2>Our Commitments</h2>
                 <div className="commitments-grid">
@@ -470,32 +471,6 @@ export default function Home() {
                 </div>
             </div>
 
-            {/*/!* Pagination Controls *!/*/}
-            {/*{totalPages > 0 && (*/}
-            {/*    <div className="pagination center">*/}
-            {/*        <button*/}
-            {/*            onClick={() => paginate(currentPage - 1)}*/}
-            {/*            disabled={currentPage === 1}*/}
-            {/*        >*/}
-            {/*            <IoChevronBackOutline />*/}
-            {/*        </button>*/}
-            {/*        {Array.from({ length: totalPages }, (_, i) => (*/}
-            {/*            <button*/}
-            {/*                key={i + 1}*/}
-            {/*                onClick={() => paginate(i + 1)}*/}
-            {/*                className={currentPage === i + 1 ? "active" : ""}*/}
-            {/*            >*/}
-            {/*                {i + 1}*/}
-            {/*            </button>*/}
-            {/*        ))}*/}
-            {/*        <button*/}
-            {/*            onClick={() => paginate(currentPage + 1)}*/}
-            {/*            disabled={currentPage === totalPages}*/}
-            {/*        >*/}
-            {/*            <IoChevronForward />*/}
-            {/*        </button>*/}
-            {/*    </div>*/}
-            {/*)}*/}
 
             {selectedProduct && (
                 <Modal product={selectedProduct} onClose={closeModal} />
