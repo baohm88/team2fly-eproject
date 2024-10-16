@@ -7,6 +7,7 @@ import Modal from "./Modal"; // Import the Modal component
 
 import Slider from "rc-slider"; // Import rc-slider
 import "rc-slider/assets/index.css"; // Import rc-slider styles
+import classes from "./SkincareProducts.module.css";
 
 export default function SkincareProducts() {
     const [products, setProducts] = useState([]);
@@ -21,7 +22,7 @@ export default function SkincareProducts() {
     const navigate = useNavigate();
 
     const [currentPage, setCurrentPage] = useState(1); // For tracking the current page
-    const productsPerPage = 3; // Number of products per page
+    const productsPerPage = 4; // Number of products per page
 
     // Calculate index range for the products to be displayed on the current page
     const indexOfLastProduct = currentPage * productsPerPage;
@@ -140,7 +141,7 @@ export default function SkincareProducts() {
 
     return (
         <>
-            <div className="center">
+            <div className= {classes["center"]}>
                 <h1>SKINCARE</h1>
                 <p>
                     From daily rituals to targeted anti-aging care, discover the
@@ -149,7 +150,7 @@ export default function SkincareProducts() {
                 </p>
             </div>
 
-            <p className="tabs-container center">
+            <p className={classes["tabs-container"]}>
                 <button onClick={() => updateCategoryInURL("Face")}>
                     Face
                 </button>
@@ -162,7 +163,7 @@ export default function SkincareProducts() {
             </p>
 
             {/* Sorting and Filtering Controls */}
-            <div className="filters">
+            <div className={classes["filters"]}>
                 {/* Sorting Dropdown */}
                 <label htmlFor="sort">Sort by: </label>
                 <select
@@ -181,7 +182,7 @@ export default function SkincareProducts() {
             </div>
 
             {/* Price Range Filter */}
-            <div className="price-filter">
+            <div className={classes["price-filter"]}>
                 <h4>Filter by Price:</h4>
                 <Slider
                     range
@@ -208,14 +209,14 @@ export default function SkincareProducts() {
             </div>
 
             {/* Total Products Count */}
-            <div className="total-products">
+            <div className={classes["total-products"]}>
                 <h4>{filteredProducts.length} products</h4>
             </div>
 
-            <div className="products-container">
+            <div className={classes["products-container"]}>
                 {currentProducts.map((product) => (
                     <div
-                        className="product-card center"
+                        className={classes["product-card"]}
                         key={product.product_id}
                     >
                         <Link to={"/products/" + product.product_id}>
@@ -226,18 +227,18 @@ export default function SkincareProducts() {
                                         : ""
                                 }
                                 alt={product.product_name}
-                                className="product-image"
+                                className={classes["product-image"]}
                             />
-                            <h4 className="product-title">
+                            <h4 className={classes["product-title"]}>
                                 {product.product_name}
                             </h4>
                         </Link>
 
-                        <p className="product-price">
+                        <p className={classes["product-price"]}>
                             {formatter.format(product.price)}
                         </p>
                         <button
-                            className="cart-button"
+                            className={classes["cart-button"]}
                             onClick={() => openModal(product)} // Open modal with product info
                         >
                             Quick View
@@ -245,16 +246,8 @@ export default function SkincareProducts() {
                     </div>
                 ))}
             </div>
-
-
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
             {/* Pagination Controls */}
-            <div className="pagination center">
+            <div className={classes["pagination"]}>
                 <button
                     onClick={() => paginate(currentPage - 1)}
                     disabled={currentPage === 1}
