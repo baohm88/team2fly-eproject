@@ -19,20 +19,20 @@
     border-radius: 8px;
 }
 
-table {
+.table {
     width: 100%;
     border-collapse: collapse;
 }
 
-table th,
-table td {
+.table th,
+.table td {
     padding: 1rem;
     text-align: left;
     border-bottom: 1px solid #e0e0e0;
 }
 
 /* Product Image */
-table td img {
+.table td img {
     width: 100px;
     border-radius: 8px;
 }
@@ -50,7 +50,7 @@ table td img {
     cursor: pointer;
 }
 
-button:hover {
+.button:hover {
     background-color: #f0f0f0;
 }
 

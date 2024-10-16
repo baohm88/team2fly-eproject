@@ -9,7 +9,7 @@
 }
 
 /* Heading style */
-h1.center {
+.h1.center {
     text-align: center;
     font-size: 30px;
     font-weight: 400;
@@ -18,7 +18,7 @@ h1.center {
 }
 
 /* Paragraph center alignment */
-p.center {
+.p.center {
     text-align: center;
     margin-bottom: 20px;
 }
@@ -102,7 +102,7 @@ p.center {
 }
 
 /* Image preview */
-img {
+.img {
     display: block;
     margin: 10px auto;
     max-width: 200px;
