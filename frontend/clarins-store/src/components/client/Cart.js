@@ -77,9 +77,7 @@ export default function Cart() {
                             return (
                                 <tr key={item.product_id}>
                                     <td>
-                                        <Link
-                                            to={"/products/" + item.product_id}
-                                        >
+                                        <Link to={"/products/" + item.product_id}>
                                             <img
                                                 src={
                                                     item.product_images
@@ -94,32 +92,32 @@ export default function Cart() {
                                         </Link>
                                     </td>
                                     <td>
-                                        <Link
-                                            to={"/products/" + item.product_id}
-                                        >
+                                        <Link to={"/products/" + item.product_id} className={classes.productName}>
                                             {item.product_name}
                                         </Link>
                                     </td>
                                     <td className={classes.center}>
-                                        <button
-                                            onClick={() =>
-                                                decrementQuantity(
-                                                    item.product_id
-                                                )
-                                            }
-                                        >
-                                            -
-                                        </button>{" "}
-                                        {item.quantity}{" "}
-                                        <button
-                                            onClick={() =>
-                                                incrementQuantity(
-                                                    item.product_id
-                                                )
-                                            }
-                                        >
-                                            +
-                                        </button>
+                                        <div className={classes.quantityControl}>
+                                            <span
+                                                className={classes.adjustButton}
+                                                onClick={() =>
+                                                    decrementQuantity(item.product_id)
+                                                }
+                                            >
+                                                -
+                                            </span>
+                                            <span className={classes.quantity}>
+                                                {item.quantity}
+                                            </span>
+                                            <span
+                                                className={classes.adjustButton}
+                                                onClick={() =>
+                                                    incrementQuantity(item.product_id)
+                                                }
+                                            >
+                                                +
+                                            </span>
+                                        </div>
                                     </td>
                                     <td className={classes.center}>
                                         {formatter.format(item.price)}
@@ -130,13 +128,14 @@ export default function Cart() {
                                         )}
                                     </td>
                                     <td className={classes.center}>
-                                        <button
+                                        <span
+                                            className={classes.removeButton}
                                             onClick={() =>
                                                 removeItem(item.product_id)
                                             }
                                         >
                                             X
-                                        </button>
+                                        </span>
                                     </td>
                                 </tr>
                             );
