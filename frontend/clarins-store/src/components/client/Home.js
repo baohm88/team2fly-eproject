@@ -32,7 +32,6 @@ export default function Home() {
         indexOfLastProduct
     );
 
-
     // fetch products from db initially
     useEffect(() => {
         axios.get("http://localhost/project/collections/all").then((res) => {
@@ -172,11 +171,11 @@ export default function Home() {
                     <div className="product-categories">
                         <div className="category1">
                             <a href="/skincare">
-                            <img
-                                src="Highlight_DOUBLE-SERUM_2024.jpg"
-                                alt="Face"
-                                className="category-image"
-                            />
+                                <img
+                                    src="Highlight_DOUBLE-SERUM_2024.jpg"
+                                    alt="Face"
+                                    className="category-image"
+                                />
                             </a>
                             <h3>FACE</h3>
                             <a href="/skincare" className="shop-now">
@@ -192,10 +191,10 @@ export default function Home() {
                                     className="category-image"
                                 />
                             </a>
-                                <h3>MAKEUP</h3>
-                                <a href="/makeup" className="shop-now">
-                                    SHOP NOW
-                                </a>
+                            <h3>MAKEUP</h3>
+                            <a href="/makeup" className="shop-now">
+                                SHOP NOW
+                            </a>
                         </div>
 
                         <div className="category1">
@@ -206,10 +205,10 @@ export default function Home() {
                                     className="category-image"
                                 />
                             </a>
-                                <h3>BODY</h3>
-                                <a href="/skincare" className="shop-now">
-                                    SHOP NOW
-                                </a>
+                            <h3>BODY</h3>
+                            <a href="/skincare" className="shop-now">
+                                SHOP NOW
+                            </a>
                         </div>
 
                         <div className="category2">
@@ -220,10 +219,10 @@ export default function Home() {
                                     className="category-image"
                                 />
                             </a>
-                                <h3>SUN</h3>
-                                <a href="/skincare" className="shop-now">
-                                    SHOP NOW
-                                </a>
+                            <h3>SUN</h3>
+                            <a href="/skincare" className="shop-now">
+                                SHOP NOW
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -236,19 +235,25 @@ export default function Home() {
                 <p>Discover our iconic products</p>
                 <div className="product-tabs">
                     <button
-                        className={`tab ${activeTab === "just-for-you" ? "active" : ""}`}
+                        className={`tab ${
+                            activeTab === "just-for-you" ? "active" : ""
+                        }`}
                         onClick={() => handleTabClick("just-for-you")}
                     >
                         Just for You
                     </button>
                     <button
-                        className={`tab ${activeTab === "whats-new" ? "active" : ""}`}
+                        className={`tab ${
+                            activeTab === "whats-new" ? "active" : ""
+                        }`}
                         onClick={() => handleTabClick("whats-new")}
                     >
                         What's New
                     </button>
                     <button
-                        className={`tab ${activeTab === "online-exclusives" ? "active" : ""}`}
+                        className={`tab ${
+                            activeTab === "online-exclusives" ? "active" : ""
+                        }`}
                         onClick={() => handleTabClick("online-exclusives")}
                     >
                         Online Exclusives
@@ -259,45 +264,42 @@ export default function Home() {
                 {activeTab === "just-for-you" && (
                     <div className="product-slider">
                         <div className="product">
-                            <img src="80103084_original_original_A.jpg" alt="Product 1"/>
+                            <img
+                                src="80103084_original_original_A.jpg"
+                                alt="Product 1"
+                            />
                             <h3>Double Serum Anti-Aging</h3>
                             <p>$135.00</p>
-                            <button
-                                className="cart-button"
-                            >
-                                Quick View
-                            </button>
+                            <button className="cart-button">Quick View</button>
                         </div>
                         <div className="product">
-                            <img src="80068482_original_original_A.jpg" alt="Product 2"/>
+                            <img
+                                src="80068482_original_original_A.jpg"
+                                alt="Product 2"
+                            />
                             <h3>Total Eye Lift Cream</h3>
                             <p>$92.00</p>
-                            <button
-                                className="cart-button"
-                            >
-                                Quick View
-                            </button>
+                            <button className="cart-button">Quick View</button>
                         </div>
                         <div className="product">
-                            <img src="80077133_original_original_A.jpg" alt="Product 3"/>
+                            <img
+                                src="80077133_original_original_A.jpg"
+                                alt="Product 3"
+                            />
                             <h3>Double Serum Eye</h3>
                             <p>$83.00</p>
-                            <button
-                                className="cart-button"
-                                onClick={openModal}
-                            >
+                            <button className="cart-button" onClick={openModal}>
                                 Quick View
                             </button>
                         </div>
                         <div className="product">
-                            <img src="80084587_original_original_A.jpg" alt="Product 4"/>
+                            <img
+                                src="80084587_original_original_A.jpg"
+                                alt="Product 4"
+                            />
                             <h3>Lip Comfort Oil</h3>
                             <p>$30.00</p>
-                            <button
-                                className="cart-button"
-                            >
-                                Quick View
-                            </button>
+                            <button className="cart-button">Quick View</button>
                         </div>
                     </div>
                 )}
@@ -305,13 +307,13 @@ export default function Home() {
                 {activeTab === "whats-new" && (
                     <div className="product-slider">
                         <div className="product">
-                        <img src="new_product_1.jpg" alt="New Product 1"/>
+                            <img src="new_product_1.jpg" alt="New Product 1" />
                             <h3>New Serum XYZ</h3>
                             <p>$120.00</p>
                             <p>★★★★★</p>
                         </div>
                         <div className="product">
-                            <img src="new_product_2.jpg" alt="New Product 2"/>
+                            <img src="new_product_2.jpg" alt="New Product 2" />
                             <h3>New Cream ABC</h3>
                             <p>$95.00</p>
                             <p>★★★★★</p>
@@ -322,13 +324,19 @@ export default function Home() {
                 {activeTab === "online-exclusives" && (
                     <div className="product-slider">
                         <div className="product">
-                            <img src="exclusive_product_1.jpg" alt="Exclusive Product 1"/>
+                            <img
+                                src="exclusive_product_1.jpg"
+                                alt="Exclusive Product 1"
+                            />
                             <h3>Exclusive Product 1</h3>
                             <p>$140.00</p>
                             <p>★★★★★</p>
                         </div>
                         <div className="product">
-                            <img src="exclusive_product_2.jpg" alt="Exclusive Product 2"/>
+                            <img
+                                src="exclusive_product_2.jpg"
+                                alt="Exclusive Product 2"
+                            />
                             <h3>Exclusive Product 2</h3>
                             <p>$110.00</p>
                             <p>★★★★★</p>
@@ -336,7 +344,6 @@ export default function Home() {
                     </div>
                 )}
             </div>
-
 
             <div>
                 <div className="exclusive-services">
@@ -350,8 +357,8 @@ export default function Home() {
                             />
                             <h3>Gift Cards</h3>
                             <p>
-                                Take the guesswork out of gifting, and let them choose their
-                                favorites.
+                                Take the guesswork out of gifting, and let them
+                                choose their favorites.
                             </p>
                             <a href="/gift-cards" className="learn-more">
                                 SHOP NOW
@@ -363,7 +370,10 @@ export default function Home() {
                                 alt="Club Clarins"
                             />
                             <h3>Club Clarins</h3>
-                            <p>Earn 10 points per dollar and redeem for rewards.</p>
+                            <p>
+                                Earn 10 points per dollar and redeem for
+                                rewards.
+                            </p>
                             <a href="/club-clarins" className="learn-more">
                                 LEARN MORE
                             </a>
@@ -375,17 +385,23 @@ export default function Home() {
                             />
                             <h3>Subscription Service</h3>
                             <p>
-                                Enjoy 10% off, free shipping, and 3 free samples with recurring
-                                orders.
+                                Enjoy 10% off, free shipping, and 3 free samples
+                                with recurring orders.
                             </p>
                             <a href="/subscription" className="learn-more">
                                 LEARN MORE
                             </a>
                         </div>
                         <div className="service">
-                            <img src="live-consultation-2024-CLP.jpg" alt="Live Consultation"/>
+                            <img
+                                src="live-consultation-2024-CLP.jpg"
+                                alt="Live Consultation"
+                            />
                             <h3>Live Consultation</h3>
-                            <p>Connect with a Beauty Coach for a complimentary consultation.</p>
+                            <p>
+                                Connect with a Beauty Coach for a complimentary
+                                consultation.
+                            </p>
                             <a href="/consultation" className="learn-more">
                                 BOOK NOW
                             </a>
@@ -393,8 +409,6 @@ export default function Home() {
                     </div>
                 </div>
             </div>
-
-
 
             <div className="commitments-container">
                 <h2>Our Commitments</h2>
@@ -414,18 +428,21 @@ export default function Home() {
                         <h3>Charitable Initiatives</h3>
                     </button>
                     <button className="commitment-button">
-                        <img src="CSR_EcoDesign_v2.png" alt="Eco Design"/>
+                        <img src="CSR_EcoDesign_v2.png" alt="Eco Design" />
                         <h3>Eco Design</h3>
                     </button>
                     <button className="commitment-button">
-                        <img src="CSR_Made_in_France_v2.png" alt="Made in France"/>
+                        <img
+                            src="CSR_Made_in_France_v2.png"
+                            alt="Made in France"
+                        />
                         <h3>Made in France</h3>
                     </button>
                 </div>
                 <p className="disclaimer">
-                    *Excluding: ClarinsMen Foaming Shave Gel / myClarins Clear-out Targets
-                    Imperfections / Bright Plus Fresh Ampoule Vitamin C Complex / Nourishing
-                    Shampoo bar
+                    *Excluding: ClarinsMen Foaming Shave Gel / myClarins
+                    Clear-out Targets Imperfections / Bright Plus Fresh Ampoule
+                    Vitamin C Complex / Nourishing Shampoo bar
                 </p>
                 <div>
                     <h2>Online advantages</h2>
@@ -439,38 +456,49 @@ export default function Home() {
                             <p>with any $50 order</p>
                         </button>
                         <button className="commitment-button">
-                            <img src="samples.png" alt="Charitable Initiatives"/>
+                            <img
+                                src="samples.png"
+                                alt="Charitable Initiatives"
+                            />
                             <h3>3 Free Samples</h3>
                             <p>with any order</p>
                         </button>
                         <button className="commitment-button">
-                            <img src="special-offers.webp" alt="Eco Design"/>
+                            <img src="special-offers.webp" alt="Eco Design" />
                             <h3>Special Offers</h3>
                             <p>all year long</p>
                         </button>
                         <button className="commitment-button">
-                            <img src="Club-clarins-2023.webp" alt="Made in France"/>
+                            <img
+                                src="Club-clarins-2023.webp"
+                                alt="Made in France"
+                            />
                             <h3>Earn Rewards</h3>
                             <p>$1 = 10 points</p>
                         </button>
                         <button className="commitment-button">
-                            <img src="auto-replenishment.webp" alt="Made in France"/>
+                            <img
+                                src="auto-replenishment.webp"
+                                alt="Made in France"
+                            />
                             <h3>Subscription</h3>
                             <p>10% off and free shipping</p>
                         </button>
                     </div>
                 </div>
                 <div className="payment-methods">
-                    <img src="visa-2.webp" alt="Visa"/>
-                    <img src="mastercard-2.webp" alt="MasterCard"/>
-                    <img src="american-express.webp" alt="American Express"/>
-                    <img src="discover.webp" alt="Discover"/>
-                    <img src="paypal.webp" alt="PayPal"/>
-                    <img src="apple-pay-footer-advantage.webp" alt="Apple Pay"/>
-                    <img src="afterpay.webp" alt="Afterpay"/>
+                    <img src="visa-2.webp" alt="Visa" />
+                    <img src="mastercard-2.webp" alt="MasterCard" />
+                    <img src="american-express.webp" alt="American Express" />
+                    <img src="discover.webp" alt="Discover" />
+                    <img src="paypal.webp" alt="PayPal" />
+                    <img
+                        src="apple-pay-footer-advantage.webp"
+                        alt="Apple Pay"
+                    />
+                    <img src="afterpay.webp" alt="Afterpay" />
                 </div>
             </div>
-
 
             {selectedProduct && (
                 <Modal product={selectedProduct} onClose={closeModal} />

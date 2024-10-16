@@ -48,13 +48,16 @@
 /* Additional styling to match the subtle feel of the image */
 body {
     background-color: #fafafa;
-    font-family: "Arial", sans-serif;
+    font-family: 'Arial', sans-serif;
 }
+
+
+
 
 .total-products {
     text-align: left; /* Căn lề trái cho phần hiển thị tổng số sản phẩm */
     margin-bottom: 20px; /* Tạo khoảng cách phía dưới để tránh nội dung tiếp theo quá sát */
-    font-family: "Arial", sans-serif; /* Đặt font chữ Arial, và sans-serif là dự phòng */
+    font-family: 'Arial', sans-serif; /* Đặt font chữ Arial, và sans-serif là dự phòng */
     font-size: 18px; /* Kích thước chữ 18px */
     color: #333; /* Màu chữ là màu xám đậm */
 }
@@ -79,7 +82,7 @@ body {
     background-color: #fff; /* Màu nền trắng */
     transition: transform 0.3s ease, box-shadow 0.3s ease; /* Hiệu ứng chuyển động khi hover (thẻ sản phẩm nhô lên) */
     text-align: center; /* Căn giữa nội dung văn bản trong thẻ */
-    width: 300px; /* Giới hạn chiều rộng tối đa của thẻ sản phẩm là 300px */
+    max-width: 300px; /* Giới hạn chiều rộng tối đa của thẻ sản phẩm là 300px */
     height: 100%; /* Đảm bảo tất cả các thẻ sản phẩm có cùng chiều cao */
 }
 
@@ -139,7 +142,7 @@ body {
     left: 10px; /* Cách cạnh trái 10px */
     border-radius: 5px; /* Làm tròn các góc của huy hiệu */
 }
-.pagination {
+.pagination{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -147,4 +150,6 @@ body {
     margin-bottom: 20px;
     text-align: center;
     width: 100%;
+
+
 }

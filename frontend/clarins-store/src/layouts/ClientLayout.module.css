@@ -82,16 +82,17 @@ header {
     font-size: 0.9rem;
 }
 
-.nav-link {
+.nav-link a {
     text-decoration: none;
     color: #4a4a4a; /* Dark gray color */
     padding: 5px 10px;
     font-weight: bold;
     white-space: nowrap;
     transition: color 0.3s ease;
+    text-transform: uppercase;
 }
 
-.nav-link:hover {
+.nav-link a:hover {
     color: #b51828; /* Hover effect color */
 }
 

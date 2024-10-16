@@ -1,15 +1,45 @@
 * {
     margin: 0;
     padding: 0;
+    /* text-decoration: none;
+    list-style-type: none; */
 }
 
 :root {
-    --primaryColor: rgba(181, 24, 40, 255);
+    --primaryColor: rgb(166, 43, 43);
     --secondaryColor: rgb(244, 239, 235);
     --darkColor: black;
     --lightColor: white;
     --dangerColor: red;
 }
+
+/* a {
+    color: var(--darkColor);
+} */
+
+/* ul {
+    display: flex;
+    justify-content: space-evenly;
+} */
+
+/* li {
+    padding: 10px;
+    font-weight: bold;
+    text-transform: uppercase;
+} */
+
+/* li a:hover,
+li a.active {
+    text-decoration: underline;
+    color: var(--primaryColor);
+} */
+
+/* main {
+    width: 90vw;
+    min-height: 90vh;
+    margin: 1rem auto;
+    padding: 0 1rem;
+} */
 
 .center {
     text-align: center;
@@ -29,12 +59,37 @@
     border-radius: 5px;
 }
 
+/* input {
+    width: 100%;
+    line-height: 2rem;
+    margin-bottom: 10px;
+} */
+
 .danger {
     background-color: var(--dangerColor);
     color: var(--lightColor);
     border-radius: 5px;
     padding: 3px;
 }
+/* button { */
+/* padding: 5px 10px; */
+/* } */
+
+/* section {
+    min-height: 30vh;
+} */
+
+/* table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 5px;
+} */
+
+/* th,
+td {
+    border: 1px solid black;
+    line-height: 2rem;
+} */
 
 .products-container {
     display: flex;
