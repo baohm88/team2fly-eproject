@@ -66,16 +66,11 @@ export default function Modal({ product, onClose }) {
                         </button>
                     </div>
                 )}
-
-                <h3>{product.product_name}</h3>
-                <p>{product.product_description}</p>
-                <h4>{formatter.format(product.price)}</h4>
-                <button
-                    onClick={handleAddToCart}
-                    className={classes["addtocart"]}
-                >
-                    Add to Cart
-                </button>
+                <h2>{product.product_name}</h2>
+                <p>{product.description}</p>
+                <h3>{formatter.format(product.price)}</h3>
+                <button className={classes["addtocard"]}
+                        onClick={handleAddToCart}>Add to Cart</button>
             </div>
         </div>
     );
