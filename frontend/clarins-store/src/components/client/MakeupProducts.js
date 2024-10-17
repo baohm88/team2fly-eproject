@@ -1,13 +1,16 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { IoChevronBackOutline, IoChevronForward } from "react-icons/io5";
+import { FaCaretDown, FaCaretUp } from "react-icons/fa"; // Import both icons
 import { formatter } from "../../util/formatter";
 import Modal from "./Modal"; // Import the Modal component
 
 import Slider from "rc-slider"; // Import rc-slider
 import "rc-slider/assets/index.css"; // Import rc-slider styles
 import classes from "./SkincareProducts.module.css";
+import ProductItem from "./ProductItem";
+
 export default function MakeupProducts() {
     const [products, setProducts] = useState([]);
     const [filteredProducts, setFilteredProducts] = useState([]);
@@ -16,6 +19,8 @@ export default function MakeupProducts() {
     const [selectedRange, setSelectedRange] = useState(false);
     const [priceRange, setPriceRange] = useState([0, 1000]); // State for the range slider
     const [selectedCategory, setSelectedCategory] = useState(""); // Track selected category
+
+    const [sliderIsVisible, setSliderIsVisible] = useState(false); // Slider visibility state
 
     const location = useLocation(); // Get the current location (URL)
     const navigate = useNavigate();
@@ -94,15 +99,16 @@ export default function MakeupProducts() {
                 b.product_name.localeCompare(a.product_name)
             );
         } else if (sortOption === "price_asc") {
-            filtered.sort((a, b) => a.price - b.price);
+            filtered.sort((a, b) => a.product_price - b.product_price);
         } else if (sortOption === "price_desc") {
-            filtered.sort((a, b) => b.price - a.price);
+            filtered.sort((a, b) => b.product_price - a.product_price);
         }
 
         // Apply price range filter
         filtered = filtered.filter(
             (product) =>
-                product.price >= priceRange[0] && product.price <= priceRange[1]
+                product.product_price >= priceRange[0] &&
+                product.product_price <= priceRange[1]
         );
 
         setFilteredProducts(filtered);
@@ -136,14 +142,18 @@ export default function MakeupProducts() {
         setPriceRange(newRange);
     };
 
+    function toggleSliderVisible() {
+        setSliderIsVisible((visible) => !visible);
+    }
+
     return (
         <>
             <div className={classes["center"]}>
                 <h1>MAKEUP</h1>
                 <p>
-                    From daily rituals to targeted anti-aging care, discover the
-                    best in plant-based makeup, powered by nature's most
-                    effective ingredients.
+                    At Clarins, we believe that nature reveals our true beauty.
+                    Shop our expert selection of beauty bestsellers for face,
+                    eyes and lips, powered by plants.
                 </p>
             </div>
 
@@ -162,32 +172,46 @@ export default function MakeupProducts() {
 
             {/* Sorting and Filtering Controls */}
             <div className={classes["filters"]}>
-                {/* Sorting Dropdown */}
-                <label htmlFor="sort">Sort by: </label>
-                <select
-                    id="sort"
-                    value={sortOption}
-                    onChange={(e) => setSortOption(e.target.value)}
-                >
-                    <option value="" disabled>
-                        Select
-                    </option>
-                    <option value="name_asc">Name (A-Z)</option>
-                    <option value="name_desc">Name (Z-A)</option>
-                    <option value="price_asc">Price (Low to High)</option>
-                    <option value="price_desc">Price (High to Low)</option>
-                </select>
+                <div className={classes["sort-options"]}>
+                    {/* Sorting Dropdown */}
+                    <label htmlFor="sort">
+                        <strong>Sort by: </strong>
+                    </label>
+                    <select
+                        id="sort"
+                        value={sortOption}
+                        onChange={(e) => setSortOption(e.target.value)}
+                    >
+                        <option value="" disabled>
+                            Select
+                        </option>
+                        <option value="name_asc">Name (A-Z)</option>
+                        <option value="name_desc">Name (Z-A)</option>
+                        <option value="price_asc">Price (Low to High)</option>
+                        <option value="price_desc">Price (High to Low)</option>
+                    </select>
+                </div>
+
                 {/* Price Range Filter */}
-                <div className="price-filter">
-                    <h4>Filter by Price:</h4>
-                    <Slider
-                        range
-                        min={0}
-                        max={200}
-                        value={priceRange}
-                        onChange={handlePriceRangeChange}
-                        step={5} // You can adjust the step size here
-                    />
+                <div>
+                    <h4
+                        onClick={toggleSliderVisible}
+                        className={classes["filter-options"]}
+                    >
+                        Price{" "}
+                        {sliderIsVisible ? <FaCaretUp /> : <FaCaretDown />}
+                    </h4>
+                    {sliderIsVisible && (
+                        <Slider
+                            range
+                            min={0}
+                            max={200}
+                            value={priceRange}
+                            onChange={handlePriceRangeChange}
+                            step={5} // You can adjust the step size here
+                        />
+                    )}
+
                     {selectedRange && (
                         <p>
                             <button
@@ -205,53 +229,21 @@ export default function MakeupProducts() {
                 </div>
             </div>
 
-
-
             {/* Total Products Count */}
             <div className={classes["total-products"]}>
-                <h4>{filteredProducts.length} products</h4>
+                <h5>{filteredProducts.length} products</h5>
             </div>
 
             <div className={classes["products-container"]}>
                 {currentProducts.map((product) => (
-                    <div
-                        className={classes["product-card"]}
+                    <ProductItem
                         key={product.product_id}
-                    >
-                        <Link to={"/products/" + product.product_id}>
-                            <img
-                                src={
-                                    product.product_images
-                                        ? product.product_images.split(",")[0]
-                                        : ""
-                                }
-                                alt={product.product_name}
-                                className={classes["product-image"]}
-                            />
-                            <h4 className={classes["product-title"]}>
-                                {product.product_name}
-                            </h4>
-                        </Link>
-
-                        <p className={classes["product-price"]}>
-                            {formatter.format(product.price)}
-                        </p>
-                        <button
-                            className={classes["cart-button"]}
-                            onClick={() => openModal(product)} // Open modal with product info
-                        >
-                            Quick View
-                        </button>
-                    </div>
+                        product={product}
+                        openModal={openModal}
+                    />
                 ))}
             </div>
 
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
             {/* Pagination Controls */}
             <div className={classes["pagination"]}>
                 <button
@@ -283,4 +275,3 @@ export default function MakeupProducts() {
         </>
     );
 }
-

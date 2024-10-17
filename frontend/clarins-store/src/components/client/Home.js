@@ -8,6 +8,7 @@ import Modal from "./Modal"; // Import the Modal component
 import Slider from "rc-slider"; // Import rc-slider
 // import "rc-slider/assets/index.css"; // Import rc-slider styles
 import classes from "./Home.module.css";
+import Button from "../UI/Button";
 
 export default function Home() {
     const [products, setProducts] = useState([]);
@@ -76,15 +77,16 @@ export default function Home() {
                 b.product_name.localeCompare(a.product_name)
             );
         } else if (sortOption === "price_asc") {
-            sortedProducts.sort((a, b) => a.price - b.price);
+            sortedProducts.sort((a, b) => a.product_price - b.product_price);
         } else if (sortOption === "price_desc") {
-            sortedProducts.sort((a, b) => b.price - a.price);
+            sortedProducts.sort((a, b) => b.product_price - a.product_price);
         }
 
         // Apply price range filter
         sortedProducts = sortedProducts.filter(
             (product) =>
-                product.price >= priceRange[0] && product.price <= priceRange[1]
+                product.product_price >= priceRange[0] &&
+                product.product_price <= priceRange[1]
         );
 
         setFilteredProducts(sortedProducts);
@@ -111,7 +113,8 @@ export default function Home() {
         setFilteredProducts(
             products.filter(
                 (product) =>
-                    product.price >= newRange[0] && product.price <= newRange[1]
+                    product.product_price >= newRange[0] &&
+                    product.product_price <= newRange[1]
             )
         );
     };
@@ -137,7 +140,9 @@ export default function Home() {
                         <h2>NEW (R)EVOLUTION DOUBLE SERUM</h2>
                         <p>The power to change your skin's future</p>
                         <p>Just one drop for younger looking skin</p>
-                        <button className={classes["discover-button"]}>DISCOVER</button>
+                        <button className={classes["discover-button"]}>
+                            DISCOVER
+                        </button>
                     </div>
                 </div>
 
@@ -169,13 +174,11 @@ export default function Home() {
                     <div className={classes["product-categories"]}>
                         <div className={classes["category1"]}>
                             <a href="/skincare">
-
-                            <img
-                                src="Highlight_DOUBLE-SERUM_2024.jpg"
-                                alt="Face"
-                                className={classes["category-image"]}
-                            />
-
+                                <img
+                                    src="Highlight_DOUBLE-SERUM_2024.jpg"
+                                    alt="Face"
+                                    className={classes["category-image"]}
+                                />
                             </a>
                             <h3>FACE</h3>
                             <a href="/skincare" className={classes["shop-now"]}>
@@ -192,11 +195,10 @@ export default function Home() {
                                 />
                             </a>
 
-                                <h3>MAKEUP</h3>
-                                <a href="/makeup" className={classes["shop-now"]}>
-                                    SHOP NOW
-                                </a>
-
+                            <h3>MAKEUP</h3>
+                            <a href="/makeup" className={classes["shop-now"]}>
+                                SHOP NOW
+                            </a>
                         </div>
 
                         <div className={classes["category1"]}>
@@ -208,12 +210,10 @@ export default function Home() {
                                 />
                             </a>
 
-                                <h3>BODY</h3>
-                                <a href="/skincare" className={classes["shop-now"]}>
-                                    SHOP NOW
-                                </a>
-
-
+                            <h3>BODY</h3>
+                            <a href="/skincare" className={classes["shop-now"]}>
+                                SHOP NOW
+                            </a>
                         </div>
 
                         <div className={classes["category2"]}>
@@ -225,11 +225,10 @@ export default function Home() {
                                 />
                             </a>
 
-                                <h3>SUN</h3>
-                                <a href="/skincare" className={classes["shop-now"]}>
-                                    SHOP NOW
-                                </a>
-
+                            <h3>SUN</h3>
+                            <a href="/skincare" className={classes["shop-now"]}>
+                                SHOP NOW
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -242,25 +241,39 @@ export default function Home() {
                 <p>Discover our iconic products</p>
                 <div className={classes["product-tabs"]}>
                     <button
-
-                        className={classes[`tab ${activeTab === "just-for-you" ? "active" : ""}`]}
-
+                        className={
+                            classes[
+                                `tab ${
+                                    activeTab === "just-for-you" ? "active" : ""
+                                }`
+                            ]
+                        }
                         onClick={() => handleTabClick("just-for-you")}
                     >
                         Just for You
                     </button>
                     <button
-
-                        className={classes[`tab ${activeTab === "whats-new" ? "active" : ""}`]}
-
+                        className={
+                            classes[
+                                `tab ${
+                                    activeTab === "whats-new" ? "active" : ""
+                                }`
+                            ]
+                        }
                         onClick={() => handleTabClick("whats-new")}
                     >
                         What's New
                     </button>
                     <button
-
-                        className={classes[`tab ${activeTab === "online-exclusives" ? "active" : ""}`]}
-
+                        className={
+                            classes[
+                                `tab ${
+                                    activeTab === "online-exclusives"
+                                        ? "active"
+                                        : ""
+                                }`
+                            ]
+                        }
                         onClick={() => handleTabClick("online-exclusives")}
                     >
                         Online Exclusives
@@ -269,58 +282,58 @@ export default function Home() {
 
                 {/* Hiển thị các sản phẩm dựa trên tab đang được chọn */}
                 {activeTab === "just-for-you" && (
-
                     <div className={classes["product-slider"]}>
                         <div className={classes["product"]}>
-                            <img src="80103084_original_original_A.jpg" alt="Product 1"/>
+                            <img
+                                src="80103084_original_original_A.jpg"
+                                alt="Product 1"
+                            />
                             <h3>Double Serum Anti-Aging</h3>
                             <p>$135.00</p>
-                            <button
-                                className={classes["addtocart"]}
-                            >
+                            <Button className="button" onClick={openModal}>
                                 Quick View
-                            </button>
+                            </Button>
                         </div>
                         <div className={classes["product"]}>
-                            <img src="80068482_original_original_A.jpg" alt="Product 2"/>
+                            <img
+                                src="80068482_original_original_A.jpg"
+                                alt="Product 2"
+                            />
                             <h3>Total Eye Lift Cream</h3>
                             <p>$92.00</p>
-                            <button
-                                className={classes["addtocart"]}
-                            >
+                            <Button className="button" onClick={openModal}>
                                 Quick View
-                            </button>
+                            </Button>
                         </div>
                         <div className={classes["product"]}>
-                            <img src="80077133_original_original_A.jpg" alt="Product 3"/>
+                            <img
+                                src="80077133_original_original_A.jpg"
+                                alt="Product 3"
+                            />
                             <h3>Double Serum Eye</h3>
                             <p>$83.00</p>
-                            <button
-                                className={classes["addtocart"]}
-                                onClick={openModal}
-                            >
+                            <Button className="button" onClick={openModal}>
                                 Quick View
-                            </button>
+                            </Button>
                         </div>
                         <div className={classes["product"]}>
-                            <img src="80084587_original_original_A.jpg" alt="Product 4"/>
+                            <img
+                                src="80084587_original_original_A.jpg"
+                                alt="Product 4"
+                            />
                             <h3>Lip Comfort Oil</h3>
                             <p>$30.00</p>
-                            <button
-                                className={classes["addtocart"]}
-                            >
+                            <Button className="button" onClick={openModal}>
                                 Quick View
-                            </button>
-
+                            </Button>
                         </div>
                     </div>
                 )}
 
                 {activeTab === "whats-new" && (
-
                     <div className={classes["product-slider"]}>
                         <div className={classes["product"]}>
-                        <img src="new_product_1.jpg" alt="New Product 1"/>
+                            <img src="new_product_1.jpg" alt="New Product 1" />
 
                             <h3>New Serum XYZ</h3>
                             <p>$120.00</p>
@@ -328,7 +341,7 @@ export default function Home() {
                         </div>
 
                         <div className={classes["product"]}>
-                            <img src="new_product_2.jpg" alt="New Product 2"/>
+                            <img src="new_product_2.jpg" alt="New Product 2" />
 
                             <h3>New Cream ABC</h3>
                             <p>$95.00</p>
@@ -338,10 +351,12 @@ export default function Home() {
                 )}
 
                 {activeTab === "online-exclusives" && (
-
                     <div className={classes["product-slider"]}>
                         <div className={classes["product"]}>
-                            <img src="exclusive_product_1.jpg" alt="Exclusive Product 1"/>
+                            <img
+                                src="exclusive_product_1.jpg"
+                                alt="Exclusive Product 1"
+                            />
 
                             <h3>Exclusive Product 1</h3>
                             <p>$140.00</p>
@@ -349,7 +364,10 @@ export default function Home() {
                         </div>
 
                         <div className={classes["product"]}>
-                            <img src="exclusive_product_2.jpg" alt="Exclusive Product 2"/>
+                            <img
+                                src="exclusive_product_2.jpg"
+                                alt="Exclusive Product 2"
+                            />
 
                             <h3>Exclusive Product 2</h3>
                             <p>$110.00</p>
@@ -374,7 +392,10 @@ export default function Home() {
                                 Take the guesswork out of gifting, and let them
                                 choose their favorites.
                             </p>
-                            <a href="/gift-cards" className={classes["learn-more"]}>
+                            <a
+                                href="/gift-cards"
+                                className={classes["learn-more"]}
+                            >
                                 SHOP NOW
                             </a>
                         </div>
@@ -385,10 +406,14 @@ export default function Home() {
                             />
                             <h3>Club Clarins</h3>
 
-                            <p>Earn 10 points per dollar and redeem for rewards.</p>
-                            <a href="/club-clarins"
-                               className={classes["learn-more"]}>
-
+                            <p>
+                                Earn 10 points per dollar and redeem for
+                                rewards.
+                            </p>
+                            <a
+                                href="/club-clarins"
+                                className={classes["learn-more"]}
+                            >
                                 LEARN MORE
                             </a>
                         </div>
@@ -402,17 +427,28 @@ export default function Home() {
                                 Enjoy 10% off, free shipping, and 3 free samples
                                 with recurring orders.
                             </p>
-                            <a href="/subscription" className={classes["learn-more"]}>
+                            <a
+                                href="/subscription"
+                                className={classes["learn-more"]}
+                            >
                                 LEARN MORE
                             </a>
                         </div>
 
                         <div className={classes["service"]}>
-                            <img src="live-consultation-2024-CLP.jpg" alt="Live Consultation"/>
+                            <img
+                                src="live-consultation-2024-CLP.jpg"
+                                alt="Live Consultation"
+                            />
                             <h3>Live Consultation</h3>
-                            <p>Connect with a Beauty Coach for a complimentary consultation.</p>
-                            <a href="/consultation" className={classes["learn-more"]}>
-
+                            <p>
+                                Connect with a Beauty Coach for a complimentary
+                                consultation.
+                            </p>
+                            <a
+                                href="/consultation"
+                                className={classes["learn-more"]}
+                            >
                                 BOOK NOW
                             </a>
                         </div>
@@ -420,10 +456,7 @@ export default function Home() {
                 </div>
             </div>
 
-
-
             <div className={classes["commitments-container"]}>
-
                 <h2>Our Commitments</h2>
                 <div className={classes["commitments-grid"]}>
                     <button className={classes["commitment-button"]}>
@@ -442,19 +475,21 @@ export default function Home() {
                     </button>
 
                     <button className={classes["commitment-button"]}>
-                        <img src="CSR_EcoDesign_v2.png" alt="Eco Design"/>
+                        <img src="CSR_EcoDesign_v2.png" alt="Eco Design" />
                         <h3>Eco Design</h3>
                     </button>
                     <button className={classes["commitment-button"]}>
-                        <img src="CSR_Made_in_France_v2.png" alt="Made in France"/>
+                        <img
+                            src="CSR_Made_in_France_v2.png"
+                            alt="Made in France"
+                        />
                         <h3>Made in France</h3>
                     </button>
                 </div>
                 <p className={classes["disclaimer"]}>
-                    *Excluding: ClarinsMen Foaming Shave Gel / myClarins Clear-out Targets
-                    Imperfections / Bright Plus Fresh Ampoule Vitamin C Complex / Nourishing
-                    Shampoo bar
-
+                    *Excluding: ClarinsMen Foaming Shave Gel / myClarins
+                    Clear-out Targets Imperfections / Bright Plus Fresh Ampoule
+                    Vitamin C Complex / Nourishing Shampoo bar
                 </p>
                 <div>
                     <h2>Online advantages</h2>
@@ -469,22 +504,31 @@ export default function Home() {
                         </button>
 
                         <button className={classes["commitment-button"]}>
-                            <img src="samples.png" alt="Charitable Initiatives"/>
+                            <img
+                                src="samples.png"
+                                alt="Charitable Initiatives"
+                            />
                             <h3>3 Free Samples</h3>
                             <p>with any order</p>
                         </button>
                         <button className={classes["commitment-button"]}>
-                            <img src="special-offers.webp" alt="Eco Design"/>
+                            <img src="special-offers.webp" alt="Eco Design" />
                             <h3>Special Offers</h3>
                             <p>all year long</p>
                         </button>
                         <button className={classes["commitment-button"]}>
-                            <img src="Club-clarins-2023.webp" alt="Made in France"/>
+                            <img
+                                src="Club-clarins-2023.webp"
+                                alt="Made in France"
+                            />
                             <h3>Earn Rewards</h3>
                             <p>$1 = 10 points</p>
                         </button>
                         <button className={classes["commitment-button"]}>
-                            <img src="auto-replenishment.webp" alt="Made in France"/>
+                            <img
+                                src="auto-replenishment.webp"
+                                alt="Made in France"
+                            />
 
                             <h3>Subscription</h3>
                             <p>10% off and free shipping</p>
@@ -493,14 +537,16 @@ export default function Home() {
                 </div>
 
                 <div className={classes["payment-methods"]}>
-                    <img src="visa-2.webp" alt="Visa"/>
-                    <img src="mastercard-2.webp" alt="MasterCard"/>
-                    <img src="american-express.webp" alt="American Express"/>
-                    <img src="discover.webp" alt="Discover"/>
-                    <img src="paypal.webp" alt="PayPal"/>
-                    <img src="apple-pay-footer-advantage.webp" alt="Apple Pay"/>
-                    <img src="afterpay.webp" alt="Afterpay"/>
-
+                    <img src="visa-2.webp" alt="Visa" />
+                    <img src="mastercard-2.webp" alt="MasterCard" />
+                    <img src="american-express.webp" alt="American Express" />
+                    <img src="discover.webp" alt="Discover" />
+                    <img src="paypal.webp" alt="PayPal" />
+                    <img
+                        src="apple-pay-footer-advantage.webp"
+                        alt="Apple Pay"
+                    />
+                    <img src="afterpay.webp" alt="Afterpay" />
                 </div>
             </div>
 

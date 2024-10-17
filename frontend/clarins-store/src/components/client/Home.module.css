@@ -16,14 +16,14 @@
 
 .banner-content {
     position: absolute;
-    top: 10%;
+    top: 30%;
     left: 70%;
     transform: translate(-50%, -50%);
     color: white;
 }
 
 .banner-content h2 {
-    font-size: 2.5em;
+    font-size: 2rem;
     font-weight: bold;
 }
 
@@ -49,7 +49,7 @@
 .online-benefits {
     display: flex;
     justify-content: space-between;
-    background-color: #faf6f5; /* Màu nền giống với ảnh */
+    gap: 1rem;
     padding: 20px 0;
     max-width: 1200px;
     margin: 0 auto;
@@ -58,6 +58,13 @@
 .benefit {
     text-align: center;
     flex: 1;
+    background-color: rgb(248, 236, 228); /* Màu nền giống với ảnh */
+    padding: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.benefit:hover {
+    background-color: rgb(247, 219, 201); /* Màu nền giống với ảnh */
 }
 
 .benefit i {
@@ -67,7 +74,7 @@
 }
 
 .benefit p {
-    font-family: 'Arial', sans-serif;
+    font-family: "Arial", sans-serif;
     font-size: 15px;
     color: #333;
     margin: 0;
@@ -156,7 +163,7 @@
 
 .product-categories {
     display: flex;
-    justify-content: space-between;  /* Phân bố đều các phần tử */
+    justify-content: space-between; /* Phân bố đều các phần tử */
     gap: 20px; /* Khoảng cách giữa các phần tử */
     padding: 20px;
     max-width: 1200px; /* Đặt chiều rộng tối đa cho container */
@@ -166,37 +173,39 @@
 }
 
 .category1 {
-    transform: translateY(70px)
+    transform: translateY(70px);
 }
 
 .category2 {
-    transform: translateY(-70px)
+    transform: translateY(-70px);
 }
 
-.category1, .category2 {
+.category1,
+.category2 {
     flex: 1; /* Các phần tử sẽ giãn đều ra không gian */
     display: flex;
     flex-direction: column;
     align-items: center; /* Căn giữa nội dung theo trục ngang */
     max-width: 300px; /* Đặt chiều rộng tối đa cho mỗi phần tử */
     padding: 10px;
-    border-radius: 5px
+    border-radius: 5px;
 }
 
-.category1:hover, .category2:hover {
+.category1:hover,
+.category2:hover {
     background-color: #ffffff;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Hiệu ứng đổ bóng khi di chuột qua sản phẩm */
 }
 
 .category-image {
     align-items: center;
-    width: 90%;  /* Hình ảnh chiếm toàn bộ chiều rộng của phần tử */
+    width: 90%; /* Hình ảnh chiếm toàn bộ chiều rộng của phần tử */
     height: auto; /* Giữ nguyên tỷ lệ hình ảnh */
     max-width: 300px; /* Đặt chiều rộng tối đa của hình ảnh */
     padding: 10px; /* Thêm khoảng cách bên trong */
     border-radius: 10px; /* Bo tròn các góc viền */
-    max-height: 100%;        /* Make sure the image doesn’t exceed the container’s height */
-    object-fit: contain;     /* This ensures the image retains its aspect ratio */
+    max-height: 100%; /* Make sure the image doesn’t exceed the container’s height */
+    object-fit: contain; /* This ensures the image retains its aspect ratio */
 }
 
 h3 {
@@ -213,20 +222,24 @@ h3 {
     color: black;
 }
 
-
 @media (max-width: 1026px) {
     .product-categories {
         flex-wrap: wrap; /* Cho phép xuống dòng */
         justify-content: space-between; /* Phân bố đều khoảng cách giữa các phần tử */
     }
-    .category1, .category2 {
+    .category1,
+    .category2 {
         transform: none;
-        flex-basis: calc(50% - 10px); /* Mỗi phần tử chiếm 50% chiều rộng trừ đi khoảng cách */
+        flex-basis: calc(
+            50% - 10px
+        ); /* Mỗi phần tử chiếm 50% chiều rộng trừ đi khoảng cách */
         max-width: none; /* Xóa bỏ giới hạn chiều rộng */
     }
 
     .category {
-        flex-basis: calc(50% - 10px); /* Mỗi phần tử chiếm 50% chiều rộng trừ đi khoảng cách */
+        flex-basis: calc(
+            50% - 10px
+        ); /* Mỗi phần tử chiếm 50% chiều rộng trừ đi khoảng cách */
         max-width: none; /* Xóa bỏ giới hạn chiều rộng */
     }
 
@@ -240,14 +253,19 @@ h3 {
         flex-wrap: wrap; /* Cho phép xuống dòng */
         justify-content: space-between; /* Phân bố đều khoảng cách giữa các phần tử */
     }
-    .category1, .category2 {
+    .category1,
+    .category2 {
         transform: none;
-        flex-basis: calc(50% - 10px); /* Mỗi phần tử chiếm 50% chiều rộng trừ đi khoảng cách */
+        flex-basis: calc(
+            50% - 10px
+        ); /* Mỗi phần tử chiếm 50% chiều rộng trừ đi khoảng cách */
         max-width: none; /* Xóa bỏ giới hạn chiều rộng */
     }
 
     .category {
-        flex-basis: calc(50% - 10px); /* Mỗi phần tử chiếm 50% chiều rộng trừ đi khoảng cách */
+        flex-basis: calc(
+            50% - 10px
+        ); /* Mỗi phần tử chiếm 50% chiều rộng trừ đi khoảng cách */
         max-width: none; /* Xóa bỏ giới hạn chiều rộng */
     }
 
@@ -363,7 +381,6 @@ h3 {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Hiệu ứng đổ bóng khi di chuột qua sản phẩm */
 }
 
-
 /* Our exclusive services */
 /* Phần container chính của exclusive-services */
 .exclusive-services {
@@ -413,7 +430,6 @@ h3 {
     height: auto; /* Giữ tỷ lệ hình ảnh */
     border-radius: 10px; /* Bo tròn các góc của ảnh */
     margin-bottom: 20px; /* Khoảng cách dưới hình ảnh */
-
 }
 
 /* Phong cách cho tiêu đề của mỗi dịch vụ */
@@ -448,10 +464,12 @@ h3 {
 
 /* Hiệu ứng khi di chuột qua mỗi khối dịch vụ */
 .service:hover {
-    transform: translateY(-10px); /* Khối dịch vụ được nâng lên 10px khi hover */
+    transform: translateY(
+        -10px
+    ); /* Khối dịch vụ được nâng lên 10px khi hover */
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Đổ bóng mạnh hơn khi hover */
 }
-.addtocart{
+.addtocart {
     background-color: #e60023; /* Màu nền của nút là đỏ đậm */
     color: white; /* Màu chữ trên nút là trắng */
     border: none; /* Loại bỏ viền của nút */
@@ -465,18 +483,13 @@ h3 {
     background-color: #cc0020; /* Đổi màu nền nút thành đỏ sậm hơn khi hover */
 }
 
-
 /*Beuty*/
-
-
-
 
 /* Phần chính của khối "Beauty must-haves" */
 .beauty-must-haves {
     text-align: center; /* Căn giữa toàn bộ nội dung */
     padding: 40px 0; /* Phần đệm trên và dưới cho khoảng cách */
     background-color: #fff; /* Màu nền trắng */
-
 }
 
 /* Tiêu đề "Beauty must-haves" */
@@ -571,7 +584,9 @@ h3 {
 
 /* Hiệu ứng khi hover qua từng sản phẩm */
 .product:hover {
-    transform: translateY(-10px); /* Khối dịch vụ được nâng lên 10px khi hover */
+    transform: translateY(
+        -10px
+    ); /* Khối dịch vụ được nâng lên 10px khi hover */
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Đổ bóng mạnh hơn khi hover */
 }
 .beauty-must-haves {
@@ -621,7 +636,6 @@ h3 {
     font-size: 14px;
     margin: 5px 0;
 }
-
 
 /*Commitments*/
 /* Container chính */
