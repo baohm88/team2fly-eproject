@@ -7,7 +7,6 @@ import Modal from "./Modal"; // Import the Modal component
 
 import Slider from "rc-slider"; // Import rc-slider
 import "rc-slider/assets/index.css"; // Import rc-slider styles
-import classes from "./SkincareProducts.module.css";
 
 export default function SkincareProducts() {
     const [products, setProducts] = useState([]);
@@ -55,8 +54,10 @@ export default function SkincareProducts() {
                 (product) => product.sub_category === category
             );
             setSelectedCategory(category); // Set the selected category state
+            document.title = "Clarins Skincare | " + category;
         } else {
             setSelectedCategory(""); // Clear category selection if not provided
+            document.title = "Clarins Skincare";
         }
 
         if (searchText) {
@@ -141,7 +142,7 @@ export default function SkincareProducts() {
 
     return (
         <>
-            <div className= {classes["center"]}>
+            <div className="center">
                 <h1>SKINCARE</h1>
                 <p>
                     From daily rituals to targeted anti-aging care, discover the
@@ -150,7 +151,7 @@ export default function SkincareProducts() {
                 </p>
             </div>
 
-            <p className={classes["tabs-container"]}>
+            <p className="tabs-container center">
                 <button onClick={() => updateCategoryInURL("Face")}>
                     Face
                 </button>
@@ -163,7 +164,7 @@ export default function SkincareProducts() {
             </p>
 
             {/* Sorting and Filtering Controls */}
-            <div className={classes["filters"]}>
+            <div className="filters">
                 {/* Sorting Dropdown */}
                 <label htmlFor="sort">Sort by: </label>
                 <select
@@ -182,7 +183,7 @@ export default function SkincareProducts() {
             </div>
 
             {/* Price Range Filter */}
-            <div className={classes["price-filter"]}>
+            <div className="price-filter">
                 <h4>Filter by Price:</h4>
                 <Slider
                     range
@@ -209,14 +210,14 @@ export default function SkincareProducts() {
             </div>
 
             {/* Total Products Count */}
-            <div className={classes["total-products"]}>
+            <div className="total-products">
                 <h4>{filteredProducts.length} products</h4>
             </div>
 
-            <div className={classes["products-container"]}>
+            <div className="products-container">
                 {currentProducts.map((product) => (
                     <div
-                        className={classes["product-card"]}
+                        className="product-card center"
                         key={product.product_id}
                     >
                         <Link to={"/products/" + product.product_id}>
@@ -227,18 +228,18 @@ export default function SkincareProducts() {
                                         : ""
                                 }
                                 alt={product.product_name}
-                                className={classes["product-image"]}
+                                className="product-image"
                             />
-                            <h4 className={classes["product-title"]}>
+                            <h4 className="product-title">
                                 {product.product_name}
                             </h4>
                         </Link>
 
-                        <p className={classes["product-price"]}>
+                        <p className="product-price">
                             {formatter.format(product.price)}
                         </p>
                         <button
-                            className={classes["cart-button"]}
+                            className="cart-button"
                             onClick={() => openModal(product)} // Open modal with product info
                         >
                             Quick View
@@ -246,30 +247,39 @@ export default function SkincareProducts() {
                     </div>
                 ))}
             </div>
+
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
             {/* Pagination Controls */}
-            <div className={classes["pagination"]}>
-                <button
-                    onClick={() => paginate(currentPage - 1)}
-                    disabled={currentPage === 1}
-                >
-                    <IoChevronBackOutline />
-                </button>
-                {Array.from({ length: totalPages }, (_, i) => (
+            {totalPages > 0 && (
+                <div className="pagination center">
                     <button
-                        key={i + 1}
-                        onClick={() => paginate(i + 1)}
-                        className={currentPage === i + 1 ? "active" : ""}
+                        onClick={() => paginate(currentPage - 1)}
+                        disabled={currentPage === 1}
                     >
-                        {i + 1}
+                        <IoChevronBackOutline />
                     </button>
-                ))}
-                <button
-                    onClick={() => paginate(currentPage + 1)}
-                    disabled={currentPage === totalPages}
-                >
-                    <IoChevronForward />
-                </button>
-            </div>
+                    {Array.from({ length: totalPages }, (_, i) => (
+                        <button
+                            key={i + 1}
+                            onClick={() => paginate(i + 1)}
+                            className={currentPage === i + 1 ? "active" : ""}
+                        >
+                            {i + 1}
+                        </button>
+                    ))}
+                    <button
+                        onClick={() => paginate(currentPage + 1)}
+                        disabled={currentPage === totalPages}
+                    >
+                        <IoChevronForward />
+                    </button>
+                </div>
+            )}
 
             {selectedProduct && (
                 <Modal product={selectedProduct} onClose={closeModal} />
@@ -277,4 +287,3 @@ export default function SkincareProducts() {
         </>
     );
 }
-

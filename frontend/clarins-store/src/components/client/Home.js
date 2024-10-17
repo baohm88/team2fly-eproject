@@ -30,7 +30,6 @@ export default function Home() {
         indexOfLastProduct
     );
 
-
     // fetch products from db initially
     useEffect(() => {
         axios.get("http://localhost/project/collections/all").then((res) => {
@@ -170,11 +169,13 @@ export default function Home() {
                     <div className={classes["product-categories"]}>
                         <div className={classes["category1"]}>
                             <a href="/skincare">
+
                             <img
                                 src="Highlight_DOUBLE-SERUM_2024.jpg"
                                 alt="Face"
                                 className={classes["category-image"]}
                             />
+
                             </a>
                             <h3>FACE</h3>
                             <a href="/skincare" className={classes["shop-now"]}>
@@ -190,10 +191,12 @@ export default function Home() {
                                     className={classes["category-image"]}
                                 />
                             </a>
+
                                 <h3>MAKEUP</h3>
                                 <a href="/makeup" className={classes["shop-now"]}>
                                     SHOP NOW
                                 </a>
+
                         </div>
 
                         <div className={classes["category1"]}>
@@ -204,10 +207,13 @@ export default function Home() {
                                     className={classes["category-image"]}
                                 />
                             </a>
+
                                 <h3>BODY</h3>
                                 <a href="/skincare" className={classes["shop-now"]}>
                                     SHOP NOW
                                 </a>
+
+
                         </div>
 
                         <div className={classes["category2"]}>
@@ -218,10 +224,12 @@ export default function Home() {
                                     className={classes["category-image"]}
                                 />
                             </a>
+
                                 <h3>SUN</h3>
                                 <a href="/skincare" className={classes["shop-now"]}>
                                     SHOP NOW
                                 </a>
+
                         </div>
                     </div>
                 </div>
@@ -234,19 +242,25 @@ export default function Home() {
                 <p>Discover our iconic products</p>
                 <div className={classes["product-tabs"]}>
                     <button
+
                         className={classes[`tab ${activeTab === "just-for-you" ? "active" : ""}`]}
+
                         onClick={() => handleTabClick("just-for-you")}
                     >
                         Just for You
                     </button>
                     <button
+
                         className={classes[`tab ${activeTab === "whats-new" ? "active" : ""}`]}
+
                         onClick={() => handleTabClick("whats-new")}
                     >
                         What's New
                     </button>
                     <button
+
                         className={classes[`tab ${activeTab === "online-exclusives" ? "active" : ""}`]}
+
                         onClick={() => handleTabClick("online-exclusives")}
                     >
                         Online Exclusives
@@ -255,6 +269,7 @@ export default function Home() {
 
                 {/* Hiển thị các sản phẩm dựa trên tab đang được chọn */}
                 {activeTab === "just-for-you" && (
+
                     <div className={classes["product-slider"]}>
                         <div className={classes["product"]}>
                             <img src="80103084_original_original_A.jpg" alt="Product 1"/>
@@ -296,20 +311,25 @@ export default function Home() {
                             >
                                 Quick View
                             </button>
+
                         </div>
                     </div>
                 )}
 
                 {activeTab === "whats-new" && (
+
                     <div className={classes["product-slider"]}>
                         <div className={classes["product"]}>
                         <img src="new_product_1.jpg" alt="New Product 1"/>
+
                             <h3>New Serum XYZ</h3>
                             <p>$120.00</p>
                             <p>★★★★★</p>
                         </div>
+
                         <div className={classes["product"]}>
                             <img src="new_product_2.jpg" alt="New Product 2"/>
+
                             <h3>New Cream ABC</h3>
                             <p>$95.00</p>
                             <p>★★★★★</p>
@@ -318,15 +338,19 @@ export default function Home() {
                 )}
 
                 {activeTab === "online-exclusives" && (
+
                     <div className={classes["product-slider"]}>
                         <div className={classes["product"]}>
                             <img src="exclusive_product_1.jpg" alt="Exclusive Product 1"/>
+
                             <h3>Exclusive Product 1</h3>
                             <p>$140.00</p>
                             <p>★★★★★</p>
                         </div>
+
                         <div className={classes["product"]}>
                             <img src="exclusive_product_2.jpg" alt="Exclusive Product 2"/>
+
                             <h3>Exclusive Product 2</h3>
                             <p>$110.00</p>
                             <p>★★★★★</p>
@@ -334,7 +358,6 @@ export default function Home() {
                     </div>
                 )}
             </div>
-
 
             <div>
                 <div className={classes["exclusive-services"]}>
@@ -348,8 +371,8 @@ export default function Home() {
                             />
                             <h3>Gift Cards</h3>
                             <p>
-                                Take the guesswork out of gifting, and let them choose their
-                                favorites.
+                                Take the guesswork out of gifting, and let them
+                                choose their favorites.
                             </p>
                             <a href="/gift-cards" className={classes["learn-more"]}>
                                 SHOP NOW
@@ -361,9 +384,11 @@ export default function Home() {
                                 alt="Club Clarins"
                             />
                             <h3>Club Clarins</h3>
+
                             <p>Earn 10 points per dollar and redeem for rewards.</p>
                             <a href="/club-clarins"
                                className={classes["learn-more"]}>
+
                                 LEARN MORE
                             </a>
                         </div>
@@ -374,18 +399,20 @@ export default function Home() {
                             />
                             <h3>Subscription Service</h3>
                             <p>
-                                Enjoy 10% off, free shipping, and 3 free samples with recurring
-                                orders.
+                                Enjoy 10% off, free shipping, and 3 free samples
+                                with recurring orders.
                             </p>
                             <a href="/subscription" className={classes["learn-more"]}>
                                 LEARN MORE
                             </a>
                         </div>
+
                         <div className={classes["service"]}>
                             <img src="live-consultation-2024-CLP.jpg" alt="Live Consultation"/>
                             <h3>Live Consultation</h3>
                             <p>Connect with a Beauty Coach for a complimentary consultation.</p>
                             <a href="/consultation" className={classes["learn-more"]}>
+
                                 BOOK NOW
                             </a>
                         </div>
@@ -394,7 +421,9 @@ export default function Home() {
             </div>
 
 
+
             <div className={classes["commitments-container"]}>
+
                 <h2>Our Commitments</h2>
                 <div className={classes["commitments-grid"]}>
                     <button className={classes["commitment-button"]}>
@@ -411,6 +440,7 @@ export default function Home() {
                         />
                         <h3>Charitable Initiatives</h3>
                     </button>
+
                     <button className={classes["commitment-button"]}>
                         <img src="CSR_EcoDesign_v2.png" alt="Eco Design"/>
                         <h3>Eco Design</h3>
@@ -424,6 +454,7 @@ export default function Home() {
                     *Excluding: ClarinsMen Foaming Shave Gel / myClarins Clear-out Targets
                     Imperfections / Bright Plus Fresh Ampoule Vitamin C Complex / Nourishing
                     Shampoo bar
+
                 </p>
                 <div>
                     <h2>Online advantages</h2>
@@ -436,6 +467,7 @@ export default function Home() {
                             <h3>Free Shipping</h3>
                             <p>with any $50 order</p>
                         </button>
+
                         <button className={classes["commitment-button"]}>
                             <img src="samples.png" alt="Charitable Initiatives"/>
                             <h3>3 Free Samples</h3>
@@ -453,11 +485,13 @@ export default function Home() {
                         </button>
                         <button className={classes["commitment-button"]}>
                             <img src="auto-replenishment.webp" alt="Made in France"/>
+
                             <h3>Subscription</h3>
                             <p>10% off and free shipping</p>
                         </button>
                     </div>
                 </div>
+
                 <div className={classes["payment-methods"]}>
                     <img src="visa-2.webp" alt="Visa"/>
                     <img src="mastercard-2.webp" alt="MasterCard"/>
@@ -466,35 +500,9 @@ export default function Home() {
                     <img src="paypal.webp" alt="PayPal"/>
                     <img src="apple-pay-footer-advantage.webp" alt="Apple Pay"/>
                     <img src="afterpay.webp" alt="Afterpay"/>
+
                 </div>
             </div>
-
-            {/*/!* Pagination Controls *!/*/}
-            {/*{totalPages > 0 && (*/}
-            {/*    <div className="pagination center">*/}
-            {/*        <button*/}
-            {/*            onClick={() => paginate(currentPage - 1)}*/}
-            {/*            disabled={currentPage === 1}*/}
-            {/*        >*/}
-            {/*            <IoChevronBackOutline />*/}
-            {/*        </button>*/}
-            {/*        {Array.from({ length: totalPages }, (_, i) => (*/}
-            {/*            <button*/}
-            {/*                key={i + 1}*/}
-            {/*                onClick={() => paginate(i + 1)}*/}
-            {/*                className={currentPage === i + 1 ? "active" : ""}*/}
-            {/*            >*/}
-            {/*                {i + 1}*/}
-            {/*            </button>*/}
-            {/*        ))}*/}
-            {/*        <button*/}
-            {/*            onClick={() => paginate(currentPage + 1)}*/}
-            {/*            disabled={currentPage === totalPages}*/}
-            {/*        >*/}
-            {/*            <IoChevronForward />*/}
-            {/*        </button>*/}
-            {/*    </div>*/}
-            {/*)}*/}
 
             {selectedProduct && (
                 <Modal product={selectedProduct} onClose={closeModal} />
