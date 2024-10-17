@@ -4,6 +4,7 @@ import { formatter } from "../../util/formatter";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import classes from "./Cart.module.css"; // Importing CSS Module
+import Button from "../UI/Button";
 
 export default function Cart() {
     const {
@@ -20,7 +21,7 @@ export default function Cart() {
     useEffect(() => {
         const calculateTotalAmount = () => {
             const total = cart.reduce(
-                (sum, item) => sum + item.price * item.quantity,
+                (sum, item) => sum + item.product_price * item.quantity,
                 0
             );
             setTotalAmount(total);
@@ -42,7 +43,7 @@ export default function Cart() {
                 orderData
             );
 
-            console.log(response.data.type);
+            console.log(response.data);
 
             if (response.data.type === "success") {
                 alert("Order created successfully!");
@@ -77,7 +78,9 @@ export default function Cart() {
                             return (
                                 <tr key={item.product_id}>
                                     <td>
-                                        <Link to={"/products/" + item.product_id}>
+                                        <Link
+                                            to={"/products/" + item.product_id}
+                                        >
                                             <img
                                                 src={
                                                     item.product_images
@@ -92,16 +95,23 @@ export default function Cart() {
                                         </Link>
                                     </td>
                                     <td>
-                                        <Link to={"/products/" + item.product_id} className={classes.productName}>
+                                        <Link
+                                            to={"/products/" + item.product_id}
+                                            className={classes.productName}
+                                        >
                                             {item.product_name}
                                         </Link>
                                     </td>
                                     <td className={classes.center}>
-                                        <div className={classes.quantityControl}>
+                                        <div
+                                            className={classes.quantityControl}
+                                        >
                                             <span
                                                 className={classes.adjustButton}
                                                 onClick={() =>
-                                                    decrementQuantity(item.product_id)
+                                                    decrementQuantity(
+                                                        item.product_id
+                                                    )
                                                 }
                                             >
                                                 -
@@ -112,7 +122,9 @@ export default function Cart() {
                                             <span
                                                 className={classes.adjustButton}
                                                 onClick={() =>
-                                                    incrementQuantity(item.product_id)
+                                                    incrementQuantity(
+                                                        item.product_id
+                                                    )
                                                 }
                                             >
                                                 +
@@ -120,11 +132,11 @@ export default function Cart() {
                                         </div>
                                     </td>
                                     <td className={classes.center}>
-                                        {formatter.format(item.price)}
+                                        {formatter.format(item.product_price)}
                                     </td>
                                     <td className={classes.center}>
                                         {formatter.format(
-                                            item.price * item.quantity
+                                            item.product_price * item.quantity
                                         )}
                                     </td>
                                     <td className={classes.center}>
@@ -158,12 +170,9 @@ export default function Cart() {
                 <p className={classes.flexContainerBetween}>
                     <span>Estimated Total</span> <span>${totalAmount}</span>
                 </p>
-                <button
-                    className={classes.checkoutButton}
-                    onClick={handleCheckout}
-                >
+                <Button className="full-width-button" onClick={handleCheckout}>
                     Checkout
-                </button>
+                </Button>
             </div>
         </div>
     );

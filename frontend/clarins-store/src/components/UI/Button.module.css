@@ -1,0 +1,56 @@
+.full-width-button,
+.button,
+.info-button,
+.warning-button {
+    border: none;
+    cursor: pointer;
+    color: white;
+    padding: 0.7rem 1.5rem;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.full-width-button {
+    width: 100%;
+}
+
+.full-width-button,
+.button {
+    background-color: #a6212b;
+}
+
+.full-width-button:hover,
+.button:hover {
+    background-color: #cc0020;
+}
+
+.text-button {
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    font-weight: bold;
+    margin-right: 1rem;
+    text-transform: uppercase;
+}
+
+.text-button:hover {
+    color: #a6212b;
+    background-color: transparent;
+}
+
+.info-button {
+    background-color: rgb(24, 24, 245);
+}
+
+.info-button:hover {
+    background-color: rgb(73, 73, 240);
+}
+
+.warning-button {
+    background-color: rgb(255, 136, 0);
+}
+
+.warning-button:hover {
+    background-color: rgb(237, 165, 84);
+}

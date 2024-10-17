@@ -18,7 +18,7 @@ export default function OrderItems() {
 
                 // Calculate total amount
                 const total = res.data.data.reduce(
-                    (sum, item) => sum + item.price * item.product_qty,
+                    (sum, item) => sum + item.product_price * item.product_qty,
                     0
                 );
                 setTotalAmount(total); // Update the total amount
@@ -28,7 +28,7 @@ export default function OrderItems() {
     return (
         <>
             <div className="center">
-                <h1>Order# {order_id} </h1>
+                <h1>Your Order Items </h1>
                 <table>
                     <thead>
                         <tr>
@@ -66,11 +66,11 @@ export default function OrderItems() {
                                 </td>
                                 <td>{item.main_category}</td>
                                 <td>{item.sub_category}</td>
-                                <td>{formatter.format(item.price)}</td>
+                                <td>{formatter.format(item.product_price)}</td>
                                 <td>{item.product_qty}</td>
                                 <td>
                                     {formatter.format(
-                                        item.price * item.product_qty
+                                        item.product_price * item.product_qty
                                     )}
                                 </td>
                             </tr>
