@@ -71,7 +71,7 @@ class BaseController
 
     public function create_sql_param_for_sql($o_instance, $method)
     {
-        if ($method == "PUT") {
+        if ($method = "PUT") {
             $reflection = new ReflectionClass($o_instance);
             $properties = $reflection->getProperties();
             $str = "";
@@ -81,28 +81,9 @@ class BaseController
                     continue;
                 }
 
-                $str .= $property_name . " = :" . $property_name . ",";
+                $str .= $property_name . " = :" . $property_name . ", ";
             }
-            $str =  rtrim($str, ", ");
-            return $str . " ";
-        } else if ($method == "POST") {
-            $reflection = new ReflectionClass($o_instance);
-            $properties = $reflection->getProperties();
-            $col = "";
-            $value = "";
-            foreach ($properties as $property) {
-                $property_name = substr($property->name, 2);
-                if (in_array($property_name, ["instance_model", "conn", "product_images"])) {
-                    continue;
-                }
-
-                $col .= $property_name . ", ";
-                $value .= ":" . $property_name . ", ";
-            }
-            $arr = [];
-            $arr["col"] = rtrim($col, ", ");
-            $arr["value"] = rtrim($value, ", ");
-            return $arr;
+            return $str;
         }
     }
 
@@ -116,7 +97,7 @@ class BaseController
                 continue;
             }
             $get_method = "get_" . $property_name;
-            if (in_array($property_name, ["stock_qty", "product_id", "rating", "user_id"])) {
+            if (in_array($property_name, ["stock_qty", "product_id"])) {
                 $stmt->bindValue($property_name, $o_instance->$get_method(), PDO::PARAM_INT);
             } else {
                 $stmt->bindValue($property_name, $o_instance->$get_method(), PDO::PARAM_STR);
