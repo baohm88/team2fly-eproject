@@ -1,0 +1,368 @@
+/* Container chính của sản phẩm */
+.product-container {
+    max-width: 900px; /* Điều chỉnh chiều ngang tối đa */
+    margin: 0 auto;  /* Canh giữa form */
+    background-color: rgba(255,255,255,255);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+/* Thông tin sản phẩm */
+.product-details {
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+}
+
+/* Phần hiển thị ảnh sản phẩm */
+.product-gallery {
+    width: 45%;
+}
+
+.product-gallery img {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+/* Phần thông tin sản phẩm */
+.product-info {
+    width: 45%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.product-info h3 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+/* Nút "Add to Cart" */
+.add-to-bag-button {
+    background-color: rgb(166, 43, 47);
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.add-to-bag-button:hover {
+    background-color: rgb(166, 43, 47);
+}
+
+/* Container for Ratings Summary & Reviews */
+.ratings-form-container {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+}
+
+.ratings-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 30px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Title of Ratings Summary */
+.ratings-form h2 {
+    text-align: center;
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Summary Section */
+.rating-summary {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.rating-summary h3 {
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.average-rating-stars-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.average-rating-stars-container span {
+    font-size: 18px;
+    color: #333;
+}
+
+/* Progress Bar for each Rating */
+.star-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.star-label {
+    width: 70px;
+    text-align: right;
+    padding-right: 10px;
+    font-size: 16px;
+    color: #333;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 8px;
+    background-color: #f1f1f1;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-right: 10px;
+}
+
+.progress {
+    height: 100%;
+    background-color: rgb(166, 43, 47);
+    border-radius: 4px;
+}
+
+/* Star Percentage */
+.star-percentage {
+    width: 50px;
+    font-size: 14px;
+    color: #333;
+}
+
+/* Container của phần Ratings Summary & Reviews */
+.ratings-form-container {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+}
+
+/* Form Ratings Summary */
+.ratings-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 20px;
+}
+
+/* Title của Ratings Summary & Reviews */
+.ratings-form h2 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+/* Title cho Ratings Summary */
+.rating-summary h3 {
+    font-size: 20px;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+/* Container của Rating Summary */
+.rating-summary {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Rating Stars Container */
+/* Chỉnh lại phần Overall trong Rating Summary */
+.average-rating-stars-container {
+    display: flex;
+    flex-direction: column; /* Đưa 'Overall' ra đầu dòng */
+    gap: 10px;
+}
+
+.average-rating-stars-container span {
+    font-size: 16px;
+    color: #555;
+}
+
+/* Chỉnh lại các phần còn lại của Rating Summary */
+.rating-summary {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+
+/* Progress bar section */
+.progress-bar {
+    background-color: #ddd;
+    border-radius: 8px;
+    width: 100%;
+    height: 10px;
+    margin-bottom: 10px;
+}
+
+/* Progress inside the progress bar */
+.progress {
+    height: 100%;
+    background-color: rgb(166, 43, 47);
+    border-radius: 5px;
+}
+
+/* Mỗi Rating Card trong phần Ratings */
+.rating-card {
+    padding: 15px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 15px;
+}
+
+.rating-card h5 {
+    font-size: 14px;
+    color: #333;
+}
+
+.rating-card i {
+    font-size: 14px;
+    color: #777;
+}
+
+/* Button 'Write a Review' */
+.write-review-button {
+    padding: 12px 24px;
+    background-color:rgb(166, 43, 47);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    align-self: flex-start;
+    margin-top: 10px;
+}
+/* Giảm chiều rộng của Ratings Summary & Reviews */
+.ratings-form-container {
+    max-width: 860px;
+    margin: 0 auto;  
+    padding: 20px;
+}
+
+/* Hover effect cho Button */
+.write-review-button:hover {
+    background-color: #c0392b;
+}
+
+/* Phần Reviews và Button Write Review ngang hàng */
+.ratings-form > div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Phần Text 'Reviews' */
+.ratings-form > div > h3 {
+    font-size: 20px;
+    color: #333;
+    margin: 0;
+}
+
+/* Chỉnh kích thước và căn lề cho các phần tử */
+.ratings-form > div {
+    margin-bottom: 20px;
+}
+/* For smaller screens like tablets */
+@media (max-width: 768px) {
+    .product-container {
+        max-width: 100%; /* Full width on smaller screens */
+        padding: 15px; /* Add some padding for better spacing */
+    }
+
+    .ratings-form-container {
+        max-width: 100%; /* Make ratings section full width */
+        padding: 10px; /* Reduce padding for smaller screens */
+    }
+}
+
+/* For mobile screens */
+@media (max-width: 480px) {
+    .product-container {
+        max-width: 90%; /* Shrink the form on mobile */
+        padding: 10px; /* Further reduce padding */
+    }
+
+    .ratings-form-container {
+        max-width: 100%;
+        padding: 5px; /* Smaller padding for compact view */
+    }
+    
+    .ratings-form {
+        gap: 10px; /* Reduce gap between form elements */
+    }
+
+    /* Smaller text sizes */
+    .ratings-form h2 {
+        font-size: 18px;
+    }
+
+    .rating-summary h3 {
+        font-size: 16px;
+    }
+
+    .product-info h3 {
+        font-size: 20px;
+    }
+}
+/* Container of the buttons */
+.button-container {
+    display: flex;
+    justify-content: flex-end; /* Đưa nút về phía bên phải */
+    margin-top: 20px; /* Thêm khoảng cách giữa nút và các phần khác */
+}
+
+/* Style for both buttons */
+.button-container button {
+    padding: 12px 24px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* Post Review button */
+.add-to-bag-button {
+    background-color: rgb(166, 43, 47); /* Màu chính của nút Post Review */
+    color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Thêm hiệu ứng shadow */
+}
+
+.add-to-bag-button:hover {
+    background-color: #b03030; /* Hiệu ứng hover nhẹ */
+}
+
+/* Cancel button */
+/* Cancel link style */
+.cancel-link {
+    color: #333;
+    text-decoration: none;
+    margin-left: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    display: inline-block;
+    background-color: #ddd;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    
+}
+
+.cancel-link:hover {
+    background-color: #bbb; /* Hiệu ứng hover */
+}

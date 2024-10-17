@@ -5,7 +5,7 @@ import { UserContext } from "../../App";
 import { formatter } from "../../util/formatter";
 import { FaStar, FaStarHalfAlt } from "react-icons/fa"; // Import star icon
 import Modal from "react-modal"; // Import react-modal
-
+import classes from "./ProductDetails.module.css";
 // Set the app element for accessibility
 Modal.setAppElement("#root");
 
@@ -192,228 +192,193 @@ export default function ProductDetails() {
                 alert("Failed to submit the review. Please try again.");
             });
     };
-
     return (
         <>
             <h1>Product # {id}</h1>
-            <div>
-                <p>
-                    <button onClick={handleAddToCart}>Add to Cart</button>
-                </p>
-                <h3>{product.product_name}</h3>
+            <div className={classes["product-container"]}>
+                {/* Product Details */}
+{/* Product Details */}
+<div className={classes["product-details"]}>
+    <div className={classes["product-gallery"]}>
+        {product.product_images && product.product_images.length > 0 ? (
+            product.product_images.split(",").map((image, index) => (
+                <img
+                    key={index}
+                    src={image}
+                    alt={`Product ${index + 1}`}
+                    className={classes["gallery-image"]}
+                />
+            ))
+        ) : (
+            <p>No images available</p>
+        )}
+    </div>
 
-                <p>Main cat: {product.product_description}</p>
-                <p>Sub cat: {product.main_category}</p>
-                <p>Sub cat: {product.sub_category}</p>
-                <p>Qty available: {product.stock_qty}</p>
-                <p>Price: {formatter.format(product.price)}</p>
+    <div className={classes["product-info"]}>
+        <h3>{product.product_name}</h3>
+        <p>Main cat: {product.product_description}</p>
+        <p>Sub cat: {product.main_category}</p>
+        <p>Sub cat: {product.sub_category}</p>
+        <p>Qty available: {product.stock_qty}</p>
+        <p className={classes["product-price"]}>
+            Price: {formatter.format(product.price)}
+        </p>
+        <button className={classes["add-to-bag-button"]} onClick={handleAddToCart}>
+            Add to Cart
+        </button>
+    </div>
+</div>
 
+            </div>
+    
+            {/* Modal for writing a review */}
+            <Modal
+                isOpen={isModalOpen} // Kiểm tra xem modal có mở không
+                onRequestClose={closeModal} // Đóng modal khi nhấn outside
+                style={customStyles}
+                contentLabel="Write a Review"
+            >
+                <h3>My review for {product.product_name}</h3>
+                <br />
                 <div>
-                    <h3>Product Images:</h3>
-                    {product.product_images &&
-                    product.product_images.length > 0 ? (
-                        product.product_images
-                            .split(",")
-                            .map((image, index) => (
-                                <img
-                                    key={index}
-                                    src={image}
-                                    alt={`Product ${index + 1}`}
-                                    style={{ width: "200px", margin: "10px" }}
-                                />
-                            ))
-                    ) : (
-                        <p>No images available</p>
-                    )}
+                    <p>
+                        Select Rating:{" "}
+                        {renderStars(selectedRating, setSelectedRating)} {/* Render sao */}
+                    </p>
+                </div>
+                <div>
+                    <p>Your Review:</p>
+                    <textarea
+                        value={reviewText}
+                        onChange={(e) => setReviewText(e.target.value)} // Cập nhật review
+                        rows="4"
+                        placeholder="Write your review here"
+                        style={{ width: "100%" }}
+                    ></textarea>
+                </div>
+                <div className="button-container">
+                    <button
+                        onClick={handleSubmitReview} // Submit review khi click
+                        className={classes["add-to-bag-button"]}
+                    >
+                        Post Review
+                    </button>
+                    <a href="#" onClick={closeModal} className="cancel-link">
+                        Cancel
+                    </a>
+                </div>
+            </Modal>
+    
+            {/* Ratings Summary & Reviews Section */}
+            <div className={classes["ratings-form-container"]}>
+    <div className={classes["ratings-form"]}>
+        <h2>Ratings Summary & Reviews</h2>
+
+        {/* Chữ "Reviews" và Button "Write a Review" cùng dòng */}
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: "20px" }}>
+            <h3>Reviews</h3>
+            <button className={classes["write-review-button"]} onClick={openModal}>
+                Write a Review
+            </button>
+        </div>
+
+        {/* Ratings Summary Section */}
+        <div className={classes["rating-summary"]}>
+            <h3>Ratings Summary</h3>
+            <div
+                style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                }}
+            >
+                <div className="summary">
+                    <div
+                        className="average-rating-stars-container"
+                        style={{ display: "flex", gap: "10px" }}
+                    >
+                        <span>Overall: </span>
+                        <span>
+                            {renderAverageRatingStars(ratingSummary.averageRating)}
+                        </span>
+                        <span>{ratingSummary.averageRating} / 5 </span>
+                        <span> | {ratingSummary.totalRatings} reviews</span>
+                    </div>
                 </div>
 
-                <button
-                    style={{
-                        backgroundColor: "#A6212B",
-                        border: "none",
-                        padding: "5px 10px",
-                        color: "white",
-                        borderRadius: "5px",
-                        cursor: "pointer",
-                    }}
-                    onClick={openModal}
-                >
-                    Write a review
-                </button>
-
-                {/* Modal for writing a review */}
-                <Modal
-                    isOpen={isModalOpen}
-                    onRequestClose={closeModal}
-                    style={customStyles}
-                    contentLabel="Write a Review"
-                >
-                    <h3>My review for {product.product_name}</h3>
-                    <br />
-
-                    <div>
-                        <p>
-                            Select Rating:{" "}
-                            {renderStars(selectedRating, setSelectedRating)}
-                        </p>
-                    </div>
-                    <div>
-                        <p>Your Review:</p>
-                        <textarea
-                            value={reviewText}
-                            onChange={(e) => setReviewText(e.target.value)}
-                            rows="4"
-                            placeholder="Write your review here"
-                            style={{ width: "100%" }}
-                        ></textarea>
-                    </div>
-                    <div>
-                        <button
-                            onClick={handleSubmitReview}
+                <div style={{ width: "50vw" }}>
+                    {[5, 4, 3, 2, 1].map((star) => (
+                        <div
+                            key={star}
+                            className={classes["star-row"]}
                             style={{
-                                backgroundColor: "#A6212B",
-                                border: "none",
-                                padding: "5px 10px",
-                                color: "white",
-                                borderRadius: "5px",
-                                cursor: "pointer",
+                                display: "flex",
+                                alignItems: "center",
                             }}
                         >
-                            Post Review
-                        </button>
-                        <button
-                            onClick={closeModal}
-                            style={{ marginLeft: "10px" }}
-                        >
-                            Cancel
-                        </button>
-                    </div>
-                </Modal>
-
-                {/* Rating Summary Section */}
-                <div className="rating-summary">
-                    <h2>Ratings Summary</h2>
-                    <div
-                        style={{
-                            display: "flex",
-                            justifyContent: "space-between",
-                        }}
-                    >
-                        <div className="summary">
-                            {/* <p>
-                                Average Rating: {ratingSummary.averageRating} /
-                                5
-                            </p>
-                            <p>Total Ratings: {ratingSummary.totalRatings}</p> */}
-
-                            {/* Average Rating Stars */}
                             <div
-                                className="average-rating-stars-container"
-                                style={{ display: "flex", gap: "10px" }}
+                                className="star-label"
+                                style={{
+                                    width: "4rem",
+                                    textAlign: "right",
+                                    paddingRight: "1rem",
+                                }}
                             >
-                                <span>Overall: </span>
-                                <span>
-                                    {renderAverageRatingStars(
-                                        ratingSummary.averageRating
-                                    )}
-                                </span>
-                                <span>{ratingSummary.averageRating} / 5 </span>
-                                <span>
-                                    {" "}
-                                    | {ratingSummary.totalRatings} reviews
-                                </span>
+                                {star} <FaStar color={"#A6212B"} />:{" "}
                             </div>
-                        </div>
 
-                        {/* Individual stars count */}
-                        <div style={{ width: "50vw" }}>
-                            {[5, 4, 3, 2, 1].map((star) => (
+                            <div className={classes["progress-bar"]}>
                                 <div
-                                    key={star}
-                                    className="star-row"
+                                    className={classes["progress"]}
                                     style={{
-                                        display: "flex",
-                                        alignItems: "center",
+                                        width: `${getPercentage(
+                                            ratingSummary.starCounts[star]
+                                        )}%`,
                                     }}
-                                >
-                                    <div
-                                        className="star-label"
-                                        style={{
-                                            width: "4rem",
-                                            textAlign: "right",
-                                            paddingRight: "1rem",
-                                        }}
-                                    >
-                                        {star} <FaStar color={"#A6212B"} />:{" "}
-                                    </div>
-
-                                    <div
-                                        className="progress-bar"
-                                        style={{
-                                            maxWidth: "20rem",
-                                            width: "100%",
-                                            backgroundColor: "#e4e5e9",
-                                            height: "10px",
-                                            borderRadius: "3px",
-                                        }}
-                                    >
-                                        <div
-                                            className="progress"
-                                            style={{
-                                                width: `${getPercentage(
-                                                    ratingSummary.starCounts[
-                                                        star
-                                                    ]
-                                                )}%`,
-                                                backgroundColor: "#A6212B",
-                                                height: "10px",
-                                                borderRadius: "3px",
-                                            }}
-                                        ></div>
-                                    </div>
-                                    <div
-                                        className="star-percentage"
-                                        style={{
-                                            width: "8rem",
-                                            paddingLeft: "1rem",
-                                        }}
-                                    >
-                                        {ratingSummary.starCounts[star]}
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                </div>
-
-                {/* Individual Ratings Section */}
-                <div
-                    className="ratings-container"
-                    style={{ marginTop: "1rem" }}
-                >
-                    <h2>Ratings & Reviews</h2>
-                    {product.product_ratings &&
-                    product.product_ratings.length > 0 ? (
-                        product.product_ratings.map((rating) => (
-                            <div className="rating-card" key={rating.rating_id}>
-                                <br />
-                                <p>{renderReviewStars(rating.rating)} </p>
-                                <h5>
-                                    By: {rating.username} on{" "}
-                                    {rating.review_date}
-                                </h5>
-
-                                <i>{rating.rating_comment}</i>
-                                <br />
-                                <br />
-                                <hr />
+                                ></div>
                             </div>
-                        ))
-                    ) : (
-                        <p>No ratings available</p>
-                    )}
+                            <div
+                                className="star-percentage"
+                                style={{
+                                    width: "8rem",
+                                    paddingLeft: "1rem",
+                                }}
+                            >
+                                {ratingSummary.starCounts[star]}
+                            </div>
+                        </div>
+                    ))}
                 </div>
             </div>
+        </div>
+
+        {/* Individual Ratings Section */}
+        <div className={classes["ratings-container"]}>
+            <h3>Ratings & Reviews</h3>
+            {product.product_ratings && product.product_ratings.length > 0 ? (
+                product.product_ratings.map((rating) => (
+                    <div className={classes["rating-card"]} key={rating.rating_id}>
+                        <br />
+                        <p>{renderReviewStars(rating.rating)} </p>
+                        <h5>
+                            By: {rating.username} on {rating.review_date}
+                        </h5>
+
+                        <i>{rating.rating_comment}</i>
+                        <br />
+                        <br />
+                        <hr />
+                    </div>
+                ))
+            ) : (
+                <p>No ratings available</p>
+            )}
+        </div>
+    </div>
+</div>
+
         </>
     );
+    
+    
+    
 }
