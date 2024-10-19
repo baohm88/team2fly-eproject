@@ -1,24 +1,22 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
-import { IoChevronBackOutline, IoChevronForward } from "react-icons/io5";
+import React, { useEffect, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { formatter } from "../../util/formatter";
+import { IoChevronBackOutline, IoChevronForward } from "react-icons/io5";
 import Modal from "./Modal"; // Import the Modal component
 
 import Slider from "rc-slider"; // Import rc-slider
 import "rc-slider/assets/index.css"; // Import rc-slider styles
 
-export default function MakeupProducts() {
+export default function Home() {
     const [products, setProducts] = useState([]);
     const [filteredProducts, setFilteredProducts] = useState([]);
     const [selectedProduct, setSelectedProduct] = useState(null); // For managing modal product
     const [sortOption, setSortOption] = useState(""); // State for sorting option
     const [selectedRange, setSelectedRange] = useState(false);
-    const [priceRange, setPriceRange] = useState([0, 1000]); // State for the range slider
-    const [selectedCategory, setSelectedCategory] = useState(""); // Track selected category
+    const [priceRange, setPriceRange] = useState([0, 200]); // State for the range slider
 
-    const location = useLocation(); // Get the current location (URL)
-    const navigate = useNavigate();
+    const location = useLocation();
 
     const [currentPage, setCurrentPage] = useState(1); // For tracking the current page
     const productsPerPage = 4; // Number of products per page
@@ -31,93 +29,66 @@ export default function MakeupProducts() {
         indexOfLastProduct
     );
 
-    // Fetch makeup products from the database
+    // fetch products from db initially
     useEffect(() => {
-        axios.get("http://localhost/project/collections/makeup").then((res) => {
+        axios.get("http://localhost/project/collections/all").then((res) => {
             setProducts(res.data.data);
-            setFilteredProducts(res.data.data); // Show all products initially
+            setFilteredProducts(res.data.data);
+
+            document.title = "Clarins Store";
         });
     }, []);
 
-    // Handle category and search text filtering
+    // Handle filtering by search text
     useEffect(() => {
         const params = new URLSearchParams(location.search);
-        const category = params.get("category");
         const searchText = params.get("q");
 
-        let filtered = products;
-
-        if (category) {
-            filtered = filtered.filter(
-                (product) => product.sub_category === category
-            );
-            setSelectedCategory(category); // Set the selected category state
-            document.title = "Clarins Makeup | " + category;
-        } else {
-            setSelectedCategory(""); // Clear category selection if not provided
-            document.title = "Clarins Makeup";
-        }
-
         if (searchText) {
-            filtered = filtered.filter(
-                (product) =>
-                    (product.product_name &&
-                        product.product_name
-                            .toLowerCase()
-                            .includes(searchText.toLowerCase())) ||
-                    (product.description &&
-                        product.description
-                            .toLowerCase()
-                            .includes(searchText.toLowerCase()))
+            setFilteredProducts(
+                products.filter(
+                    (product) =>
+                        (product.product_name &&
+                            product.product_name
+                                .toLowerCase()
+                                .includes(searchText.toLowerCase())) ||
+                        (product.product_description &&
+                            product.product_description
+                                .toLowerCase()
+                                .includes(searchText.toLowerCase()))
+                )
             );
+        } else {
+            setFilteredProducts(products);
         }
+    }, [location.search, products]);
 
-        setFilteredProducts(filtered);
-    }, [location.search, products]); // Re-run when the URL or products change
-
-    // Handle sorting and price range filtering
+    // Handle sorting
     useEffect(() => {
-        let filtered = products;
-
-        // Apply category filter first
-        if (selectedCategory) {
-            filtered = filtered.filter(
-                (product) => product.sub_category === selectedCategory
-            );
-        }
-
-        // Apply sorting
+        let sortedProducts = [...products]; // Sort based on the original product list
         if (sortOption === "name_asc") {
-            filtered.sort((a, b) =>
+            sortedProducts.sort((a, b) =>
                 a.product_name.localeCompare(b.product_name)
             );
         } else if (sortOption === "name_desc") {
-            filtered.sort((a, b) =>
+            sortedProducts.sort((a, b) =>
                 b.product_name.localeCompare(a.product_name)
             );
         } else if (sortOption === "price_asc") {
-            filtered.sort((a, b) => a.product_price - b.product_price);
+            sortedProducts.sort((a, b) => a.product_price - b.product_price);
         } else if (sortOption === "price_desc") {
-            filtered.sort((a, b) => b.product_price - a.product_price);
+            sortedProducts.sort((a, b) => b.product_price - a.product_price);
         }
 
         // Apply price range filter
-        filtered = filtered.filter(
+        sortedProducts = sortedProducts.filter(
             (product) =>
                 product.product_price >= priceRange[0] &&
                 product.product_price <= priceRange[1]
         );
 
-        setFilteredProducts(filtered);
-    }, [sortOption, priceRange, products, selectedCategory]); // Sort and filter whenever any of these change
-
-    // Add category to URL
-    function updateCategoryInURL(category) {
-        navigate({
-            pathname: "/makeup",
-            search: `?category=${category}`,
-        });
-    }
+        setFilteredProducts(sortedProducts);
+    }, [sortOption, products, priceRange]); // Sort whenever sortOption, products, or price range changes
 
     // Change page handler
     const paginate = (pageNumber) => setCurrentPage(pageNumber);
@@ -137,31 +108,18 @@ export default function MakeupProducts() {
     const handlePriceRangeChange = (newRange) => {
         setSelectedRange(true);
         setPriceRange(newRange);
+        setFilteredProducts(
+            products.filter(
+                (product) =>
+                    product.product_price >= newRange[0] &&
+                    product.product_price <= newRange[1]
+            )
+        );
     };
 
     return (
         <>
-            <div className="center">
-                <h1>MAKEUP</h1>
-                <p>
-                    From daily rituals to targeted anti-aging care, discover the
-                    best in plant-based makeup, powered by nature's most
-                    effective ingredients.
-                </p>
-            </div>
-
-            <p className="tabs-container center">
-                <button onClick={() => updateCategoryInURL("Face")}>
-                    Face
-                </button>
-                <button onClick={() => updateCategoryInURL("Eyes")}>
-                    Eyes
-                </button>
-                <button onClick={() => updateCategoryInURL("Lips")}>
-                    Lips
-                </button>
-                <button onClick={() => navigate("/makeup")}>View All</button>
-            </p>
+            <h1 className="center">All products</h1>
 
             {/* Sorting and Filtering Controls */}
             <div className="filters">
@@ -193,6 +151,7 @@ export default function MakeupProducts() {
                     onChange={handlePriceRangeChange}
                     step={5} // You can adjust the step size here
                 />
+
                 {selectedRange && (
                     <p>
                         <button
@@ -238,6 +197,7 @@ export default function MakeupProducts() {
                         <p className="product-price">
                             {formatter.format(product.product_price)}
                         </p>
+                        <p className="product-price">RATING COUNT</p>
                         <button
                             className="cart-button"
                             onClick={() => openModal(product)} // Open modal with product info

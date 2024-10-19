@@ -1,21 +1,26 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
-import { IoChevronBackOutline, IoChevronForward } from "react-icons/io5";
+import { useLocation, useNavigate } from "react-router-dom";
+import { FaCaretDown, FaCaretUp } from "react-icons/fa";
 import { formatter } from "../../util/formatter";
-import Modal from "./Modal"; // Import the Modal component
+import Modal from "./Modal";
 
-import Slider from "rc-slider"; // Import rc-slider
-import "rc-slider/assets/index.css"; // Import rc-slider styles
+import Slider from "rc-slider";
+import "rc-slider/assets/index.css";
+import classes from "./SkincareProducts.module.css";
+import ProductItem from "./ProductItem";
+import Pagination from "../UI/Pagination";
 
 export default function SkincareProducts() {
     const [products, setProducts] = useState([]);
     const [filteredProducts, setFilteredProducts] = useState([]);
     const [selectedProduct, setSelectedProduct] = useState(null); // For managing modal product
-    const [sortOption, setSortOption] = useState(""); // State for sorting option
+    const [sortOption, setSortOption] = useState("");
     const [selectedRange, setSelectedRange] = useState(false);
-    const [priceRange, setPriceRange] = useState([0, 1000]); // State for the range slider
-    const [selectedCategory, setSelectedCategory] = useState(""); // Track selected category
+    const [priceRange, setPriceRange] = useState([0, 1000]);
+    const [selectedCategory, setSelectedCategory] = useState("");
+
+    const [sliderIsVisible, setSliderIsVisible] = useState(false);
 
     const location = useLocation(); // Get the current location (URL)
     const navigate = useNavigate();
@@ -54,10 +59,8 @@ export default function SkincareProducts() {
                 (product) => product.sub_category === category
             );
             setSelectedCategory(category); // Set the selected category state
-            document.title = "Clarins Skincare | " + category;
         } else {
             setSelectedCategory(""); // Clear category selection if not provided
-            document.title = "Clarins Skincare";
         }
 
         if (searchText) {
@@ -67,8 +70,8 @@ export default function SkincareProducts() {
                         product.product_name
                             .toLowerCase()
                             .includes(searchText.toLowerCase())) ||
-                    (product.description &&
-                        product.description
+                    (product.product_description &&
+                        product.product_description
                             .toLowerCase()
                             .includes(searchText.toLowerCase()))
             );
@@ -141,9 +144,13 @@ export default function SkincareProducts() {
         setPriceRange(newRange);
     };
 
+    function toggleSliderVisible() {
+        setSliderIsVisible((visible) => !visible);
+    }
+
     return (
         <>
-            <div className="center">
+            <div className={classes["center"]}>
                 <h1>SKINCARE</h1>
                 <p>
                     From daily rituals to targeted anti-aging care, discover the
@@ -152,7 +159,7 @@ export default function SkincareProducts() {
                 </p>
             </div>
 
-            <p className="tabs-container center">
+            <p className={classes["tabs-container"]}>
                 <button onClick={() => updateCategoryInURL("Face")}>
                     Face
                 </button>
@@ -165,122 +172,84 @@ export default function SkincareProducts() {
             </p>
 
             {/* Sorting and Filtering Controls */}
-            <div className="filters">
-                {/* Sorting Dropdown */}
-                <label htmlFor="sort">Sort by: </label>
-                <select
-                    id="sort"
-                    value={sortOption}
-                    onChange={(e) => setSortOption(e.target.value)}
-                >
-                    <option value="" disabled>
-                        Select
-                    </option>
-                    <option value="name_asc">Name (A-Z)</option>
-                    <option value="name_desc">Name (Z-A)</option>
-                    <option value="price_asc">Price (Low to High)</option>
-                    <option value="price_desc">Price (High to Low)</option>
-                </select>
-            </div>
+            <div className={classes["filters"]}>
+                <div className={classes["sort-options"]}>
+                    {/* Sorting Dropdown */}
+                    <label htmlFor="sort">
+                        <strong>Sort by: </strong>
+                    </label>
+                    <select
+                        id="sort"
+                        value={sortOption}
+                        onChange={(e) => setSortOption(e.target.value)}
+                    >
+                        <option value="" disabled>
+                            Select
+                        </option>
+                        <option value="name_asc">Name (A-Z)</option>
+                        <option value="name_desc">Name (Z-A)</option>
+                        <option value="price_asc">Price (Low to High)</option>
+                        <option value="price_desc">Price (High to Low)</option>
+                    </select>
+                </div>
 
-            {/* Price Range Filter */}
-            <div className="price-filter">
-                <h4>Filter by Price:</h4>
-                <Slider
-                    range
-                    min={0}
-                    max={200}
-                    value={priceRange}
-                    onChange={handlePriceRangeChange}
-                    step={5} // You can adjust the step size here
-                />
-                {selectedRange && (
-                    <p>
-                        <button
-                            onClick={() => {
-                                setPriceRange([0, 200]);
-                                setSelectedRange(false);
-                            }}
-                        >
-                            X
-                        </button>{" "}
-                        {formatter.format(priceRange[0])} -{" "}
-                        {formatter.format(priceRange[1])}
-                    </p>
-                )}
+                {/* Price Range Filter */}
+                <div>
+                    <h4
+                        onClick={toggleSliderVisible}
+                        className={classes["filter-options"]}
+                    >
+                        Price{" "}
+                        {sliderIsVisible ? <FaCaretUp /> : <FaCaretDown />}
+                    </h4>
+                    {sliderIsVisible && (
+                        <Slider
+                            range
+                            min={0}
+                            max={200}
+                            value={priceRange}
+                            onChange={handlePriceRangeChange}
+                            step={5} // You can adjust the step size here
+                        />
+                    )}
+
+                    {selectedRange && (
+                        <p className={classes.selectedRange}>
+                            <span
+                                onClick={() => {
+                                    setPriceRange([0, 200]);
+                                    setSelectedRange(false);
+                                }}
+                            >
+                                X 
+                            </span>{" "}
+                            {formatter.format(priceRange[0])} -{" "}
+                            {formatter.format(priceRange[1])}
+                        </p>
+                    )}
+                </div>
             </div>
 
             {/* Total Products Count */}
-            <div className="total-products">
-                <h4>{filteredProducts.length} products</h4>
+            <div className={classes["total-products"]}>
+                <h5>{filteredProducts.length} products</h5>
             </div>
 
-            <div className="products-container">
+            <div className={classes["products-container"]}>
                 {currentProducts.map((product) => (
-                    <div
-                        className="product-card center"
+                    <ProductItem
                         key={product.product_id}
-                    >
-                        <Link to={"/products/" + product.product_id}>
-                            <img
-                                src={
-                                    product.product_images
-                                        ? product.product_images.split(",")[0]
-                                        : ""
-                                }
-                                alt={product.product_name}
-                                className="product-image"
-                            />
-                            <h4 className="product-title">
-                                {product.product_name}
-                            </h4>
-                        </Link>
-
-                        <p className="product-price">
-                            {formatter.format(product.product_price)}
-                        </p>
-                        <button
-                            className="cart-button"
-                            onClick={() => openModal(product)} // Open modal with product info
-                        >
-                            Quick View
-                        </button>
-                    </div>
+                        product={product}
+                        openModal={openModal}
+                    />
                 ))}
             </div>
 
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            {/* Pagination Controls */}
-            {totalPages > 0 && (
-                <div className="pagination center">
-                    <button
-                        onClick={() => paginate(currentPage - 1)}
-                        disabled={currentPage === 1}
-                    >
-                        <IoChevronBackOutline />
-                    </button>
-                    {Array.from({ length: totalPages }, (_, i) => (
-                        <button
-                            key={i + 1}
-                            onClick={() => paginate(i + 1)}
-                            className={currentPage === i + 1 ? "active" : ""}
-                        >
-                            {i + 1}
-                        </button>
-                    ))}
-                    <button
-                        onClick={() => paginate(currentPage + 1)}
-                        disabled={currentPage === totalPages}
-                    >
-                        <IoChevronForward />
-                    </button>
-                </div>
-            )}
+            <Pagination
+                currentPage={currentPage}
+                totalPages={totalPages}
+                paginate={paginate}
+            />
 
             {selectedProduct && (
                 <Modal product={selectedProduct} onClose={closeModal} />

@@ -1,11 +1,9 @@
-/* Main header container */
-header {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 10px 0;
-    width: 100%;
+:root {
+    --primaryColor: rgb(166, 43, 43);
+    --secondaryColor: rgb(244, 239, 235);
+    --darkColor: black;
+    --lightColor: white;
+    --dangerColor: red;
 }
 
 /* Top navigation bar */
@@ -13,17 +11,29 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 100%;
-    padding: 0 20px;
-    max-width: 1200px;
     list-style-type: none;
+    max-width: 1264px;
+    width: 100%;
+    margin: 0 auto;
 }
 
-/* Menu icon */
-.menu-icon {
+.top-nav svg {
+    font-size: 1.8rem;
+    margin: 0 5px;
+}
+
+.top-nav svg:hover {
+    color: var(--primaryColor);
     cursor: pointer;
-    font-size: 1.5rem;
-    margin-right: 20px;
+}
+
+/* menu icon */
+.menu-icon {
+    margin: 3px;
+    border-radius: 5px;
+}
+.menu-icon:hover {
+    background-color: antiquewhite;
 }
 
 /* Search bar container */
@@ -32,12 +42,15 @@ header {
     align-items: center;
     width: 250px; /* Adjust width as per your design */
 }
+.search-bar input {
+    margin: 0;
+}
 
 .searchContainer {
     display: flex;
     align-items: center;
     border: 1px solid #ccc;
-    border-radius: 4px;
+    border-radius: 5px;
     overflow: hidden;
     width: 100%;
 }
@@ -84,55 +97,247 @@ header {
     list-style-type: none;
 }
 
-.nav-link a {
-    text-decoration: none;
-    color: #4a4a4a; /* Dark gray color */
-    padding: 5px 10px;
-    font-weight: bold;
-    white-space: nowrap;
-    transition: color 0.3s ease;
-    text-transform: uppercase;
+.user-form {
+    width: 25rem;
+    margin: 2rem auto;
+    padding: 1rem;
+    background-color: antiquewhite;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.25);
+    border-radius: 5px;
 }
 
-.nav-link a:hover,
-.nav-link a:active {
-    color: #b51828; /* Hover effect color */
+.danger {
+    background-color: var(--dangerColor);
+    color: var(--lightColor);
+    border-radius: 5px;
+    padding: 3px;
 }
 
-/* Right side icons (help, account, bag) */
-.nav-icons {
+.logo {
+    width: 10rem;
+    height: auto;
+}
+
+.row {
     display: flex;
     align-items: center;
-    gap: 30px; /* Adjusted for better spacing between icons */
 }
 
-.nav-icons span {
+/* BOTTOM-NAV STARTS */
+.bottom-nav {
+    width: 60vw;
+    margin: 0 auto;
+}
+/* BOTTOM-NAV ENDS */
+
+.sidebar-header {
+    background-color: var(--primaryColor);
+    color: var(--lightColor);
+    padding: 2rem;
+}
+
+.sidebar-body,
+.sidebar-footer {
+    padding: 2rem;
+}
+
+.sidebar-header p,
+.sidebar-body p {
+    padding: 10px 0;
+}
+
+.sidebar-body p {
+    display: flex;
+    justify-content: space-between;
+}
+
+.sidebar-header p:hover,
+.sidebar-body p:hover {
+    opacity: 0.7;
+}
+
+.sidebar-header a {
+    text-decoration: none;
+    color: var(--lightColor);
+}
+
+.sidebar-body p {
+    border-bottom: 1px solid black;
+}
+
+.sidebar-body a:hover {
+    color: var(--primaryColor);
+}
+
+.sidebar-body a {
+    text-decoration: none;
+    color: black;
+}
+
+/* SIDEBAR ENDS */
+
+/* Container for the shopping bag icon and badge */
+.nav-icons {
+    position: relative; /* Allows positioning of the badge relative to the icon */
+}
+
+/* Badge for showing total quantity */
+.nav-icons .badge {
+    position: absolute;
+    top: -1rem; /* Adjusts the vertical position of the badge */
+    right: -5px; /* Adjusts the horizontal position of the badge */
+    background-color: #a6212b; /* Red background for the badge */
+    color: white; /* White text for the number */
+    border-radius: 50%; /* Makes the badge a circle */
+    padding: 2px; /* Adds some padding for the badge */
+    font-size: 12px; /* Smaller font size for the number */
+    min-width: 1rem; /* Minimum width to ensure the badge is round */
+    height: 1rem; /* Fixed height for the badge */
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Centers the number inside the badge */
+    font-weight: bold; /* Bold text for better visibility */
+}
+
+.nav-icons .badge:hover {
+    background-color: #cc0020;
+}
+
+/* Smaller checkmark icon positioned on top of the person icon */
+.checkmarkIcon {
+    position: absolute; /* Absolutely position the checkmark */
+    top: -1rem; /* Adjust to position it correctly above the icon */
+    right: -5px; /* Adjust to position it correctly */
+    width: 1rem; /* Size of the checkmark */
+    height: 1rem; /* Maintain aspect ratio */
+    color: green; /* Set the color of the checkmark */
+}
+
+/* Add similar styles for the red dot when not logged in if necessary */
+.redDot {
+    position: absolute; /* Absolutely position the checkmark */
+    top: -1rem; /* Adjust to position it correctly above the icon */
+    right: -5px; /* Adjust to position it correctly */
+    width: 1rem; /* Size of the checkmark */
+    height: 1rem; /* Maintain aspect ratio */
+    color: red; /* Set the color of the checkmark */
+}
+
+/* Dropdown container */
+.dropdown {
     position: relative;
+    display: inline-block;
+}
+
+/* Dropdown content - hidden by default */
+.dropdown-content-account {
+    display: none;
+    position: absolute;
+    background-color: white;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    background-color: rgb(243, 241, 240);
+    min-width: 160px;
+    z-index: 1;
+    border-radius: 5px;
+    padding: 12px 16px;
+    right: 0;
+}
+
+/* Links inside the dropdown */
+.dropdown-content-account a,
+.dropdown-content-account span {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    /* display: block; */
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
     cursor: pointer;
 }
 
-/* Icon styles */
-.nav-icons svg {
+/* Show dropdown on hover */
+.dropdown:hover .dropdown-content-account {
+    display: block;
+}
+
+/* Hover effect for dropdown links */
+.dropdown-content-account a:hover,
+.dropdown-content-account span:hover {
+    color: #a6212b;
+}
+
+.dropdown-content-account svg {
     font-size: 1.5rem;
-    color: black;
 }
 
-.nav-icons span::after {
-    content: attr(data-label);
+.dropdown-content {
+    display: none;
     position: absolute;
-    top: 35px; /* Adjust according to icon position */
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 0.75rem;
-    color: black;
+    background-color: white;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
+    background-color: rgb(243, 241, 240);
+    z-index: 1;
+    width: 360px; /* Adjust width as needed */
+    right: 0;
+    border-radius: 8px;
+    padding: 1rem;
 }
 
-/* Add a line separating the sections */
-.nav-icons::before {
-    content: "";
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown-footer {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    background-color: rgb(221, 218, 216);
+    margin-top: 0.5rem;
+}
+
+.dropdown-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+.cart-item-image {
+    width: 50px;
     height: 50px;
-    width: 1px;
-    background-color: #ccc;
-    display: inline-block;
-    margin-right: 15px;
+    object-fit: cover;
+    margin-right: 10px;
+}
+
+.cart-item-price {
+    display: flex;
+    flex-direction: column;
+    text-align: right;
+}
+
+.cart-item-name {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.dropdown-total {
+    border-top: 1px solid black;
+    margin-top: 1rem;
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 0;
+}
+
+/* MOBILE */
+@media screen and (max-width: 1023px) {
+    main {
+        width: 100vw;
+    }
+    .search-bar,
+    .bottom-nav {
+        display: none;
+    }
+    #cart {
+        flex-direction: column;
+    }
 }

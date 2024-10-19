@@ -1,68 +1,66 @@
 import React, { useContext, useState } from "react";
 import { UserContext } from "../../App";
-import { isEmpty, isEqualsToOtherValue } from "../../util/validation";
 import axios from "axios";
-import { Link, useNavigate } from "react-router-dom";
-
+import { useNavigate } from "react-router-dom";
+import { isEmpty, isEqualsToOtherValue } from "../../util/validation";
 import classes from "../UserForm.module.css";
 import Input from "../UI/Input";
 import Button from "../UI/Button";
+
 export default function UpdatePassword() {
     const { user } = useContext(UserContext);
-    const [oldPasswordError, setOldPasswordError] = useState();
-    const [newPasswordError, setNewPasswordError] = useState();
-    const [newPassword2Error, setNewPassword2Error] = useState();
-    const [serverError, setServerError] = useState();
+    const [errors, setErrors] = useState({
+        oldPassword: "",
+        newPassword: "",
+        confirmNewPassword: "",
+    });
+    const [serverError, setServerError] = useState(null);
     const navigate = useNavigate();
 
     document.title = "Update Password";
 
-    console.log(user);
-
-    async function handleSubmit(e) {
-        e.preventDefault();
-
-        const fd = new FormData(e.target);
-        const userData = Object.fromEntries(fd.entries());
-
-        // validate user inputs
+    // Validate user inputs
+    const validateForm = (userData) => {
+        let validationErrors = {};
 
         if (isEmpty(userData.old_password)) {
-            setOldPasswordError("Current password is required");
-            document.getElementById("old_password").focus();
-            return;
+            validationErrors.oldPassword = "Current password is required";
         }
-        setOldPasswordError(false);
-
         if (isEmpty(userData.new_password)) {
-            setNewPasswordError("New password is required");
-            document.getElementById("new_password").focus();
-            return;
+            validationErrors.newPassword = "New password is required";
         }
-        setNewPasswordError(false);
-
         if (isEmpty(userData.confirm_new_password)) {
-            setNewPassword2Error("Confirm new password is required");
-            document.getElementById("confirm_new_password").focus();
-            return;
+            validationErrors.confirmNewPassword =
+                "Confirm new password is required";
         }
-        setNewPassword2Error(false);
-
         if (
             !isEqualsToOtherValue(
                 userData.new_password,
                 userData.confirm_new_password
             )
         ) {
-            setNewPasswordError("Passwords must match");
-            document.getElementById("confirm_new_password").focus();
+            validationErrors.confirmNewPassword = "Passwords must match";
+        }
+
+        return validationErrors;
+    };
+
+    async function handleSubmit(e) {
+        e.preventDefault();
+        const fd = new FormData(e.target);
+        const userData = Object.fromEntries(fd.entries());
+
+        const validationErrors = validateForm(userData);
+
+        // Set errors if validation fails
+        if (Object.keys(validationErrors).length > 0) {
+            setErrors(validationErrors);
             return;
         }
-        setNewPasswordError(false);
 
+        // Clear errors and submit form
+        setErrors({ oldPassword: "", newPassword: "", confirmNewPassword: "" });
         delete userData.confirm_new_password;
-
-        console.log(userData);
 
         try {
             const response = await axios.post(
@@ -75,33 +73,23 @@ export default function UpdatePassword() {
                 }
             );
 
-            console.log(response);
-
             if (response.data.type === "success") {
                 navigate("/profile");
             } else {
-                // type = Error
-                console.log(
-                    "Updating password failed: ",
-                    response.data.message
-                );
-                setServerError(response.data.message);
+                setServerError(response.data.message); // Handle server error
             }
         } catch (error) {
             console.error("Update password request failed:", error);
+            setServerError("An error occurred while updating the password.");
         }
     }
 
     return (
         <form className={classes["user-form"]} onSubmit={handleSubmit}>
             <h1 className={classes["user-form-title"]}>Update Password</h1>
-            <br />
             {serverError && (
-                <span className={classes["error-message"]}>
-                    ({serverError})
-                </span>
+                <span className={classes["error-message"]}>{serverError}</span>
             )}
-            <br />
 
             <input type="hidden" value={user.user_id} name="user_id" />
 
@@ -112,7 +100,7 @@ export default function UpdatePassword() {
                     type="password"
                     name="old_password"
                     autoFocus
-                    error={oldPasswordError}
+                    error={errors.oldPassword}
                 />
             </div>
 
@@ -122,7 +110,7 @@ export default function UpdatePassword() {
                     id="new_password"
                     type="password"
                     name="new_password"
-                    error={newPasswordError}
+                    error={errors.newPassword}
                 />
             </div>
 
@@ -132,11 +120,11 @@ export default function UpdatePassword() {
                     id="confirm_new_password"
                     type="password"
                     name="confirm_new_password"
-                    error={newPassword2Error}
+                    error={errors.confirmNewPassword}
                 />
             </div>
 
-            <p className="form-actions">
+            <div className={classes["form-actions"]}>
                 <Button
                     className="text-button"
                     onClick={() => navigate("/profile")}
@@ -144,8 +132,10 @@ export default function UpdatePassword() {
                     Cancel
                 </Button>
 
-                <Button className="button">Save Changes</Button>
-            </p>
+                <Button className="button" type="submit">
+                    Save Changes
+                </Button>
+            </div>
         </form>
     );
 }

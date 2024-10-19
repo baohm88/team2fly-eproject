@@ -64,9 +64,9 @@ export default function Profile() {
                         <FaUserGear /> Edit Profile
                     </Button>
                 </NavLink>
-                {/* <Button className="warning-button">
+                <Button className="warning-button">
                     <FaUserMinus /> Delete Profile
-                </Button> */}
+                </Button>
             </div>
         </div>
     );

@@ -2,9 +2,11 @@ import React, { useContext, useState } from "react";
 import { UserContext } from "../../App";
 import { isEmpty, isEqualsToOtherValue } from "../../util/validation";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
-import Input from "../Input";
+import { Link, useNavigate } from "react-router-dom";
 
+import classes from "../UserForm.module.css";
+import Input from "../UI/Input";
+import Button from "../UI/Button";
 export default function UpdatePassword() {
     const { user } = useContext(UserContext);
     const [oldPasswordError, setOldPasswordError] = useState();
@@ -91,44 +93,59 @@ export default function UpdatePassword() {
     }
 
     return (
-        <form className="user-form" onSubmit={handleSubmit}>
-            <h1 className="center">Update Password</h1>
-
+        <form className={classes["user-form"]} onSubmit={handleSubmit}>
+            <h1 className={classes["user-form-title"]}>Update Password</h1>
+            <br />
             {serverError && (
-                <span className="error-message">({serverError})</span>
+                <span className={classes["error-message"]}>
+                    ({serverError})
+                </span>
             )}
             <br />
 
             <input type="hidden" value={user.user_id} name="user_id" />
 
-            <Input
-                label="Current Password*"
-                id="old_password"
-                type="password"
-                name="old_password"
-                autoFocus
-                error={oldPasswordError}
-            />
+            <div className={classes["form-row"]}>
+                <Input
+                    label="Current Password*"
+                    id="old_password"
+                    type="password"
+                    name="old_password"
+                    autoFocus
+                    error={oldPasswordError}
+                />
+            </div>
 
-            <Input
-                label="New Password*"
-                id="new_password"
-                type="password"
-                name="new_password"
-                autoFocus
-                error={newPasswordError}
-            />
+            <div className={classes["form-row"]}>
+                <Input
+                    label="New Password*"
+                    id="new_password"
+                    type="password"
+                    name="new_password"
+                    error={newPasswordError}
+                />
+            </div>
 
-            <Input
-                label="Confirm New Password*"
-                id="confirm_new_password"
-                type="password"
-                name="confirm_new_password"
-                autoFocus
-                error={newPassword2Error}
-            />
+            <div className={classes["form-row"]}>
+                <Input
+                    label="Confirm New Password*"
+                    id="confirm_new_password"
+                    type="password"
+                    name="confirm_new_password"
+                    error={newPassword2Error}
+                />
+            </div>
 
-            <button>Submit</button>
+            <p className={classes["form-actions"]}>
+                <Button
+                    className="text-button"
+                    onClick={() => navigate("/profile")}
+                >
+                    Cancel
+                </Button>
+
+                <Button className="button">Save Changes</Button>
+            </p>
         </form>
     );
 }

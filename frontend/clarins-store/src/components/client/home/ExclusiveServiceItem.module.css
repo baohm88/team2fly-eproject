@@ -1,32 +1,3 @@
-
-.exclusive-services {
-    text-align: center; /* Căn giữa nội dung */
-    margin: 50px auto; /* Thêm khoảng cách trên và dưới, căn giữa ngang */
-    max-width: 1200px; /* Đặt chiều rộng tối đa cho toàn bộ phần */
-}
-
-/* Tiêu đề chính "Our exclusive services" */
-.exclusive-services h2 {
-    font-size: 2rem; /* Kích thước chữ lớn cho tiêu đề */
-    font-weight: bold; /* Chữ đậm */
-    margin-bottom: 10px; /* Khoảng cách dưới tiêu đề */
-}
-
-/* Phần mô tả nhỏ dưới tiêu đề */
-.exclusive-services p {
-    font-size: 1.2rem; /* Kích thước chữ nhỏ hơn tiêu đề */
-    color: #999; /* Màu chữ xám nhạt */
-    margin-bottom: 40px; /* Khoảng cách dưới đoạn mô tả */
-}
-
-/* Phần lưới chứa các khối dịch vụ */
-.services-grid {
-    display: flex; /* Sử dụng flexbox để sắp xếp các phần tử theo hàng ngang */
-    justify-content: space-between; /* Khoảng cách đều giữa các khối */
-    gap: 20px; /* Khoảng cách giữa các khối dịch vụ */
-    flex-wrap: wrap; /* Đảm bảo các phần tử sẽ tự động xuống dòng khi không đủ không gian */
-}
-
 /* Phong cách cho mỗi khối dịch vụ */
 .service {
     background-color: #fff; /* Màu nền trắng */
@@ -80,6 +51,8 @@
 
 /* Hiệu ứng khi di chuột qua mỗi khối dịch vụ */
 .service:hover {
-    transform: translateY(-10px); /* Khối dịch vụ được nâng lên 10px khi hover */
+    transform: translateY(
+        -10px
+    ); /* Khối dịch vụ được nâng lên 10px khi hover */
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Đổ bóng mạnh hơn khi hover */
 }
