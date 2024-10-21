@@ -1,0 +1,137 @@
+.center {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.h1 {
+    font-size: 3rem;
+    font-weight: 400;
+    color: #333; /* Adjust as per design */
+    margin-bottom: 20px;
+}
+
+.p {
+    font-size: 1.2rem;
+    color: #666;
+    margin-bottom: 30px;
+}
+
+.tabs-container {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 2rem;
+}
+
+.tabs-container button {
+    background-color: white;
+    border: 1px solid #ccc;
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 5px;
+    color: #333;
+    transition: background-color 0.3s ease;
+}
+
+.tabs-container button:hover {
+    background-color: #f5f5f5;
+}
+
+.tabs-container button:focus {
+    outline: none;
+}
+
+.tabs-container button:active {
+    background-color: #ddd;
+}
+
+/* Additional styling to match the subtle feel of the image */
+body {
+    background-color: #fafafa;
+    font-family: "Arial", sans-serif;
+}
+
+.total-products {
+    text-align: left; /* Căn lề trái cho phần hiển thị tổng số sản phẩm */
+    margin-bottom: 20px; /* Tạo khoảng cách phía dưới để tránh nội dung tiếp theo quá sát */
+    font-family: "Arial", sans-serif; /* Đặt font chữ Arial, và sans-serif là dự phòng */
+    font-size: 18px; /* Kích thước chữ 18px */
+    color: #333; /* Màu chữ là màu xám đậm */
+}
+
+.products-container {
+    display: flex; /* Sử dụng grid layout để xếp các sản phẩm theo lưới */
+    justify-content: center;
+    gap: 20px;
+    padding: 0 10px;
+    align-items: center; /* Đảm bảo các thẻ sản phẩm được căn giữa theo chiều ngang */
+    max-width: 1264px;
+    width: 100%;
+    margin: 2rem auto;
+    flex-wrap: wrap;
+}
+
+.best-seller-badge {
+    background-color: #f1f1f1; /* Màu nền xám nhạt cho huy hiệu Best Seller */
+    color: #333; /* Màu chữ xám đậm */
+    padding: 5px 10px; /* Tạo khoảng cách bên trong huy hiệu */
+    font-size: 12px; /* Kích thước chữ trong huy hiệu là 12px */
+    font-weight: bold; /* Chữ in đậm trong huy hiệu */
+    position: absolute; /* Vị trí tuyệt đối để đặt huy hiệu ở một góc của thẻ */
+    top: 10px; /* Cách cạnh trên 10px */
+    left: 10px; /* Cách cạnh trái 10px */
+    border-radius: 5px; /* Làm tròn các góc của huy hiệu */
+}
+
+.filters,
+.total-products {
+    display: flex;
+    gap: 1rem;
+    max-width: 1264px;
+    width: 100%;
+    margin: 1rem auto;
+}
+
+.slider {
+    min-width: 15rem;
+}
+
+.selectedRange {
+    padding: 0.5rem 1rem;
+    border-radius: 1rem;
+    border: 1px solid rgb(135, 134, 134);
+    color: rgb(135, 134, 134);
+    cursor: pointer;
+}
+
+.selectedRange:hover {
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.2);
+}
+
+.tabs-container .active {
+    background-color: #a6212b;
+    color: white;
+    border: none;
+    outline: none;
+    font-weight: bold;
+    padding: 8px 16px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.tabs-container button {
+    background-color: transparent;
+    color: #333;
+    border: 1px solid #ccc;
+    padding: 8px 16px;
+    border-radius: 5px;
+    margin-right: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.tabs-container button:hover {
+    background-color: #a6212b;
+    color: white;
+}
