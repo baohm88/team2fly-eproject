@@ -9,22 +9,36 @@
     --darkColor: black;
     --lightColor: white;
     --dangerColor: red;
+    --successColor: green;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1;
+    background-color: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+main {
+    padding-top: 140px;
+    padding-bottom: 3rem;
 }
 
 .orders-container,
-.order-container {
+.order-container,
+.total-products {
     max-width: 1264px;
     width: 100%;
     margin: 2rem auto;
+    padding: 0 5px;
 }
 
 a,
 a:hover {
     text-decoration: none;
-}
-
-.center {
-    text-align: center;
 }
 
 .danger {
@@ -34,7 +48,6 @@ a:hover {
     padding: 3px;
 }
 
-/* SIDEBAR STARTS */
 #mySideBar {
     display: flex;
     flex-direction: column;
@@ -42,7 +55,7 @@ a:hover {
     width: 0;
     position: fixed;
     background-color: var(--lightColor);
-    z-index: 1;
+    z-index: 1000;
     top: 0;
     left: 0;
     overflow-x: hidden;
@@ -50,18 +63,16 @@ a:hover {
     font-size: larger;
 }
 
-/* ERROR-MESSAGE STARTS */
 .error-message {
     color: var(--dangerColor);
     text-align: center;
     font-weight: bold;
     margin: 1rem;
 }
-/* ERROR-MESSAGE ENDS */
 
 .nav-link a {
     text-decoration: none;
-    color: #4a4a4a; /* Dark gray color */
+    color: #4a4a4a;
     padding: 5px 10px;
     font-weight: bold;
     white-space: nowrap;
@@ -77,18 +88,18 @@ a:hover {
     color: #b51828;
 }
 
-/* MOBILE */
-@media screen and (max-width: 1023px) {
-    main {
-        width: 100vw;
-    }
-
-    #cart {
-        flex-direction: column;
-    }
+.products-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 0 10px;
+    align-items: center;
+    max-width: 1264px;
+    width: 100%;
+    margin: 2rem auto;
+    flex-wrap: wrap;
 }
 
-/* Rating summary */
 .rating-summary {
     padding: 20px;
     border: 1px solid #ddd;
@@ -102,7 +113,6 @@ a:hover {
     margin-bottom: 20px;
 }
 
-/* Parent Flex Container */
 .row-flex-between {
     display: flex;
     justify-content: space-between;
@@ -111,21 +121,18 @@ a:hover {
     flex-wrap: wrap;
 }
 
-/* Child Flex Items */
 .average-rating-stars-container,
 .star-rows-container {
-    flex: 1; /* Both take equal space */
+    flex: 1;
     min-width: 250px;
 }
 
-/* Flexbox Alignment for Star Rows */
 .star-rows-container {
     display: flex;
     flex-direction: column;
     gap: 10px;
 }
 
-/* Star Row Styling */
 .star-row {
     display: flex;
     justify-content: space-between;
@@ -157,42 +164,6 @@ a:hover {
     font-size: 14px;
 }
 
-/* Mobile Responsive Adjustments */
-@media (max-width: 768px) {
-    .row-flex-between {
-        flex-direction: column; /* Stack elements on small screens */
-    }
-
-    .average-rating-stars-container,
-    .star-rows-container {
-        width: 100%; /* Full width on small screens */
-    }
-}
-
-@media (max-width: 480px) {
-    .center {
-        font-size: 18px; /* Smaller font for small screens */
-    }
-
-    .average-rating-stars-container {
-        font-size: 14px;
-        gap: 3px;
-    }
-
-    .star-row {
-        gap: 5px;
-    }
-
-    .star-label {
-        font-size: 12px;
-    }
-
-    .star-percentage {
-        font-size: 12px;
-    }
-}
-
-/* userorders */
 .orders-container {
     max-width: 1200px;
     width: 100%;
@@ -210,11 +181,32 @@ a:hover {
     color: #a6212b;
 }
 
+.completed {
+    background-color: var(--successColor);
+    color: var(--lightColor);
+}
+.pending {
+    background-color: yellow;
+}
+.cancelled {
+    background-color: var(--dangerColor);
+    color: var(--lightColor);
+}
+
+.completed,
+.cancelled,
+.pending {
+    padding: 0.2rem 0.5rem;
+    border-radius: 5px;
+    min-width: 10rem;
+}
+
 table {
     width: 100%;
     border-collapse: collapse;
     font-size: 1rem;
     margin-top: 1rem;
+    overflow-x: auto;
 }
 
 thead {
@@ -230,7 +222,6 @@ td {
 }
 
 th {
-    /* font-size: 1.2rem; */
     text-transform: uppercase;
 }
 
@@ -266,9 +257,97 @@ td span.danger {
     color: #a6212b;
 }
 
-/* Responsive Styles */
+.ratings-container {
+    margin: 1rem auto;
+}
+
+.rating-card {
+    padding: 1rem 0;
+    border-bottom: 1px solid rgb(195, 192, 192);
+    display: flex;
+    gap: 2rem;
+}
+
+.rating-card img {
+    width: 5rem;
+    height: 5rem;
+    border-radius: 50%;
+}
+
+.rating-comment {
+    padding-top: 1rem;
+}
+
+/* SortAndFilter.module.css */
+
+/* Style for the entire slider track */
+.rc-slider {
+    margin: 0.5rem 0;
+    height: 2rem; /* Modify height of the slider */
+}
+
+/* Style for the track that has been selected (between the two handles) */
+.rc-slider-track {
+    background-color: var(--primaryColor); /* Change to your desired color */
+    height: 2rem; /* Adjust thickness */
+}
+
+/* Style for the rail (track background behind the slider) */
+.rc-slider-rail {
+    background-color: var(--primaryColor);
+    height: 10px; /* Adjust thickness */
+}
+
+/* Style for the slider handles */
+.rc-slider-handle {
+    border-color: var(--primaryColor); /* Change the handle border color */
+    background-color: var(--primaryColor); /* Handle background color */
+    width: 20px; /* Size of the handle */
+    height: 20px;
+    margin-top: -5px; /* Adjust the positioning to center on the track */
+    box-shadow: none; /* Remove shadow */
+}
+
+/* When the handle is being hovered or focused */
+.rc-slider-handle:hover,
+.rc-slider-handle:focus {
+    border-color: var(--primaryColor);
+}
+
+.rc-slider-handle:active {
+    border-color: var(--primaryColor); /* Color when active */
+}
+
+/* Style for marks (if you are using marks) */
+.rc-slider-mark {
+    font-size: 12px;
+}
+
+@media screen and (max-width: 1023px) {
+    main {
+        width: 100vw;
+    }
+
+    #cart {
+        flex-direction: column;
+    }
+}
+
 @media (max-width: 768px) {
-    table,
+    .row-flex-between {
+        flex-direction: column;
+    }
+
+    .products-container {
+        gap: 0px;
+    }
+
+    .average-rating-stars-container,
+    .star-rows-container {
+        width: 100%;
+    }
+
+    /* table,
     thead,
     tbody,
     th,
@@ -300,9 +379,32 @@ td span.danger {
         left: 10px;
         font-weight: bold;
         text-transform: uppercase;
-    }
+    } */
 
     .orders-container h1 {
         font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .center {
+        font-size: 18px;
+    }
+
+    .average-rating-stars-container {
+        font-size: 14px;
+        gap: 3px;
+    }
+
+    .star-row {
+        gap: 5px;
+    }
+
+    .star-label {
+        font-size: 12px;
+    }
+
+    .star-percentage {
+        font-size: 12px;
     }
 }

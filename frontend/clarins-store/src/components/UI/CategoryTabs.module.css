@@ -1,0 +1,41 @@
+.tabs-container {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin: 2rem auto;
+}
+
+.tabs-container button {
+    background-color: transparent;
+    color: #333;
+    border: 1px solid #ccc;
+    padding: 8px 16px;
+    border-radius: 5px;
+    margin-right: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.tabs-container button:hover {
+    background-color: #a6212b;
+    color: white;
+}
+
+.tabs-container button:focus {
+    outline: none;
+}
+
+.tabs-container button:active {
+    background-color: #ddd;
+}
+
+.tabs-container .active {
+    background-color: #a6212b;
+    color: white;
+    border: none;
+    outline: none;
+    font-weight: bold;
+    padding: 8px 16px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}

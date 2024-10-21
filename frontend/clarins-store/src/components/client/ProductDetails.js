@@ -1,17 +1,19 @@
 import { useContext, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import { UserContext } from "../../App";
-import { FaStar, FaStarHalfAlt } from "react-icons/fa";
 import { formatter } from "../../util/formatter";
 import Button from "../UI/Button";
 import ProductRatings from "./ProductRatings";
 import RatingSummary from "./RatingSummary";
 import WriteReviewModal from "./WriteReviewModal";
+import RelatedProducts from "./RelatedProducts";
 import classes from "./ProductDetails.module.css";
+import { renderAverageRatingStars } from "../../util/renderAverageRatingStars";
+import { calculateRatingSummary } from "../../util/ratingUtils";
 
 export default function ProductDetails() {
-    const [product, setProduct] = useState("");
+    const [product, setProduct] = useState({});
     const [loading, setLoading] = useState(true);
     const [ratingSummary, setRatingSummary] = useState({
         totalRatings: 0,
@@ -25,6 +27,7 @@ export default function ProductDetails() {
         product_price,
         product_images,
         product_ratings,
+        benefits,
     } = product;
 
     // State for modal visibility, rating, and review
@@ -32,6 +35,9 @@ export default function ProductDetails() {
     const [selectedRating, setSelectedRating] = useState(0);
     const [reviewText, setReviewText] = useState("");
     const [selectedImage, setSelectedImage] = useState("");
+
+    const [mainCategory, setMainCategory] = useState("");
+    const [subCategory, setSubCategory] = useState("");
 
     const { user } = useContext(UserContext);
 
@@ -43,8 +49,19 @@ export default function ProductDetails() {
             .get("http://localhost/project/collections/product/id=" + id)
             .then((res) => {
                 const productData = res.data.data;
+
                 setProduct(productData);
-                calculateRatingSummary(productData.product_ratings);
+                setMainCategory(productData.main_category);
+                setSubCategory(productData.sub_category);
+
+                // Use the utility function to calculate rating summary
+                const ratingSummaryData = calculateRatingSummary(
+                    productData.product_ratings.map(
+                        (rating) => rating.rating || []
+                    )
+                );
+                setRatingSummary(ratingSummaryData);
+
                 setLoading(false); // Loading complete
 
                 if (productData.product_name) {
@@ -64,52 +81,6 @@ export default function ProductDetails() {
     const handleAddToCart = () => {
         addToCart(product);
         alert(product.product_name + " has been added to cart!");
-    };
-
-    const calculateRatingSummary = (ratings) => {
-        if (!ratings || ratings.length === 0) return;
-
-        let totalRatings = ratings.length;
-        let starCounts = { 5: 0, 4: 0, 3: 0, 2: 0, 1: 0 };
-        let totalStars = 0;
-
-        ratings.forEach((rating) => {
-            const starRating = rating.rating;
-            starCounts[starRating]++;
-            totalStars += starRating;
-        });
-
-        const averageRating = (totalStars / totalRatings).toFixed(1); // Calculate average rating
-
-        setRatingSummary({
-            totalRatings,
-            averageRating,
-            starCounts,
-        });
-    };
-
-    // Function to render the average rating using stars
-    const renderAverageRatingStars = (averageRating) => {
-        const fullStars = Math.floor(averageRating); // Full stars
-        const hasHalfStar = averageRating - fullStars >= 0.5; // Half star if remainder is 0.5 or more
-        const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0); // Remaining empty stars
-
-        return (
-            <span className="average-rating-stars">
-                {/* Full Stars */}
-                {Array.from({ length: fullStars }, (_, index) => (
-                    <FaStar key={"full-" + index} color={"#A6212B"} />
-                ))}
-
-                {/* Half Star */}
-                {hasHalfStar && <FaStarHalfAlt color={"#A6212B"} />}
-
-                {/* Empty Stars */}
-                {Array.from({ length: emptyStars }, (_, index) => (
-                    <FaStar key={"empty-" + index} color={"#e4e5e9"} />
-                ))}
-            </span>
-        );
     };
 
     const openModal = () => setIsModalOpen(true);
@@ -146,12 +117,12 @@ export default function ProductDetails() {
                 alert("Failed to submit the review. Please try again.");
             });
     };
+
     const handleImageClick = (imageUrl) => {
         setSelectedImage(imageUrl);
     };
 
     if (loading) return <p>Loading product details...</p>;
-   
 
     return (
         <div className={classes["product-details-container"]}>
@@ -210,6 +181,18 @@ export default function ProductDetails() {
                     <p className={classes.product_description}>
                         {product_description}
                     </p>
+
+                    {benefits.length > 0 && (
+                        <div className={classes.benefitsContainer}>
+                            <h3>Benefits</h3>
+                            <ul className={classes.benefits}>
+                                {benefits.split(";").map((benefit, index) => (
+                                    <li key={index}>{benefit}</li>
+                                ))}
+                            </ul>
+                        </div>
+                    )}
+
                     <p className={classes.available}>
                         {" "}
                         Qty available: {stock_qty}
@@ -226,6 +209,12 @@ export default function ProductDetails() {
                 </div>
             </div>
 
+            <RelatedProducts
+                productId={Number(id)}
+                mainCategory={mainCategory}
+                subCategory={subCategory}
+            />
+
             <div className={classes["product-reviews"]}>
                 {ratingSummary.totalRatings === 0 ? (
                     <div className={classes["no-reviews-message"]}>
@@ -241,9 +230,18 @@ export default function ProductDetails() {
                             ratingSummary={ratingSummary}
                             renderAverageRatingStars={renderAverageRatingStars}
                         />
-                        <Button className="button" onClick={openModal}>
-                            Write a review
-                        </Button>
+                        {user ? (
+                            <Button className="button" onClick={openModal}>
+                                Write a review
+                            </Button>
+                        ) : (
+                            <p>
+                                <Link to={"/login"}>
+                                    <Button className="button">Login</Button>{" "}
+                                </Link>{" "}
+                                to write a review
+                            </p>
+                        )}
                         <ProductRatings ratings={product_ratings} />
                     </>
                 )}
