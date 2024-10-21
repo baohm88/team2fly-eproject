@@ -9,7 +9,7 @@ class CollectionsModel extends BaseController
 
     public function getProductRatingsById($product_id)
     {
-        $sql  = "SELECT pr.*, u.username FROM ProductRating pr 
+        $sql  = "SELECT pr.*, u.username, u.user_image FROM ProductRating pr 
                 JOIN users u ON u.user_id = pr.user_id 
                 WHERE pr.product_id = :product_id
                 ORDER BY pr.review_date DESC";
