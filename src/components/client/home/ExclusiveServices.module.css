@@ -1,0 +1,56 @@
+/* Container for exclusive services */
+.exclusive-services-container {
+    text-align: center;
+    padding: 20px;
+}
+
+.exclusive-services-container h2 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.exclusive-services-container p {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+}
+
+/* Flexbox layout for services */
+.services-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+
+/* Media Queries for responsiveness */
+@media (max-width: 1200px) {
+    .services-container .service-item {
+        flex: 1 1 30%; /* Take more width on smaller screens */
+    }
+}
+
+@media (max-width: 768px) {
+    .services-container .service-item {
+        flex: 1 1 45%; /* Take almost half the width on tablets */
+    }
+}
+
+@media (max-width: 480px) {
+    .services-container {
+        flex-direction: column;
+    }
+
+    .services-container .service-item {
+        flex: 1 1 100%; /* Full width on mobile */
+        margin-bottom: 20px;
+    }
+
+    .exclusive-services-container h2 {
+        font-size: 1.5rem;
+    }
+
+    .exclusive-services-container p {
+        font-size: 1rem;
+    }
+}

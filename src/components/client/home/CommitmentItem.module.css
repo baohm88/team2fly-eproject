@@ -1,0 +1,26 @@
+.commitment-item {
+    max-width: 200px;
+    text-align: center;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 20px;
+    transition: transform 0.3s ease;
+    width: 100%;
+}
+
+.commitment-button:hover {
+    transform: scale(1.05);
+}
+
+.commitment-button img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+}
+
+.commitment-button h3 {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #444;
+}

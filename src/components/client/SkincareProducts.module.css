@@ -1,0 +1,61 @@
+.center {
+    text-align: center;
+}
+
+.center h1 {
+    margin-bottom: 1rem;
+}
+
+.h1 {
+    font-size: 3rem;
+    font-weight: 400;
+    color: #333; /* Adjust as per design */
+    margin-bottom: 20px;
+}
+
+.p {
+    font-size: 1.2rem;
+    color: #666;
+    margin-bottom: 30px;
+}
+
+.select {
+    background-color: #a6212b;
+    color: white;
+    padding: 3px;
+    border-radius: 5px;
+}
+
+.total-products {
+    text-align: left; /* Căn lề trái cho phần hiển thị tổng số sản phẩm */
+    margin-bottom: 20px; /* Tạo khoảng cách phía dưới để tránh nội dung tiếp theo quá sát */
+    font-family: "Arial", sans-serif; /* Đặt font chữ Arial, và sans-serif là dự phòng */
+    font-size: 18px; /* Kích thước chữ 18px */
+    color: #333; /* Màu chữ là màu xám đậm */
+}
+
+.best-seller-badge {
+    background-color: #f1f1f1; /* Màu nền xám nhạt cho huy hiệu Best Seller */
+    color: #333; /* Màu chữ xám đậm */
+    padding: 5px 10px; /* Tạo khoảng cách bên trong huy hiệu */
+    font-size: 12px; /* Kích thước chữ trong huy hiệu là 12px */
+    font-weight: bold; /* Chữ in đậm trong huy hiệu */
+    position: absolute; /* Vị trí tuyệt đối để đặt huy hiệu ở một góc của thẻ */
+    top: 10px; /* Cách cạnh trên 10px */
+    left: 10px; /* Cách cạnh trái 10px */
+    border-radius: 5px; /* Làm tròn các góc của huy hiệu */
+}
+
+.filters,
+.total-products {
+    display: flex;
+    gap: 1rem;
+    max-width: 1264px;
+    width: 100%;
+    margin: 1rem auto;
+}
+
+.slider {
+    min-width: 15rem;
+}
+
