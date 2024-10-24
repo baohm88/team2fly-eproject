@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 const ProductCategories = () => {
     const categories = [
         {
-            href: "/skincare",
+            href: "/skincare?category=Face",
             src: "Highlight_DOUBLE-SERUM_2024.jpg",
             alt: "Face",
             name: "FACE",
@@ -18,13 +18,13 @@ const ProductCategories = () => {
             name: "MAKEUP",
         },
         {
-            href: "/skincare",
+            href: "/skincare?category=Body",
             src: "Body-Fit-Active-Highlight.JPG",
             alt: "Body",
             name: "BODY",
         },
         {
-            href: "/skincare",
+            href: "/skincare?category=Sun",
             src: "CBA_HP_Highlights_Lifestyle_Body_Sun3.jpg",
             alt: "Sun",
             name: "SUN",

@@ -65,11 +65,11 @@ export default function Login() {
                     Please enter your Username and Password:
                 </p>
                 <br />
-                {error && (
-                    <p className="error-message">
-                        Wrong username and/or password
-                    </p>
-                )}
+
+                <p className="error-message center">
+                    {error ? "Wrong username and/or password" : ""}
+                </p>
+
                 <br />
                 <div className={classes["form-row"]}>
                     <Input

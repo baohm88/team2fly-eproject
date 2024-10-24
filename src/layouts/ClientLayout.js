@@ -289,7 +289,7 @@ export default function ClientLayout({ children }) {
                                         </div>
                                     </>
                                 ) : (
-                                    <p>Your bag is empty.</p>
+                                    <p>Your cart is empty.</p>
                                 )}
                             </div>
                         </div>

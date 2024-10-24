@@ -31,19 +31,54 @@ export default function Cart() {
         calculateTotalAmount();
     }, [cart]);
 
+    // const handleCheckout = async () => {
+    //     try {
+    //         const orderData = {
+    //             user_id: user.user_id,
+    //             order_value: totalAmount,
+    //             cart_items: cart,
+    //         };
+
+    //         const response = await axios.post(
+    //             `http://localhost/project/user/orders/user_id=${user.user_id}`,
+    //             orderData
+    //         );
+
+    //         if (response.data.type === "success") {
+    //             alert("Order created successfully!");
+    //             clearCart();
+    //         } else {
+    //             console.log("Creating order failed: ", response.data.message);
+    //             setServerError(response.data.message);
+    //         }
+    //     } catch (error) {
+    //         console.error("Error creating the order:", error);
+    //         alert(
+    //             "An error occurred during checkout. Please try again.\n" + error
+    //         );
+    //     }
+    // };
     const handleCheckout = async () => {
+        // Check if user is available
+        if (!user || !user.user_id) {
+            alert("Please log in to proceed with the checkout.");
+            // Redirect to login page
+    window.location.href = "/login"; // Or use navigate() from React Router v6
+    return;
+        }
+    
         try {
             const orderData = {
                 user_id: user.user_id,
                 order_value: totalAmount,
                 cart_items: cart,
             };
-
+    
             const response = await axios.post(
                 `http://localhost/project/user/orders/user_id=${user.user_id}`,
                 orderData
             );
-
+    
             if (response.data.type === "success") {
                 alert("Order created successfully!");
                 clearCart();
@@ -58,6 +93,7 @@ export default function Cart() {
             );
         }
     };
+    
 
     if (!cart || cart.length === 0) {
         return (

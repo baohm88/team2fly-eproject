@@ -41,6 +41,24 @@ const ProfilePage = () => {
                         PROFILE & PREFERENCES
                     </a>
                     <div className={classes["tier-card"]}>
+                        <div>
+                            <img
+                                src={user.user_image}
+                                alt={full_name}
+                                style={{
+                                    width: "5rem",
+                                    height: "5rem",
+                                    objectFit: "cover",
+                                    borderRadius: "50%",
+                                }}
+                            />
+                        </div>
+                        <div>
+                            <h2>{full_name}</h2>
+                            <p>@{user.username}</p>
+                        </div>
+                    </div>
+                    <div className={classes["tier-card"]}>
                         <span>Tier: Like</span>
                         <h2>50</h2>
                         <p>points available</p>
@@ -117,6 +135,25 @@ const ProfilePage = () => {
             <div className={classes["main-content"]}>
                 <h2>My profile</h2>
                 <div className={classes["wrapper"]}>
+                    {/* <div>
+                        <div>
+                            <img
+                                src={user.user_image}
+                                alt={full_name}
+                                style={{
+                                    width: "5rem",
+                                    height: "5rem",
+                                    objectFit: "cover",
+                                    borderRadius: "50%",
+                                }}
+                            />
+                        </div>
+                        <div>
+                            <h2>{full_name}</h2>
+                            <p>@{user.username}</p>
+                        </div>
+                    </div> */}
+
                     <div className={classes["personal-info"]}>
                         <h3>Personal information & preferences</h3>
                         <div className={classes["info-card"]}>

@@ -13,7 +13,7 @@ export const useAuthCart = () => {
     useEffect(() => {
         if (user) {
             localStorage.setItem("user", JSON.stringify(user));
-            setCart([]); // Clear cart for new users
+            // setCart([]); // Clear cart for new users
         } else {
             localStorage.removeItem("user");
         }

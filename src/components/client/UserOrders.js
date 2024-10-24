@@ -4,6 +4,7 @@ import axios from "axios";
 import { formatter } from "../../util/formatter";
 import { FaEye } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import Button from "../UI/Button";
 
 export default function UserOrders() {
     const { user } = useContext(UserContext);
@@ -38,7 +39,18 @@ export default function UserOrders() {
     }, [user]); // Add user as a dependency to fetch orders when user changes
 
     if (!userOrders || userOrders.length === 0) {
-        return <p>You have no orders yet.</p>;
+        return (
+            <>
+                <div className="center">
+                    <p style={{ marginBottom: "1rem" }}>
+                        You have no orders yet.
+                    </p>
+                    <Link to="/skincare">
+                        <Button className="button">Shop Now</Button>
+                    </Link>
+                </div>
+            </>
+        );
     }
 
     return (
