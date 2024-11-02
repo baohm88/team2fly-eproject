@@ -2,19 +2,35 @@
 
 class AdminController extends BaseController
 {
-    private $__conn, $__instanceBaseModel, $__instanceProductModel;
+    private $__conn, $__instanceBaseModel, $__instanceProductModel, $__instanceUserModel;
 
     public function __construct($conn)
     {
         $this->__conn = $conn;
         $this->__instanceBaseModel = $this->initModel("BaseModel", $this->__conn);
     }
+
+
     /**
      * Summary of Users
-     * go to the adminBuyerController class
+     * Get users info to show in the admin's user management page
      * @return void
      */
-    public function Users() {}
+    public function Users()
+    {
+        $limit = isset($_GET['limit']) ? (int)$_GET['limit'] : 10; // default limit = 10
+        $offset = isset($_GET['offset']) ? (int)$_GET['offset'] : 0; // default offset = 0
+        $this->__instanceUserModel = $this->initModel("UserModel", $this->__conn);
+        $this->FactoryMessage("success", "This is users array", $this->__instanceUserModel->getUsers($limit, $offset));
+    }
+
+    // public function User()
+    // {
+    //     $method  = $_SERVER["REQUEST_METHOD"];
+    //     switch ($method) {
+
+    //     }
+    // }
 
 
     /**‚

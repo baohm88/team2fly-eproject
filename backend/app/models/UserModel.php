@@ -216,4 +216,21 @@ class UserModel extends BaseController
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    public function getUsers($limit = 10, $offset = 0)
+    {
+        $sql = "SELECT 
+                    user_id,
+                    username,
+                    is_active,
+                    user_image
+                FROM Users
+                LIMIT :limit
+                OFFSET :offset";
+        $stmt = $this->__conn->prepare($sql);
+        $stmt->bindValue(":limit", $limit, PDO::PARAM_INT);
+        $stmt->bindValue(":offset", $offset, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 }
